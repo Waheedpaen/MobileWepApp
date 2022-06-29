@@ -20,6 +20,7 @@ data: any = {};
 
 @ViewChild(NgForm) Form: any;
   response: any;
+  file: string | ArrayBuffer | null | undefined;
   constructor(  public formBulider:UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
@@ -27,7 +28,10 @@ data: any = {};
     private _NgbActiveModal: NgbActiveModal) {
       this.form = this.formBulider.group({
         Id:[''],
-        Name:['', [Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z .,']*$/)]]})
+        Name:['', [Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z .,']*$/)]],
+        Image: [''],
+      })
+
        }
   ngOnInit() {
     this.statusCheck = this.statusCheck;
@@ -36,7 +40,7 @@ data: any = {};
     }
   }
 getBrandDetail(){
-
+debugger
   this.spinner.show();
   this.brandServices.GetBrandDetail(this.Id).subscribe(
     res=>{
@@ -45,6 +49,7 @@ getBrandDetail(){
     this.data = this.response.data;
     this.form.controls.Id.setValue(this.data?.id);
     this.form.controls.Name.setValue(this.data?.name);
+    this.file = this.data?.imageUrl;
     this.spinner.hide();
   }
   else{
@@ -66,6 +71,7 @@ getBrandDetail(){
 console.log(form);
 this.spinner.show();
 const obj = new Brand();
+obj.imageUrl = this.file;
 obj.name = this.form.get('Name')?.value;
 this.brandServices.SaveBrandData(obj).subscribe(
   res=>{
@@ -89,10 +95,11 @@ this.brandServices.SaveBrandData(obj).subscribe(
   }
 
   updateBrand(form: NgForm){
-  this.spinner.show();
+    debugger 
   const obj = new  Brand();
   obj.id = +this.form.get('Id')?.value;
   obj.name = this.form.get('Name')?.value,
+  obj.imageUrl = this.file
   this.brandServices.UpdateBrandData(obj).subscribe(
     (    res: any) =>{
       this.response = res;
@@ -122,5 +129,13 @@ this.brandServices.SaveBrandData(obj).subscribe(
       this.updateBrand(this.Form);
     }
   }
-
+  public uploadFinished(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.file  = event?.target?.result;
+      }
+    }
+  }
 }

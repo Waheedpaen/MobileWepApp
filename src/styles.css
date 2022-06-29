@@ -302,15 +302,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   background-color: #7ecc49 !important;
 }
 
-.img-thumbnail {
-    padding: 0.25rem;
-    background-color: #ffffff;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
-    max-width: 100%;
-
-}
+ 
 .custom-file-label {
   position: absolute;
   top: 0;
