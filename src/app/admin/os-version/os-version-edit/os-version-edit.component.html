@@ -1,0 +1,75 @@
+
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+  </button>
+
+  <h5 class="modal-title" *ngIf="statUsCheck == 'Add'"
+  style="font-size: 17px;/* margin-top: 1px; */position: relative;top: 11px;"
+  >
+    <i class="fa fa-database" aria-hidden="true"></i>
+      Add  OSV
+  </h5>
+  <h5 class="modal-title" *ngIf="statUsCheck == 'Edit'"
+  style="font-size: 17px;/* margin-top: 1px; */position: relative;top: 11px;"
+  >
+      <i class="far fa-sticky-note"></i>
+      Edit  OSV
+  </h5>
+</div>
+
+
+<div class="modal-body BG p-0 rounded-10">
+  <form [formGroup]="form" >
+
+      <div class="row justify-content-center">
+          <div class="col-10 col-md-11 pt-3 pb-2">
+
+              <div class="form-group mb-1">
+                  <label for="inputPassword4">  OSV Name</label>
+                  <div class="custom-file">
+                    <input type="text" hidden
+                    formControlName="Id"
+                       />
+                    <input [ngClass]="{'has-error':form.get('Name').errors&&(form.get('Name').touched || form.get('Name').dirty|| form.get('Name').invalid)}" type="text" class="form-control" placeholder="Name"
+                    formControlName="Name"
+                       />
+                      <span   *ngIf=" form. get('Name').errors && (form.get('Name').touched || form.get('Name').dirty )"  >
+                         <small class="text-danger" *ngIf="form.get('Name').errors?.minlength">Name should be of minimum 3 letters</small>
+                         <small class="text-danger" *ngIf="form.get('Name').errors?.required">Name is required </small>
+                       </span>
+
+                  </div>
+              </div>
+              <ng-select  class="mt-3"
+              bindLabel=" obj"
+              placeholder="Select Supplier"
+              formControlName="OperatingSystemId"
+              >
+              <ng-option *ngFor="let obj of  objOS" [value]=" obj.id">
+                  {{ obj.name}}
+              </ng-option>
+          </ng-select>
+          <span   *ngIf=" form. get('OperatingSystemId').errors && (form.get('OperatingSystemId').touched || form.get('OperatingSystemId').dirty )"  >
+            <small class="text-danger" *ngIf="form.get('OperatingSystemId').errors?.required">Select OperatingSystem</small>
+          </span>
+          </div>
+      </div>
+
+      <div class="modal-footer NotBG">
+          <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+              (click)="activeModal.close()">
+              Close
+          </button>
+          <button class="btn btn-warning" [disabled]="!form.valid" type="submit" *ngIf="statUsCheck == 'Add'"
+              (click)="onSubmit('Add')">
+              Save
+          </button>
+          <button [disabled]="!form.valid"  class="btn btn-warning" type="submit" *ngIf="statUsCheck == 'Edit'"
+              (click)="onSubmit('Edit')">
+              Update
+          </button>
+      </div>
+
+  </form>
+</div>

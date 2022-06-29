@@ -1,0 +1,148 @@
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<!-- <div class="container" #container>
+
+
+</div> -->
+
+<div class="signup-form">
+  <form [formGroup]="form"   >
+  <h2>Create Account</h2>
+  <p class="lead">It's free and hardly takes more than 30 seconds.</p>
+      <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+      <input
+  formControlName="UserName"
+                  [ngClass]="{'has-error':form.get('UserName').errors && (form.get('UserName').touched || form.get('UserName').dirty|| form.get('UserName').invalid)}"
+                  type="text" class="form-control"  placeholder="User Name"
+      type="text" class="form-control" name="username" placeholder="Username" required="required">
+      <span   *ngIf=" form.get('UserName').errors && (form.get('UserName').touched || form.get('UserName').dirty )"  >
+
+        <small class="text-danger" *ngIf="form.get('UserName').errors?.minlength">UserName Name should be of minimum 4  letters</small>
+        <small class="text-danger" *ngIf="form.get('UserName').errors?.pattern">'UserName Name use Alphabets</small>
+        <small class="text-danger" *ngIf="form.get('UserName').errors?.required">UserName Name is required </small>
+        <small  class="text-danger" *ngIf="form.get('UserName').errors?.alreadyExist">Name Already Exists</small>
+      </span>
+    </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input
+          formControlName="FullName"
+          [ngClass]="{'has-error':form.get('FullName').errors && (form.get('FullName').touched || form.get('FullName').dirty|| form.get('FullName').invalid)}"
+          type="text" class="form-control" name="username" placeholder="Fullname" required="required">
+          <span   *ngIf=" form.get('FullName').errors && (form.get('FullName').touched || form.get('FullName').dirty )"  >
+            <small class="text-danger" *ngIf="form.get('FullName').errors?.minlength">FullName   should be of minimum 4  letters</small>
+            <small class="text-danger" *ngIf="form.get('FullName').errors?.pattern">'FullName  should be Alphabets</small>
+            <small class="text-danger" *ngIf="form.get('FullName').errors?.required">FullName  is required </small>
+          </span>
+        </div>
+          </div>
+      <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+      <input
+      formControlName="Email"
+                            [ngClass]="{'has-error':form.get('Email').errors&&(form.get('Email').touched || form.get('Email').dirty|| form.get('Email').invalid)}"
+      type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+      <span   *ngIf=" form. get('Email').errors && (form.get('Email').touched || form.get('Email').dirty )"  >
+        <small class="text-danger" *ngIf="form.get('Email').errors?.minlength">Email Name should be of minimum 4  letters</small>
+        <small class="text-danger" *ngIf="form.get('Email').errors?.pattern">'Email Pattern are invalid</small>
+        <small class="text-danger" *ngIf="form.get('Email').errors?.required">Email Name is required </small>
+      </span>
+    </div>
+      </div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+      <input
+      formControlName="Password"
+      [ngClass]="{'has-error':form.get('Password').errors&&(form.get('Password').touched || form.get('Password').dirty|| form.get('Password').invalid)}"
+
+      type="text" class="form-control" name="password" placeholder="Password" required="required">
+      <span   *ngIf=" form. get('Password').errors && (form.get('Password').touched || form.get('Password').dirty )"  >
+        <small class="text-danger" *ngIf="form.get('Password').errors?.minlength">Password should be of minimum 6 letters</small>
+        <small class="text-danger" *ngIf="form.get('Password').errors?.pattern">'Please use Alphabets</small>
+        <small class="text-danger" *ngIf="form.get('Password').errors?.required">Password is required </small>
+      </span>
+    </div>
+      </div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-lock"></i>
+        <i class="fa fa-check"></i>
+      </span>
+      <input
+      formControlName="ConfirmPassword"
+      [ngClass]="{'has-error':form.get('ConfirmPassword').errors&&(form.get('ConfirmPassword').touched || form.get('ConfirmPassword').dirty|| form.get('ConfirmPassword').invalid)}"
+      type="text" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+      <span   *ngIf=" form. get('ConfirmPassword').errors && (form.get('ConfirmPassword').touched || form.get('ConfirmPassword').dirty )"  >
+        <small class="text-danger" *ngIf="form.get('ConfirmPassword').errors?.minlength">ConfirmPassword should be of minimum 3 letters</small>
+        <small class="text-danger" *ngIf="form.get('ConfirmPassword').errors?.pattern">'Please use Alphabets</small>
+        <small class="text-danger" *ngIf="form.get('ConfirmPassword').errors?.mustMatch">Passwords must match </small>
+        <small class="text-danger" *ngIf="form.get('ConfirmPassword').errors?.required">ConfirmPassword is required </small>
+
+      </span>
+    </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class=" col-8">
+          <div class="input-group ">
+            <span class="input-group-addon">
+              <i class="fa fa-camera" aria-hidden="true"></i>
+            </span>
+            <input
+            [ngClass]="{'has-error':form.get('Image').errors&&(form.get('Image').touched || form.get('Image').dirty|| form.get('Image').invalid)}"
+                  formControlName="Image"
+                  id="file"
+          #imageBytes
+
+          class="form-control"
+          multiple=""
+          accept="image/x-png,image/gif,image/jpeg,video/mp4 "
+         data-allowed-file-extensions="jpg jpeg gif x-png bmp png mp4  "
+                  (change)="uploadFinished($event)"
+            type="file" class="form-control"    >
+          </div>
+        </div>
+
+        <div class="col-4">
+          <img    class=" img-thumbnail  img-responsive img-portfolio img-hover" alt="" *ngIf="!file"  title=""  src="https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" data-original-title="Usuario">
+          <img   alt="" *ngIf="file"  title="" class="img-thumbnail isTooltip" [src]="file" data-original-title="Usuario">
+ <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>
+          </div>
+  <div class="form-group">
+          <button
+          (click)="addUserMethod()"
+          [disabled]="!form.valid"
+          type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input
+          formControlName="FullName"
+          [ngClass]="{'has-error':form.get('FullName').errors && (form.get('FullName').touched || form.get('FullName').dirty|| form.get('FullName').invalid)}"
+          type="text" class="form-control" name="username" placeholder="Fullname" required="required">
+          <span   *ngIf=" form.get('FullName').errors && (form.get('FullName').touched || form.get('FullName').dirty )"  >
+            <small class="text-danger" *ngIf="form.get('FullName').errors?.minlength">FullName   should be of minimum 4  letters</small>
+            <small class="text-danger" *ngIf="form.get('FullName').errors?.pattern">'FullName  should be Alphabets</small>
+            <small class="text-danger" *ngIf="form.get('FullName').errors?.required">FullName  is required </small>
+          </span>
+        </div>
+          </div>
+  <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
+  </form>
+<!-- <div class="text-center">Already have an account? <a href="#">Login here</a>.</div> -->
+</div>
+
+
+

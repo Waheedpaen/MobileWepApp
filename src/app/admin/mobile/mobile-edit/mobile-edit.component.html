@@ -1,0 +1,619 @@
+
+<div class="tab-content" id="pills-tabContent">
+  <form [formGroup]="form" >
+    <div class="row">
+    <div class="col-4"  >
+      <div class="form-group mb-1">
+        <label for="inputPassword4">Brand Name<span class="required-denote">*</span></label>
+        <div class="custom-file">
+          <input type="text" hidden
+          formControlName="Id"
+             />
+          <input [ngClass]="{'has-error':form.get('Name').errors&&(form.get('Name').touched || form.get('Name').dirty|| form.get('Name').invalid)}" type="text" class="form-control" placeholder="Name"
+          formControlName="Name"
+          [ngClass]="{'error': form.get('Name').invalid && form.get('Name').touched,'not-error': form.get('Name') .valid && form.get('Name') .touched}">
+
+             <span   *ngIf=" form. get('Name').errors && (form.get('Name').touched || form.get('Name').dirty )"  >
+
+
+               <small class="text-danger" *ngIf="form.get('Name').errors?.minlength">Name should be of minimum 3 letters</small>
+
+               <small class="text-danger" *ngIf="form.get('Name').errors?.pattern">'Name Should be  Alphabets</small>
+               <small class="text-danger" *ngIf="form.get('Name').errors?.required">Name is required </small>
+             </span>
+
+        </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword4">ScreenSize Name<span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('ScreenSize').errors&&(form.get('ScreenSize').touched || form.get('ScreenSize').dirty|| form.get('ScreenSize').invalid)}" type="text" class="form-control" placeholder="ScreenSize"
+        formControlName="ScreenSize"
+        [ngClass]="{'error': form.get('ScreenSize').invalid && form.get('ScreenSize').touched,'not-error': form.get('ScreenSize') .valid && form.get('ScreenSize') .touched}">
+
+           <span   *ngIf=" form. get('ScreenSize').errors && (form.get('ScreenSize').touched || form.get('ScreenSize').dirty )"  >
+
+
+             <small class="text-danger" *ngIf="form.get('ScreenSize').errors?.minlength">ScreenSize should be of minimum 3 letters</small>
+
+             <small class="text-danger" *ngIf="form.get('ScreenSize').errors?.pattern">'ScreenSize Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('ScreenSize').errors?.required">ScreenSize is required </small>
+           </span>
+
+      </div>
+  </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword4">BatteryMah Name<span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('BatteryMah').errors&&(form.get('BatteryMah').touched || form.get('BatteryMah').dirty|| form.get('BatteryMah').invalid)}" type="text" class="form-control" placeholder="BatteryMah"
+        formControlName="BatteryMah"
+        [ngClass]="{'error':form.get('BatteryMah').invalid && form.get('BatteryMah').touched,'not-error': form.get('BatteryMah') .valid && form.get('BatteryMah') .touched}">
+
+           <span   *ngIf="form.get('BatteryMah').errors && (form.get('BatteryMah').touched || form.get('BatteryMah').dirty )"  >
+
+
+             <small class="text-danger" *ngIf="form.get('BatteryMah').errors?.minlength">BatteryMah should be of minimum 3 letters</small>
+
+             <small class="text-danger" *ngIf="form.get('BatteryMah').errors?.pattern">'BatteryMah Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('BatteryMah').errors?.required">BatteryMah is required </small>
+           </span>
+
+      </div>
+  </div>
+  <div class="form-group mb-1">
+    <label for="inputPassword4">Weight  <span class="required-denote">*</span></label>
+    <div class="custom-file">
+
+      <input [ngClass]="{'has-error':form.get('Weight').errors&&(form.get('Weight').touched || form.get('Weight').dirty|| form.get('Weight').invalid)}" type="text" class="form-control" placeholder="Weight"
+      formControlName="Weight"
+      [ngClass]="{'error':form.get('Weight').invalid && form.get('Weight').touched,'not-error': form.get('Weight') .valid && form.get('Weight') .touched}">
+
+         <span   *ngIf="form.get('Weight').errors && (form.get('Weight').touched || form.get('Weight').dirty )"  >
+
+
+           <small class="text-danger" *ngIf="form.get('Weight').errors?.minlength">Weight should be of minimum 3 letters</small>
+
+           <small class="text-danger" *ngIf="form.get('Weight').errors?.pattern">'Weight Should be  Alphabets</small>
+           <small class="text-danger" *ngIf="form.get('Weight').errors?.required">Weight is required </small>
+         </span>
+
+    </div>
+</div>
+<div class="form-group mb-1">
+  <label for="inputPassword4">HeadPhoneJack <span class="required-denote">*</span></label>
+  <div class="custom-file">
+
+    <input [ngClass]="{'has-error':form.get('HeadPhoneJack').errors&&(form.get('HeadPhoneJack').touched || form.get('HeadPhoneJack').dirty|| form.get('HeadPhoneJack').invalid)}" type="text" class="form-control" placeholder="HeadPhoneJack"
+    formControlName="HeadPhoneJack"
+    [ngClass]="{'error':form.get('HeadPhoneJack').invalid && form.get('HeadPhoneJack').touched,'not-error': form.get('HeadPhoneJack') .valid && form.get('HeadPhoneJack') .touched}">
+
+       <span   *ngIf="form.get('HeadPhoneJack').errors && (form.get('HeadPhoneJack').touched || form.get('HeadPhoneJack').dirty )"  >
+
+
+         <small class="text-danger" *ngIf="form.get('HeadPhoneJack').errors?.minlength">HeadPhoneJack should be of minimum 3 letters</small>
+
+         <small class="text-danger" *ngIf="form.get('HeadPhoneJack').errors?.pattern">'HeadPhoneJack Should be  Alphabets</small>
+         <small class="text-danger" *ngIf="form.get('HeadPhoneJack').errors?.required">HeadPhoneJack is required </small>
+       </span>
+
+  </div>
+</div>
+<div class="form-group mb-1">
+<label for="inputPassword4">Quantity <span class="required-denote">*</span></label>
+<div class="custom-file">
+
+  <input [ngClass]="{'has-error':form.get('Quantity').errors&&(form.get('Quantity').touched || form.get('Quantity').dirty|| form.get('Quantity').invalid)}" type="text" class="form-control" placeholder="Quantity"
+  formControlName="Quantity"
+  [ngClass]="{'error':form.get('Quantity').invalid && form.get('Quantity').touched,'not-error': form.get('Quantity') .valid && form.get('Quantity') .touched}">
+
+     <span   *ngIf="form.get('Battery').errors && (form.get('Quantity').touched || form.get('Quantity').dirty )"  >
+
+
+       <small class="text-danger" *ngIf="form.get('Quantity').errors?.minlength">Quantity should be of minimum 3 letters</small>
+
+       <small class="text-danger" *ngIf="form.get('Quantity').errors?.pattern">'Quantity Should be  Alphabets</small>
+       <small class="text-danger" *ngIf="form.get('Quantity').errors?.required">Quantity is required </small>
+     </span>
+
+</div>
+</div>
+ <div class="form-group mb-1">
+<label for="inputPassword4">CPU <span class="required-denote">*</span></label>
+<div class="custom-file">
+
+  <input [ngClass]="{'has-error':form.get('CPU').errors&&(form.get('Battery').touched || form.get('CPU').dirty|| form.get('CPU').invalid)}" type="text" class="form-control" placeholder="CPU"
+  formControlName="CPU"
+  [ngClass]="{'error':form.get('CPU').invalid && form.get('CPU').touched,'not-error': form.get('CPU') .valid && form.get('CPU') .touched}">
+
+     <span   *ngIf="form.get('CPU').errors && (form.get('CPU').touched || form.get('CPU').dirty )"  >
+
+
+       <small class="text-danger" *ngIf="form.get('CPU').errors?.minlength">CPU should be of minimum 3 letters</small>
+
+       <small class="text-danger" *ngIf="form.get('CPU').errors?.pattern">'CPU Should be  Alphabets</small>
+       <small class="text-danger" *ngIf="form.get('CPU').errors?.required">CPU is required </small>
+     </span>
+
+</div>
+  </div>
+<div class="form-group mb-1">
+<label for="inputPassword4">Brand<span class="required-denote">*</span></label>
+<div class="custom-file">
+
+  <ng-select  class="mt-3"
+  bindLabel=" obj"
+  placeholder="Select Brand"
+  [ngClass]="{'error':form.get('BrandId').invalid && form.get('BrandId').touched,'not-error': form.get('BrandId') .valid && form.get('BrandId') .touched}"
+  formControlName="BrandId"
+  >
+  <ng-option *ngFor="let obj of   brandList.data" [value]=" obj.id">
+      {{ obj.name}}
+  </ng-option>
+</ng-select>
+     <span   *ngIf="form.get('BrandId').errors && (form.get('BrandId').touched || form.get('BrandId').dirty )"  >
+
+
+       <small class="text-danger" *ngIf="form.get('BrandId').errors?.minlength">Brand should be of minimum 3 letters</small>
+
+       <small class="text-danger" *ngIf="form.get('BrandId').errors?.pattern">'Brand Should be  Alphabets</small>
+       <small class="text-danger" *ngIf="form.get('BrandId').errors?.required">Brand  is required </small>
+     </span>
+
+</div>
+ </div>
+
+
+ <div class="form-group mb-2">
+  <label for="inputPassword4"> MobileColor <span class="required-denote">*</span></label>
+  <div class="custom-file">
+    <ng-select  class="mt-3"
+    bindLabel=" obj"
+    placeholder="Select  Color"
+    formControlName="ColorId"
+    >
+    <ng-option *ngFor="let obj of  colorList.data" [value]=" obj.id">
+        {{ obj.name}}
+    </ng-option>
+   </ng-select>
+       <span   *ngIf="form.get('ColorId').errors && (form.get('ColorId').touched || form.get('ColorId').dirty )"  >
+         <small class="text-danger" *ngIf="form.get('ColorId').errors?.minlength">Color should be of minimum 3 letters</small>
+         <small class="text-danger" *ngIf="form.get('ColorId').errors?.required">Color is required </small>
+       </span>
+     </div>
+     </div>
+
+     <div class="form-group mb-2">
+      <label for="inputPassword5">LaunchDate<span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('LaunchDate').errors&&(form.get('LaunchDate').touched || form.get('LaunchDate').dirty|| form.get('LaunchDate').invalid)}" type="date" class="form-control" placeholder="LaunchDate"
+        formControlName="LaunchDate"
+        [ngClass]="{'error':form.get('LaunchDate').invalid && form.get('LaunchDate').touched,'not-error': form.get('LaunchDate') .valid && form.get('LaunchDate') .touched}">
+
+           <span *ngIf=" form.get('ScreenType').errors && (form.get('LaunchDate').touched || form.get('LaunchDate').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('LaunchDate').errors?.minlength">LaunchDate should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('LaunchDate').errors?.pattern">'LaunchDate Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('LaunchDate').errors?.required">LaunchDate  is required </small>
+           </span>
+    </div>
+     </div>
+
+
+    </div>
+    <div class="col-4"   >
+      <div class="form-group mb-1">
+        <label for="inputPassword4">Processor  Name<span class="required-denote">*</span></label>
+        <div class="custom-file">
+
+          <input [ngClass]="{'has-error':form.get('Processor').errors&&(form.get('Processor').touched || form.get('Processor').dirty|| form.get('Processor').invalid)}" type="text" class="form-control" placeholder="Processor"
+          formControlName="Processor"
+          [ngClass]="{'error':form.get('Processor').invalid && form.get('Processor').touched,'not-error': form.get('Processor') .valid && form.get('Processor') .touched}">
+
+             <span   *ngIf=" form. get('Processor').errors && (form.get('Processor').touched || form.get('Processor').dirty )"  >
+
+
+               <small class="text-danger" *ngIf="form.get('Processor').errors?.minlength">Processor should be of minimum 3 letters</small>
+
+               <small class="text-danger" *ngIf="form.get('Processor').errors?.pattern">'Processor Should be  Alphabets</small>
+               <small class="text-danger" *ngIf="form.get('Processor').errors?.required">Processor is required </small>
+             </span>
+
+        </div>
+    </div>
+
+    <div class="form-group mb-1">
+      <label for="inputPassword5">Ram   <span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('Ram').errors&&(form.get('Ram').touched || form.get('Ram').dirty|| form.get('Ram').invalid)}" type="text" class="form-control" placeholder="Ram"
+        formControlName="Ram"
+        [ngClass]="{'error':form.get('Ram').invalid && form.get('Ram').touched,'not-error': form.get('Ram') .valid && form.get('Ram') .touched}">
+
+           <span *ngIf=" form.get('Ram').errors && (form.get('Ram').touched || form.get('Ram').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('Ram').errors?.minlength">Ram  should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('Ram').errors?.pattern">'Ram  Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('Ram').errors?.required">Ram  is required </small>
+           </span>
+
+      </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword5">Bluetooth  <span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('Bluetooth').errors&&(form.get('Bluetooth').touched || form.get('Bluetooth').dirty|| form.get('Bluetooth').invalid)}" type="text" class="form-control" placeholder="Bluetooth"
+        formControlName="Bluetooth"
+        [ngClass]="{'error':form.get('Bluetooth').invalid && form.get('Bluetooth').touched,'not-error': form.get('Bluetooth') .valid && form.get('Bluetooth') .touched}">
+
+           <span *ngIf=" form.get('Bluetooth').errors && (form.get('Bluetooth').touched || form.get('Bluetooth').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('Bluetooth').errors?.minlength">Bluetooth  should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('Bluetooth').errors?.pattern">'Bluetooth Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('Bluetooth').errors?.required">Bluetooth is required </small>
+           </span>
+
+      </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword5">USBConnector   <span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('USBConnector').errors&&(form.get('USBConnector').touched || form.get('USBConnector').dirty|| form.get('USBConnector').invalid)}" type="text" class="form-control" placeholder="USBConnector "
+        formControlName="USBConnector"
+        [ngClass]="{'error':form.get('USBConnector').invalid && form.get('USBConnector').touched,'not-error': form.get('USBConnector') .valid && form.get('USBConnector') .touched}">
+
+           <span *ngIf=" form.get('USBConnector').errors && (form.get('USBConnector').touched || form.get('USBConnector').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('USBConnector').errors?.minlength">USBConnector   should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('USBConnector').errors?.pattern">'USBConnector  Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('USBConnector').errors?.required">USBConnector  is required </small>
+           </span>
+
+      </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword5">Camera   <span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('Camera').errors&&(form.get('Camera').touched || form.get('Camera').dirty|| form.get('Camera').invalid)}" type="text" class="form-control" placeholder="Camera "
+        formControlName="Camera"
+        [ngClass]="{'error':form.get('Camera').invalid && form.get('Camera').touched,'not-error': form.get('Camera') .valid && form.get('Camera') .touched}">
+
+           <span *ngIf=" form.get('Camera').errors && (form.get('Camera').touched || form.get('Camera').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('Camera').errors?.minlength">Camera   should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('Camera').errors?.pattern">'Camera  Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('Camera').errors?.required">Camera  is required </small>
+           </span>
+
+      </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword5">Sell    <span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('Sell').errors&&(form.get('Sell').touched || form.get('Sell').dirty|| form.get('Sell').invalid)}" type="text" class="form-control" placeholder="Sell  "
+        formControlName="Sell"
+        [ngClass]="{'error':form.get('Sell').invalid && form.get('Sell').touched,'not-error': form.get('Sell') .valid && form.get('Sell') .touched}">
+
+           <span *ngIf=" form.get('Sell').errors && (form.get('Sell').touched || form.get('Sell').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('Sell').errors?.minlength">Sell    should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('Sell').errors?.pattern">'Sell  Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('Sell').errors?.required">Sell  is required </small>
+           </span>
+
+      </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword5">     StockAvailiability   <span class="required-denote">*</span></label>
+      <div class="custom-file">
+        <div class="form-check">
+          <input
+
+          formControlName="StockAvailiability"
+
+
+          class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <span *ngIf=" form.get('StockAvailiability').errors && (form.get('StockAvailiability').touched || form.get('StockAvailiability').dirty )"  >
+            <small class="text-danger" *ngIf="form.get('StockAvailiability').errors?.minlength">StockAvailiability   should be of minimum 3 letters</small>
+            <small class="text-danger" *ngIf="form.get('StockAvailiability').errors?.pattern">'StockAvailiability  Should be  Alphabets</small>
+            <small class="text-danger" *ngIf="form.get('StockAvailiability').errors?.required">StockAvailiability  is required </small>
+          </span>
+        </div>
+
+
+
+
+      </div>
+    </div>
+     <div class="form-group mb-1">
+      <label for="inputPassword4">OperatingSystem<span class="required-denote">*</span></label>
+      <div class="custom-file">
+        <ng-select  class="mt-3"
+        bindLabel=" obj"
+        placeholder="Select OperatingSystem"
+        formControlName="OperatingSystemId"
+        (change)="getOSVByoperatingSystem($event)"
+        >
+        <ng-option *ngFor="let obj of  OSList.data" [value]=" obj.id">
+            {{ obj.name}}
+        </ng-option>
+    </ng-select>
+
+           <span   *ngIf="form.get('OperatingSystemId').errors && (form.get('OperatingSystemId').touched || form.get('OperatingSystemId').dirty )"  >
+
+
+             <small class="text-danger" *ngIf="form.get('OperatingSystemId').errors?.minlength">OperatingSystemId should be of minimum 3 letters</small>
+
+             <small class="text-danger" *ngIf="form.get('OperatingSystemId').errors?.pattern">'OperatingSystem Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('OperatingSystemId').errors?.required">OperatingSystem is required </small>
+           </span>
+
+      </div>
+         </div>
+
+         <div class="form-group mb-1">
+          <label for="inputPassword4">Wifi<span class="required-denote">*</span></label>
+          <div class="custom-file">
+
+            <input [ngClass]="{'has-error':form.get('Wifi').errors&&(form.get('Wifi').touched || form.get('Wifi').dirty|| form.get('Wifi').invalid)}" type="text" class="form-control" placeholder="Wifi"
+            formControlName="Wifi"
+            [ngClass]="{'error':form.get('Wifi').invalid && form.get('Wifi').touched,'not-error': form.get('Wifi') .valid && form.get('Wifi') .touched}">
+
+               <span   *ngIf=" form. get('Wifi').errors && (form.get('Wifi').touched || form.get('Wifi').dirty )"  >
+
+
+                 <small class="text-danger" *ngIf="form.get('Wifi').errors?.minlength">Wifi should be of minimum 3 letters</small>
+
+                 <small class="text-danger" *ngIf="form.get('Wifi').errors?.pattern">'Wifi Should be  Alphabets</small>
+                 <small class="text-danger" *ngIf="form.get('Wifi').errors?.required">Wifi is required </small>
+               </span>
+
+          </div>
+      </div>
+    </div>
+    <div class="col-4" >
+      <div class="form-group mb-1">
+        <label for="inputPassword4">Storage  Name<span class="required-denote">*</span></label>
+        <div class="custom-file">
+
+          <input [ngClass]="{'has-error':form.get('Storage').errors&&(form.get('Storage').touched || form.get('Storage').dirty|| form.get('Storage').invalid)}" type="text" class="form-control" placeholder="Storage"
+          formControlName="Storage"
+          [ngClass]="{'error': form.get('Storage').invalid && form.get('Storage').touched,'not-error': form.get('Storage') .valid && form.get('Storage') .touched}">
+
+             <span   *ngIf=" form. get('Storage').errors && (form.get('Storage').touched || form.get('Storage').dirty )"  >
+
+
+               <small class="text-danger" *ngIf="form.get('Storage').errors?.minlength">Storage should be of minimum 3 letters</small>
+
+               <small class="text-danger" *ngIf="form.get('Storage').errors?.pattern">'Storage Should be  Alphabets</small>
+               <small class="text-danger" *ngIf="form.get('Storage').errors?.required">Storage is required </small>
+             </span>
+
+        </div>
+    </div>
+    <div class="form-group mb-1">
+      <label for="inputPassword5">MobileWeight <span class="required-denote">*</span></label>
+      <div class="custom-file">
+
+        <input [ngClass]="{'has-error':form.get('MobileWeight').errors&&(form.get('Ram').touched || form.get('MobileWeight').dirty|| form.get('MobileWeight').invalid)}" type="text" class="form-control" placeholder="MobileWeight"
+        formControlName="MobileWeight"
+        [ngClass]="{'error':form.get('MobileWeight').invalid && form.get('MobileWeight').touched,'not-error': form.get('MobileWeight') .valid && form.get('MobileWeight') .touched}">
+
+           <span *ngIf=" form.get('MobileWeight').errors && (form.get('MobileWeight').touched || form.get('MobileWeight').dirty )"  >
+             <small class="text-danger" *ngIf="form.get('MobileWeight').errors?.minlength">MobileWeight  should be of minimum 3 letters</small>
+             <small class="text-danger" *ngIf="form.get('MobileWeight').errors?.pattern">'MobileWeight  Should be  Alphabets</small>
+             <small class="text-danger" *ngIf="form.get('MobileWeight').errors?.required">MobileWeight  is required </small>
+           </span>
+
+      </div>
+  </div>
+  <div class="form-group mb-1">
+    <label for="inputPassword5">ScreenType <span class="required-denote">*</span></label>
+    <div class="custom-file">
+
+      <input [ngClass]="{'has-error':form.get('ScreenType').errors&&(form.get('ScreenType').touched || form.get('ScreenType').dirty|| form.get('ScreenType').invalid)}" type="text" class="form-control" placeholder="ScreenType"
+      formControlName="ScreenType"
+      [ngClass]="{'error':form.get('ScreenType').invalid && form.get('ScreenType').touched,'not-error': form.get('ScreenType') .valid && form.get('ScreenType') .touched}">
+
+         <span *ngIf=" form.get('ScreenType').errors && (form.get('ScreenType').touched || form.get('ScreenType').dirty )"  >
+           <small class="text-danger" *ngIf="form.get('ScreenType').errors?.minlength">ScreenType should be of minimum 3 letters</small>
+           <small class="text-danger" *ngIf="form.get('ScreenType').errors?.pattern">'ScreenType Should be  Alphabets</small>
+           <small class="text-danger" *ngIf="form.get('ScreenType').errors?.required">ScreenType  is required </small>
+         </span>
+
+    </div>
+</div>
+<div class="form-group mb-1">
+  <label for="inputPassword5">Charger  <span class="required-denote">*</span></label>
+  <div class="custom-file">
+
+    <input [ngClass]="{'has-error':form.get('Charger').errors&&(form.get('Charger').touched || form.get('Charger').dirty|| form.get('Charger').invalid)}" type="text" class="form-control" placeholder="Charger "
+    formControlName="Charger"
+    [ngClass]="{'error':form.get('Charger').invalid && form.get('Charger').touched,'not-error': form.get('Charger') .valid && form.get('Charger') .touched}">
+
+       <span *ngIf=" form.get('Charger').errors && (form.get('Charger').touched || form.get('Charger').dirty )"  >
+         <small class="text-danger" *ngIf="form.get('Charger').errors?.minlength">Charger  should be of minimum 3 letters</small>
+         <small class="text-danger" *ngIf="form.get('Charger').errors?.pattern">'Charger  Should be  Alphabets</small>
+         <small class="text-danger" *ngIf="form.get('Charger').errors?.required">Charger   is required </small>
+       </span>
+
+  </div>
+</div>
+<div class="form-group mb-1">
+<label for="inputPassword5">Resolution  <span class="required-denote">*</span></label>
+<div class="custom-file">
+
+  <input [ngClass]="{'has-error':form.get('Resolution').errors&&(form.get('Resolution').touched || form.get('Resolution').dirty|| form.get('Resolution').invalid)}" type="text" class="form-control" placeholder="Resolution"
+  formControlName="Resolution"
+  [ngClass]="{'error':form.get('Resolution').invalid && form.get('Resolution').touched,'not-error': form.get('Resolution') .valid && form.get('Resolution') .touched}">
+
+     <span *ngIf=" form.get('Resolution').errors && (form.get('Resolution').touched || form.get('Resolution').dirty )"  >
+       <small class="text-danger" *ngIf="form.get('Resolution').errors?.minlength">Resolution should be of minimum 3 letters</small>
+       <small class="text-danger" *ngIf="form.get('Resolution').errors?.pattern">'Resolution Should be  Alphabets</small>
+       <small class="text-danger" *ngIf="form.get('Resolution').errors?.required">Resolution  is required </small>
+     </span>
+
+</div>
+</div>
+
+<div class="form-group mb-1">
+<label for="inputPassword5">Stock <span class="required-denote">*</span></label>
+<div class="custom-file">
+
+  <input [ngClass]="{'has-error':form.get('Stock').errors&&(form.get('Resolution').touched || form.get('Stock').dirty|| form.get('Resolution').invalid)}" type="text" class="form-control" placeholder="Stock"
+  formControlName="Stock"
+  [ngClass]="{'error':form.get('Stock').invalid && form.get('Stock').touched,'not-error': form.get('Stock') .valid && form.get('Resolution') .touched}">
+
+     <span *ngIf=" form.get('Stock').errors && (form.get('Stock').touched || form.get('Stock').dirty )"  >
+       <small class="text-danger" *ngIf="form.get('Stock').errors?.minlength">Stock should be of minimum 3 letters</small>
+       <small class="text-danger" *ngIf="form.get('Stock').errors?.pattern">'Stock Should be  Alphabets</small>
+       <small class="text-danger" *ngIf="form.get('Stock').errors?.required">Stock  is required </small>
+     </span>
+
+</div>
+</div>
+
+<div class="form-group mb-1">
+<label for="inputPassword5">MobilePrice <span class="required-denote">*</span></label>
+<div class="custom-file">
+
+  <input [ngClass]="{'has-error':form.get('MobilePrice').errors&&(form.get('Resolution').touched || form.get('MobilePrice').dirty|| form.get('MobilePrice').invalid)}" type="text" class="form-control" placeholder="MobilePrice"
+  formControlName="MobilePrice"
+  [ngClass]="{'error':form.get('MobilePrice').invalid && form.get('MobilePrice').touched,'not-error': form.get('MobilePrice') .valid && form.get('MobilePrice') .touched}">
+
+     <span *ngIf=" form.get('MobilePrice').errors && (form.get('MobilePrice').touched || form.get('MobilePrice').dirty )"  >
+       <small class="text-danger" *ngIf="form.get('MobilePrice').errors?.minlength">MobilePrice should be of minimum 3 letters</small>
+       <small class="text-danger" *ngIf="form.get('MobilePrice').errors?.pattern">'MobilePrice Should be  Alphabets</small>
+       <small class="text-danger" *ngIf="form.get('MobilePrice').errors?.required">MobilePrice  is required </small>
+     </span>
+
+</div>
+</div>
+  <div class="form-group mb-1">
+<label for="inputPassword4"> OSVersion <span class="required-denote">*</span></label>
+<div class="custom-file" >
+  <ng-select  class="mt-3"
+
+  bindLabel=" obj"
+  placeholder="Select  OSVersion"
+  formControlName="OSVersionId"
+  [disabled]="OSVList.data > 0 ?false:true"
+  >
+  <ng-option *ngFor="let obj of  OSVList.data" [value]=" obj.id">
+      {{ obj.name}}
+  </ng-option>
+</ng-select>
+
+     <span   *ngIf="form.get('OSVersionId').errors && (form.get('OSVersionId').touched || form.get('OSVersionId').dirty )"  >
+       <small class="text-danger" *ngIf="form.get('OSVersionId').errors?.minlength">OSVersion should be of minimum 3 letters</small>
+       <small class="text-danger" *ngIf="form.get('OSVersionId').errors?.required">OSVersion is required </small>
+     </span>
+
+</div>
+   </div>
+   <div class="form-group mb-1">
+    <label for="inputPassword4">Description <span class="required-denote">*</span></label>
+    <div class="custom-file">
+      <textarea class="mt-3"
+     [ngClass]="{'has-error':form.get('Description').errors&&(form.get('Description').touched || form.get('Description').dirty|| form.get('Description').invalid)}"
+      placeholder="Description"
+      class="form-control"
+      formControlName="Description"
+     ></textarea>
+
+
+         <span   *ngIf="form.get('Description').errors && (form.get('Description').touched || form.get('Description').dirty )"  >
+           <small class="text-danger" *ngIf="form.get('Description').errors?.minlength">Description should be of minimum 3 letters</small>
+           <small class="text-danger" *ngIf="form.get('Description').errors?.required">Description is required </small>
+         </span>
+
+    </div>
+       </div>
+    </div>
+
+      </div>
+
+          <div class="row"   *ngIf="statusCheck == 'Add'">
+
+            <div class="col-5 " >
+              <label for="inputPassword4">Select Image<span class="required-denote">*</span></label>
+              <input
+
+              formControlName="Image"
+              [ngClass]="{'has-error':form.get('Image').errors&&(form.get('Image').touched || form.get('Image').dirty|| form.get('Image').invalid)}"
+              id="file"
+              #imageBytes
+              type="file"
+              class="form-control"
+              multiple=""
+              accept="image/x-png,image/gif,image/jpeg,video/mp4 "
+             data-allowed-file-extensions="jpg jpeg gif x-png bmp png mp4  "
+              (change)="onFileChange($event)">
+              <span   *ngIf="form.get('Image').errors && (form.get('Image').touched || form.get('Image').dirty )"  >
+                <small class="text-danger" *ngIf="form.get('Image').errors?.minlength">Image should be of minimum 3 letters</small>
+                <small class="text-danger" *ngIf="form.get('Image').errors?.required">Image is required </small>
+              </span>
+            </div>
+        <div class="col-7"></div>
+
+        <div class="col-2 "*ngFor="let img of imageSrc;let i = index"  >
+          <img  src="{{img}}" width="100px" height="100px" alt=""><br>
+          <button class="btn btn-sm btn-danger" (click)="openDeleteDialogConfarmation(i)" style="margin-left: 30px; margin-top: 6px;"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+
+            </div>
+
+            <div class="row"   *ngIf="statusCheck == 'Edit'">
+
+              <div class="col-5 " >
+                <label for="inputPassword4">Select Image<span class="required-denote">*</span></label>
+                <input
+
+                formControlName="Image"
+                [ngClass]="{'has-error':form.get('Image').errors&&(form.get('Image').touched || form.get('Image').dirty|| form.get('Image').invalid)}"
+                id="file"
+                #imageBytes
+                type="file"
+                class="form-control"
+                multiple=""
+                accept="image/x-png,image/gif,image/jpeg,video/mp4 "
+               data-allowed-file-extensions="jpg jpeg gif x-png bmp png mp4  "
+                (change)="onFileChange($event)">
+                <span   *ngIf="form.get('Image').errors && (form.get('Image').touched || form.get('Image').dirty )"  >
+                  <small class="text-danger" *ngIf="form.get('Image').errors?.minlength">Image should be of minimum 3 letters</small>
+                  <small class="text-danger" *ngIf="form.get('Image').errors?.required">Image is required </small>
+                </span>
+              </div>
+          <div class="col-7"></div>
+          <div class="col-2 "*ngFor="let img of imageSrc;let i = index"  >
+            <img  src="{{img}}" width="100px" height="100px" alt=""><br>
+            <button class="btn btn-sm btn-danger" (click)="openDeleteDialogConfarmation(i)" style="margin-left: 30px; margin-top: 6px;"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+          <div class="col-2 "*ngFor="let img of  imageSrcList;let i = index"  >
+            <img  src="{{img?.imageUrl}}" width="100px" height="100px" alt=""><br>
+            <button class="btn btn-sm btn-danger" (click)="openDeleteDialogConfarmations(img.id,i)" style="margin-left: 30px; margin-top: 6px;"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+
+              </div>
+
+
+
+
+<div class="modal-footer NotBG">
+  <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+      (click)="activeModal.close()">
+      Close
+  </button>
+  <button class="btn btn-warning"   type="submit" *ngIf="statusCheck == 'Add'"
+      (click)="onSubmit('Add')">
+      Save
+  </button>
+  <button   class="btn btn-warning" type="submit"
+      (click)="onSubmit('Edit')">
+      Update
+  </button>
+</div>
+</form>
+</div>
+
+
