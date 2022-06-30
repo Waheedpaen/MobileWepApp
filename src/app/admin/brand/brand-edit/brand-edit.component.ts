@@ -46,9 +46,11 @@ debugger
     res=>{
   this.response = res;
   if(this.response.success == true){
+   console.log(this.data);
     this.data = this.response.data;
     this.form.controls.Id.setValue(this.data?.id);
     this.form.controls.Name.setValue(this.data?.name);
+    console.log(this.data?.imageUrl);
     this.file = this.data?.imageUrl;
     this.spinner.hide();
   }
@@ -95,7 +97,7 @@ this.brandServices.SaveBrandData(obj).subscribe(
   }
 
   updateBrand(form: NgForm){
-    debugger 
+    debugger
   const obj = new  Brand();
   obj.id = +this.form.get('Id')?.value;
   obj.name = this.form.get('Name')?.value,
