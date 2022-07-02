@@ -33,6 +33,7 @@ export  abstract class IUserRepository extends IRepository{
 }
 
 export abstract class IMobileRepository extends IRepository{
+  abstract GetMobileByBrand(id: number):any;
   abstract  DeleteSingleMobileImageData(id: number): any;
   abstract GetOSVByOperatingSystemId(id: number): any;
   abstract GetColor(): any;

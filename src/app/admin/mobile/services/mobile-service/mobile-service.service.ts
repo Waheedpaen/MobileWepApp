@@ -34,8 +34,10 @@ export class MobileServiceService {
    SaveMobileData(obj:any){
      return this._mobileRepositoryService.SaveData(obj);
    }
-
    GetImageForSaveList(obj:any){
     return this._mobileRepositoryService.GetImageForSaveList(obj);
+   }
+   GetMobileByBrand(id:number){
+    return this._mobileRepositoryService.GetMobileByBrand(id);
    }
 }

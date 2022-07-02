@@ -14,6 +14,9 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root'
 })
 export class MobileRepositoryService extends  IMobileRepository{
+  GetMobileByBrand(id: number) {
+   return this.http.get(environment.urlMobile + '/GetMobileByBrand/' + id);
+  }
   GetImageForSaveList(obj: any) {
     return this.http.post(environment.urlMobile + '/MobileImageSave',obj);
   }
