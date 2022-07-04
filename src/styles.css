@@ -7,46 +7,12 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-.ng-select .ng-select-container {
-  cursor: default;
-  display: flex;
-  outline: none;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  border-radius: 20px !important;
-}
 
-.navbar-dark {
-  background-color:  rgb(29, 5, 81)!important;
-}
-[class*='sidebar-dark-'] {
-  background-color:  rgb(29, 5, 81)!important;
-}
-
-.layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
-  background-color:   rgb(98, 120, 8)!important;
-
-}
 .ngx-datatable.material .datatable-header .datatable-header-cell {
-    background-color:  #3c6aecd6  !important;
+    background-color:  #4f575f !important;
     font-size: 14px !important;
     color: white;
     font-weight: normal;
-  }
-
-  body::-webkit-scrollbar {
-    width: 3px !important;               /* width of the entire scrollbar */
-  }
-
-  body::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.445) !important;         /* color of the tracking area */
-  }
-
-  body::-webkit-scrollbar-thumb {
-    background-color: #12255C !important;     /* color of the scroll thumb */
-    border-radius: 20px !important;        /* roundness of the scroll thumb */
-    border: 3px solid rgba(51, 50, 47, 0.637) !important;   /* creates padding around scroll thumb */
   }
   .ngx-datatable .datatable-header {
     border-top: 1px solid #dee2e6;
@@ -108,9 +74,7 @@ h6 {
 .text_white{
     color: white;
 }
-.card-dark:not(.card-outline)>.card-header{
-  background-color: #12425a;
-}
+
 .modal-title {
   text-align: center !important;
   align-items: center !important;
@@ -181,23 +145,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 .ng-select.ng-select-single .ng-select-container {
   height: 38px !important;
 }
-.layout-navbar-fixed .wrapper .main-header {
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1037;
 
-}
-.layout-fixed .main-sidebar {
-  bottom: 0;
-  float: none;
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  border-radius: 0px 30px 30px 0px !important;
-}
 .bgblack{
   background: #202020;
 }
@@ -211,8 +159,8 @@ label:not(.form-check-label):not(.custom-file-label) {
   background: #707070;
 }
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #2a4799 !important;
-  color: #fcfcfc !important;
+  background-color: #fcb042 !important;
+  color: #202020 !important;
 }
 
 .dark-mode .card {
@@ -302,7 +250,15 @@ label:not(.form-check-label):not(.custom-file-label) {
   background-color: #7ecc49 !important;
 }
 
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+    max-width: 100%;
 
+}
 .custom-file-label {
   position: absolute;
   top: 0;

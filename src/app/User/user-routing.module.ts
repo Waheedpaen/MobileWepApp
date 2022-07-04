@@ -11,37 +11,72 @@ import { AdminLayoutComponent } from '../admin/admin-template/admin-layout/admin
 import { AdminComponent } from '../admin/admin/admin.component';
 import { UserAdminComponent } from './user-admin/user-admin.component';
 import { UserLayoutComponent } from './user-template/user-layout/user-layout.component';
+import { RouterModule, Routes } from '@angular/router';
+import { BrandRepositoryService } from '../admin/brand/services/brand-repository/brand-repository.service';
+import { BrandService } from '../admin/brand/services/brand-service/brand.service';
+import { OperatingsystemRepositoryService } from '../admin/operating-system/services/operatingsystem-repository/operatingsystem-repository.service';
+import { OperatingsystemService } from '../admin/operating-system/services/operatingsystem-service/operatingsystem.service';
+import { OperatingsystemVersionRepositoryService } from '../admin/os-version/services/operatingsystem-version-repository/operatingsystem-version-repository.service';
+import { OSVersionService } from '../admin/os-version/services/operatingsystem-version-service/osversion.service';
+import { MobileRepositoryService } from '../admin/mobile/services/mobile-repository/mobile-repository.service';
+import { MobileServiceService } from '../admin/mobile/services/mobile-service/mobile-service.service';
+import { ShopComponent } from './shop/shop.component';
 
 
+const route:Routes = [
+  {
+    path:'',component:UserLayoutComponent,
+    children:[
+      {path:'', component:UserAdminComponent},
+    {path:'shop',component:ShopComponent,
+    title: 'Shop',
+     //canActivate: [AuthGuard],
+    data: {
+      role: 'Admin'
+    },
+    },
+
+  ]}
+  ]
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    RouterModule.forChild(route)
+  ],
+  exports:[RouterModule]
 })
 export class UserRoutingModule { }
 export const AllCommonModule = [
+  HttpClientModule,
  UserRoutingModule,
   NgbModule,
   NgxSpinnerModule,
   NgxDatatableModule,
   NgxDatatableModule ,
   SharedModule,
-  HttpClientModule,
+  CommonModule,
   NgbDatepickerModule,
   NgSelectModule
 ]
 export const allComponent = [
 
-
+  UserLayoutComponent ,
   UserTemplateComponent,
- UserLayoutComponent,
-  UserAdminComponent
+  UserAdminComponent,
+   ShopComponent
 
 
 
 ];
 export const allServices  = [
-
+  BrandRepositoryService,
+  BrandService,
+  OperatingsystemRepositoryService,
+  OperatingsystemService,
+  OperatingsystemVersionRepositoryService,
+  OSVersionService ,
+  MobileRepositoryService,
+  MobileServiceService
 ]

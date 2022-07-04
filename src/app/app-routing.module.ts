@@ -7,7 +7,10 @@ import { AuthGuard } from './Shared/auth/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './Shared/common-module/shared.module';
+import { UserTemplateComponent } from './User/user-template/user-template.component';
+import { UserModule } from './User/user.module';
 const adminModule =() => import('./admin/admin.module').then(x => x.AdminModule);
+const  UserModules = () => import('./User/user.module').then(x => x.UserModule)
 
 const routes: Routes = [
   { path: 'first-page', redirectTo: 'first-page', pathMatch: 'full' },
@@ -23,6 +26,19 @@ const routes: Routes = [
         }
       },
     ]
+  },
+  {
+    path: '', component: UserTemplateComponent,
+    children: [
+      {
+        path: 'r',
+        loadChildren: UserModules,
+        
+        data: {
+          role: 'Restaurant'
+        }
+      },
+    ]
   }
 ];
 @NgModule({
@@ -34,6 +50,7 @@ export class AppRoutingModule { }
 export const allModules=[
   BrowserModule,
   AppRoutingModule,
+  UserModule,
   BrowserAnimationsModule,
   SharedModule,
   ToastrModule.forRoot({
