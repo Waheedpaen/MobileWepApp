@@ -21,10 +21,9 @@ import { OSVersionService } from '../admin/os-version/services/operatingsystem-v
 import { MobileRepositoryService } from '../admin/mobile/services/mobile-repository/mobile-repository.service';
 import { MobileServiceService } from '../admin/mobile/services/mobile-service/mobile-service.service';
 import { ShopComponent } from './shop/shop.component';
-import { HomeComponent } from './home/home.component';
-
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-
+import { HomeComponent } from '../admin/user-info/home/home.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 const route:Routes = [
   {
     path:'rs',component: UserTemplateComponent,
@@ -60,14 +59,15 @@ export const AllCommonModule = [
   HttpClientModule,
  UserRoutingModule,
   NgbModule,
-  SlickCarouselModule ,
   NgxSpinnerModule,
   NgxDatatableModule,
   NgxDatatableModule ,
   SharedModule,
   CommonModule,
   NgbDatepickerModule,
-  NgSelectModule
+  NgSelectModule,
+  NgxPaginationModule,
+  Ng2SearchPipeModule
 ]
 export const allComponent = [
 

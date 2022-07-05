@@ -15,7 +15,10 @@ import { OSVersionService } from 'src/app/admin/os-version/services/operatingsys
 export class ShopComponent implements OnInit {
   response: any;
   rows: any=[];
-
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 2;
+  tableSizes: any = [3, 6, 9, 12];
   constructor(    private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private modalService: NgbModal,
@@ -57,10 +60,23 @@ export class ShopComponent implements OnInit {
      this._mobileServices.SearchingData(searchingData).subscribe(
        res=>{
          this.response = res;
+         this.page =  this.page ;
          this.rows = this.response.data ;
            this.spinner.hide();
        }
      )
    }
+  }
+  onTableDataChange(event: any) {
+  if(event!=null){
+    this.page = event;
+     this.rows = this.rows;
+  }
+
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+
   }
 }
