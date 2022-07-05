@@ -21,13 +21,21 @@ import { OSVersionService } from '../admin/os-version/services/operatingsystem-v
 import { MobileRepositoryService } from '../admin/mobile/services/mobile-repository/mobile-repository.service';
 import { MobileServiceService } from '../admin/mobile/services/mobile-service/mobile-service.service';
 import { ShopComponent } from './shop/shop.component';
+import { HomeComponent } from './home/home.component';
 
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 const route:Routes = [
   {
-    path:'',component:UserLayoutComponent,
+    path:'rs',component: UserTemplateComponent,
     children:[
-      {path:'', component:UserAdminComponent},
+      {path:'home',component:HomeComponent,
+      title: 'Home',
+       //canActivate: [AuthGuard],
+      data: {
+        role: 'Admin'
+      },
+      },
     {path:'shop',component:ShopComponent,
     title: 'Shop',
      //canActivate: [AuthGuard],
@@ -52,6 +60,7 @@ export const AllCommonModule = [
   HttpClientModule,
  UserRoutingModule,
   NgbModule,
+  SlickCarouselModule ,
   NgxSpinnerModule,
   NgxDatatableModule,
   NgxDatatableModule ,
@@ -65,7 +74,8 @@ export const allComponent = [
   UserLayoutComponent ,
   UserTemplateComponent,
   UserAdminComponent,
-   ShopComponent
+   ShopComponent,
+   HomeComponent,
 
 
 

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { BrandService } from 'src/app/admin/brand/services/brand-service/brand.service';
+import { MobileServiceService } from 'src/app/admin/mobile/services/mobile-service/mobile-service.service';
+import { OperatingsystemService } from 'src/app/admin/operating-system/services/operatingsystem-service/operatingsystem.service';
+import { OSVersionService } from 'src/app/admin/os-version/services/operatingsystem-version-service/osversion.service';
 
 @Component({
   selector: 'app-shop',
@@ -6,10 +13,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+  response: any;
+  rows: any=[];
 
-  constructor() { }
+  constructor(    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private modalService: NgbModal,
+    public _mobileServices: MobileServiceService,
+    public _brandService: BrandService,
+    public _operatingSystemService:  OperatingsystemService,
+    public  _osVersionService  :  OSVersionService
+    ) { }
 
   ngOnInit(): void {
+    this.  getMobileList();
   }
+  getMobileList(){
+    this._mobileServices.GetMobileList().subscribe((data:any)=>{
+      this.response = data;
+      if(this.response.success  == true){
+        debugger
 
+        this.rows = this.response.data;
+        console.log(this.rows);
+        this.spinner.hide;
+      }
+      else{
+        this.toastr.error(this.response.message,'Message. ')
+      }},
+    err=>{
+    if(err.status ==400){
+      this.toastr.error(err.error.message,'Message .')
+    }
+    })
+  }
 }

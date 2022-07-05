@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {AllCommonModule, allComponent, allServices } from './admin-routing.module';
  
 @NgModule({
-  declarations: [allComponent ],
+  declarations: [allComponent, ],
   imports: [AllCommonModule],
   providers:[
     allServices

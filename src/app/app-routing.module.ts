@@ -28,17 +28,15 @@ const routes: Routes = [
     ]
   },
   {
-    path: '', component: UserTemplateComponent,
-    children: [
-      {
-        path: 'r',
+    path: 's' ,
+
+
         loadChildren: UserModules,
-        
+
         data: {
           role: 'Restaurant'
         }
-      },
-    ]
+
   }
 ];
 @NgModule({
