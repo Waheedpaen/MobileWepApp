@@ -47,4 +47,20 @@ export class ShopComponent implements OnInit {
     }
     })
   }
+
+  searchMobile(obj:any){
+    const searchingData = obj.target.value;
+    if(searchingData == ""){
+     this.ngOnInit();
+    }
+    else {
+     this._mobileServices.SearchingData(searchingData).subscribe(
+       res=>{
+         this.response = res;
+         this.rows = this.response.data ;
+           this.spinner.hide();
+       }
+     )
+   }
+  }
 }

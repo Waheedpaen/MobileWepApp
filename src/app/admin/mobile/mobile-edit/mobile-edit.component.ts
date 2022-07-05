@@ -45,8 +45,9 @@ export class MobileEditComponent implements OnInit {
 
     ) {
       this.form = this.formBulider.group({
+        // ,Validators.pattern(/^[a-zA-Z .,']*$/)]
         Id:new UntypedFormControl(''),
-        Name:['', [Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z .,']*$/)]],
+        Name: new UntypedFormControl(null, [Validators.required]),
         Processor:new UntypedFormControl(null, [Validators.required]),
         BatteryMah:new UntypedFormControl(null, [Validators.required]),
         Wifi:new UntypedFormControl(null, [Validators.required]),
