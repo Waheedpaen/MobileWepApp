@@ -17,7 +17,7 @@ export class ShopComponent implements OnInit {
   rows: any=[];
   page: number = 1;
   count: number = 0;
-  tableSize: number = 2;
+  tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
   constructor(    private toastr: ToastrService,
     private spinner: NgxSpinnerService,
