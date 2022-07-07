@@ -47,7 +47,6 @@ export function provideConfig() {
   ],
   imports: [
     allModules,
-    BrowserAnimationsModule
   ],
   providers: [SocialLoginModule ,SocialAuthService,NgbActiveModal,
     {

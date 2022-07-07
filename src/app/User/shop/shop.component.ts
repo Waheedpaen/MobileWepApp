@@ -17,7 +17,7 @@ export class ShopComponent implements OnInit {
   rows: any=[];
   page: number = 1;
   count: number = 0;
-  tableSize: number = 3;
+  tableSize: number = 6;
   tableSizes: any = [3, 6, 9, 12];
   constructor(    private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -35,8 +35,6 @@ export class ShopComponent implements OnInit {
     this._mobileServices.GetMobileList().subscribe((data:any)=>{
       this.response = data;
       if(this.response.success  == true){
-        debugger
-
         this.rows = this.response.data;
         console.log(this.rows);
         this.spinner.hide;
@@ -50,7 +48,6 @@ export class ShopComponent implements OnInit {
     }
     })
   }
-
   searchMobile(obj:any){
     const searchingData = obj.target.value;
     if(searchingData == ""){
@@ -59,8 +56,13 @@ export class ShopComponent implements OnInit {
     else {
      this._mobileServices.SearchingData(searchingData).subscribe(
        res=>{
+        debugger;
          this.response = res;
          this.page =  this.page ;
+         if(this.page > 1 ){
+          this.page =  1;
+          this.rows = this.response.data ;
+         }
          this.rows = this.response.data ;
            this.spinner.hide();
        }
@@ -72,11 +74,11 @@ export class ShopComponent implements OnInit {
     this.page = event;
      this.rows = this.rows;
   }
-
   }
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-
   }
+
+
 }

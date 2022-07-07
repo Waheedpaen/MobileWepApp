@@ -24,6 +24,7 @@ import { ShopComponent } from './shop/shop.component';
 import { HomeComponent } from '../admin/user-info/home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ShopDetailComponent } from './shop/shop-detail/shop-detail.component';
 const route:Routes = [
   {
     path:'rs',component: UserTemplateComponent,
@@ -42,7 +43,11 @@ const route:Routes = [
       role: 'Admin'
     },
     },
+    {path:'detail/:id',component:ShopDetailComponent,
+    title: 'Shop',
+     //canActivate: [AuthGuard],
 
+    },
   ]}
   ]
 
@@ -76,7 +81,7 @@ export const allComponent = [
   UserAdminComponent,
    ShopComponent,
    HomeComponent,
-
+   ShopDetailComponent
 
 
 ];
