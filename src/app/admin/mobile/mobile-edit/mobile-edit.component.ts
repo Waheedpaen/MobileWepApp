@@ -84,14 +84,18 @@ export class MobileEditComponent implements OnInit {
       const obj = new MobileEntity();
       obj.id =  this.Id;
       obj.stock = this.form.value.Stock;
+      obj.mobilePrice = this.form.value.MobilePrice;
+      obj.sell = this.form.value.Sell;
+      obj.weight = this.form.value.Weight;
       obj.quantity = this.form.value.Quantity;
       obj.description = this.form.get('Description')?.value;
       obj.camera = this.form.get('Camera')?.value;
       obj.usbConnector = this.form.get('USBConnector')?.value;
       obj.name = this.form.get('Name')?.value;
-      obj.processor = this.form.get('Processor')?.value;
+      obj.processor = this.form.value.Processor;
       obj.storage = this.form.get('Storage')?.value;
-
+      obj.sell = this.form.value.Sell;
+      obj.launchDate = this.form.value.LaunchDate;
       obj.ram =  this.form.value.Ram;
       obj.batteryMah = this.form.get('BatteryMah')?.value;
       obj.mobileWeight = this.form.get('MobileWeight')?.value;
@@ -100,6 +104,7 @@ export class MobileEditComponent implements OnInit {
       obj.blueTooth = this.form.get('Bluetooth')?.value;
       obj.screenSize = this.form.get('ScreenSize')?.value;
       obj.charger = this.form.get('Charger')?.value;
+      obj.usbConnector = this.form.value.USBConnector;
       obj.headPhoneJack = this.form.get('HeadPhoneJack')?.value;
       obj.wifi = this.form.get('Wifi')?.value;
       obj.stockAvailiability = this.form.get('StockAvailiability')?.value;
@@ -108,7 +113,7 @@ export class MobileEditComponent implements OnInit {
       obj.oSVersionId = this.form.get('OSVersionId')?.value;
       obj.colorId = this.form.get('ColorId')?.value;
       obj.weight = this.form.get('Weight')?.value;
-  obj.mobilePrice = this.form.value.MobilePrice;
+
       this.imageSrc.forEach(datas=>{
         const image = new MobileImageEntity();
         image.mobileId = this.form.get('Id')?.value;
@@ -163,14 +168,18 @@ export class MobileEditComponent implements OnInit {
       debugger;
       const obj = new MobileEntity();
       obj.stock = this.form.value.Stock;
+      obj.mobilePrice = this.form.value.MobilePrice;
+      obj.sell = this.form.value.Sell;
+      obj.weight = this.form.value.Weight;
       obj.quantity = this.form.value.Quantity;
       obj.description = this.form.get('Description')?.value;
       obj.camera = this.form.get('Camera')?.value;
       obj.usbConnector = this.form.get('USBConnector')?.value;
       obj.name = this.form.get('Name')?.value;
-      obj.processor = this.form.get('Processor')?.value;
+      obj.processor = this.form.value.Processor;
       obj.storage = this.form.get('Storage')?.value;
-     obj.launchDate = this.form.value.LaunchDate;
+      obj.sell = this.form.value.Sell;
+      obj.launchDate = this.form.value.LaunchDate;
       obj.ram =  this.form.value.Ram;
       obj.batteryMah = this.form.get('BatteryMah')?.value;
       obj.mobileWeight = this.form.get('MobileWeight')?.value;
@@ -179,11 +188,11 @@ export class MobileEditComponent implements OnInit {
       obj.blueTooth = this.form.get('Bluetooth')?.value;
       obj.screenSize = this.form.get('ScreenSize')?.value;
       obj.charger = this.form.get('Charger')?.value;
+      obj.usbConnector = this.form.value.USBConnector;
       obj.headPhoneJack = this.form.get('HeadPhoneJack')?.value;
       obj.wifi = this.form.get('Wifi')?.value;
       obj.stockAvailiability = this.form.get('StockAvailiability')?.value;
       obj.cpu = this.form.get('CPU')?.value;
-      obj.mobilePrice = this.form.value.MobilePrice;
       obj.brandId = this.form.get('BrandId')?.value;
       obj.oSVersionId = this.form.get('OSVersionId')?.value;
       obj.colorId = this.form.get('ColorId')?.value;
@@ -274,8 +283,11 @@ this.colorList = data;
       this.data = this.response.data;
       this.form.controls.Id.setValue(this.data?.id);
     this.form.controls.Name.setValue(this.data?.name);
+    this.form.controls.Processor.setValue(this.data?.processor)
+    this.form.controls. Resolution.setValue(this.data?.resolution);
     this.form.controls.Ram.setValue(this.data?.ram);
-    this.form.controls.MobilePrice.setValue(this.data?.mobilePrice);
+    this.form.controls.Ram.setValue(this.data?.ram)
+    this.form.controls.USBConnector.setValue(this.data?.usbConnector);
     this.form.controls.Storage.setValue(this.data?.storage);
     this.form.controls.MobileWeight.setValue(this.data?.mobileWeight);
     this.form.controls.Description.setValue(this.data?.description);
@@ -283,6 +295,7 @@ this.colorList = data;
     this.form.controls. HeadPhoneJack.setValue(this.data?.headPhoneJack);
     this.form.controls.USBConnector.setValue(this.data?.uSBConnector);
     this.form.controls.Stock.setValue(this.data?.stock);
+    this.form.controls.Weight.setValue(this.data?.weight);
     this.form.controls.CPU.setValue(this.data?.cPU);
     this.form.controls.Quantity.setValue(this.data?.quantity);
     this.form.controls.ScreenSize.setValue(this.data?.screenSize);
