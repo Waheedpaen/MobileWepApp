@@ -477,7 +477,7 @@
 <label for="inputPassword5">MobilePrice <span class="required-denote">*</span></label>
 <div class="custom-file">
 
-  <input [ngClass]="{'has-error':form.get('MobilePrice').errors&&(form.get('Resolution').touched || form.get('MobilePrice').dirty|| form.get('MobilePrice').invalid)}" type="text" class="form-control" placeholder="MobilePrice"
+  <input [ngClass]="{'has-error':form.get('MobilePrice').errors&&(form.get('MobilePrice').touched || form.get('MobilePrice').dirty|| form.get('MobilePrice').invalid)}" type="text" class="form-control" placeholder="MobilePrice"
   formControlName="MobilePrice"
   [ngClass]="{'error':form.get('MobilePrice').invalid && form.get('MobilePrice').touched,'not-error': form.get('MobilePrice') .valid && form.get('MobilePrice') .touched}">
 

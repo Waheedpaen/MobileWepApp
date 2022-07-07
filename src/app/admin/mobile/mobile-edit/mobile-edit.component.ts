@@ -82,7 +82,7 @@ export class MobileEditComponent implements OnInit {
     updateMobile(form: NgForm){
       debugger;
       const obj = new MobileEntity();
-      obj.id =  this.form.get('Id')?.value;
+      obj.id =  this.Id;
       obj.stock = this.form.value.Stock;
       obj.quantity = this.form.value.Quantity;
       obj.description = this.form.get('Description')?.value;
@@ -108,7 +108,7 @@ export class MobileEditComponent implements OnInit {
       obj.oSVersionId = this.form.get('OSVersionId')?.value;
       obj.colorId = this.form.get('ColorId')?.value;
       obj.weight = this.form.get('Weight')?.value;
-
+  obj.mobilePrice = this.form.value.MobilePrice;
       this.imageSrc.forEach(datas=>{
         const image = new MobileImageEntity();
         image.mobileId = this.form.get('Id')?.value;
@@ -183,6 +183,7 @@ export class MobileEditComponent implements OnInit {
       obj.wifi = this.form.get('Wifi')?.value;
       obj.stockAvailiability = this.form.get('StockAvailiability')?.value;
       obj.cpu = this.form.get('CPU')?.value;
+      obj.mobilePrice = this.form.value.MobilePrice;
       obj.brandId = this.form.get('BrandId')?.value;
       obj.oSVersionId = this.form.get('OSVersionId')?.value;
       obj.colorId = this.form.get('ColorId')?.value;
@@ -235,7 +236,6 @@ console.log(this.imageSrc)
   }
   getOSVList(){
   this._osVersion.GetOSVersionList().subscribe((res:any)=>{
-
   })
   }
 
@@ -275,6 +275,7 @@ this.colorList = data;
       this.form.controls.Id.setValue(this.data?.id);
     this.form.controls.Name.setValue(this.data?.name);
     this.form.controls.Ram.setValue(this.data?.ram);
+    this.form.controls.MobilePrice.setValue(this.data?.mobilePrice);
     this.form.controls.Storage.setValue(this.data?.storage);
     this.form.controls.MobileWeight.setValue(this.data?.mobileWeight);
     this.form.controls.Description.setValue(this.data?.description);
