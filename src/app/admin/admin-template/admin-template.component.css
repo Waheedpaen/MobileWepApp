@@ -2,7 +2,14 @@
   position: relative; width: 90px;
   /* -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none; */
 }
+.navbar-dark {
+  background-color: #0d3f1be6;
 
+}
+.navbar-darks {
+  background-color: #201826;
+  border-color: #4b545c;
+}
 .onoffswitch-checkbox {
   display: none;
 }

@@ -1,5 +1,5 @@
 /******* Bootstrap Theming ********/
- 
+
  :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -350,6 +350,16 @@ template {
   display: none;
 }
 
+
+.mobileData{
+
+
+   font-size: 15px;
+
+  font-style: oblique;
+  font-family: sans-serif;
+
+}
 [hidden] {
   display: none !important;
 }

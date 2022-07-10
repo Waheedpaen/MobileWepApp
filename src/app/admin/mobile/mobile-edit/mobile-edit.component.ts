@@ -282,6 +282,7 @@ this.colorList = data;
     if(this.response.success == true){
       this.data = this.response.data;
       this.form.controls.Id.setValue(this.data?.id);
+      this.form.controls.StockAvailiability.setValue(this.data?.stockAvailiability)
     this.form.controls.Name.setValue(this.data?.name);
     this.form.controls.Processor.setValue(this.data?.processor)
     this.form.controls. Resolution.setValue(this.data?.resolution);

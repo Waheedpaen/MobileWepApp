@@ -14,10 +14,11 @@ import { OSVersionService } from 'src/app/admin/os-version/services/operatingsys
 })
 export class ShopComponent implements OnInit {
   response: any;
+  suggestion:any;
   rows: any=[];
   page: number = 1;
   count: number = 0;
-  tableSize: number = 3;
+  tableSize: number = 6;
   tableSizes: any = [3, 6, 9, 12];
   constructor(    private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -32,11 +33,13 @@ export class ShopComponent implements OnInit {
     this.  getMobileList();
   }
   getMobileList(){
+    debugger;
     this._mobileServices.GetMobileList().subscribe((data:any)=>{
       this.response = data;
       if(this.response.success  == true){
         this.rows = this.response.data;
         console.log(this.rows);
+        this.suggestion = this.rows;
         this.spinner.hide;
       }
       else{

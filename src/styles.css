@@ -7,9 +7,18 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-
+.ngx-datatable .datatable-header {
+  border-top: 1px solid #dee2e6;
+  display: block;
+  overflow: hidden;
+  background-color: #093560 !important;
+}
 .ngx-datatable.material .datatable-header .datatable-header-cell {
-    background-color:  #4f575f !important;
+  border-top: 1px solid #dee2e6;
+  display: block;
+  overflow: hidden;
+  background-color: #093560 !important;
+
     font-size: 14px !important;
     color: white;
     font-weight: normal;
@@ -18,7 +27,7 @@
     border-top: 1px solid #dee2e6;
     display: block;
     overflow: hidden;
-    background-color:  #4f575f !important;
+    background-color: #093560 !important;
   }
   .ngx-datatable.material .datatable-body{
     border-top: 1px solid #dee2e6;
@@ -58,6 +67,8 @@ h1 {
 }
 h2 {
     font-size: 30px;
+    font-style: oblique;
+    font-family: cursive;
 }
 h3 {
     font-size: 24px;
@@ -161,6 +172,10 @@ label:not(.form-check-label):not(.custom-file-label) {
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
   background-color: #fcb042 !important;
   color: #202020 !important;
+}
+.card-dark:not(.card-outline)>.card-header {
+  background-color: #093560;
+  border-radius: 10%;
 }
 
 .dark-mode .card {
