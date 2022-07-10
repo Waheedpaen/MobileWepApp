@@ -82,6 +82,18 @@ export class ShopComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
   }
+changeData(data:any){
+  debugger
+  var sam = data.target.value;
+ this. tableSize=  Number(sam);
+ if(this.tableSize>5){
+   this.page = 1
+ }
+ else{
+  this.rows = this.rows;
+ }
+  console.log(sam);
 
+}
 
 }
