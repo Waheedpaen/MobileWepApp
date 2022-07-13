@@ -20,7 +20,7 @@
       <div class="border-bottom mb-4 pb-4">
         <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
         <form>
-          <div
+          <!-- <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
             <input
@@ -33,18 +33,18 @@
               >All Price</label
             >
             <span class="badge border font-weight-normal">1000</span>
-          </div>
+          </div> -->
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="price-1" />
+            <input type="checkbox" value="0-100" (change)="SelectRange($event)" class="custom-control-input" id="price-1" />
             <label class="custom-control-label" for="price-1">$0 - $100</label>
             <span class="badge border font-weight-normal">150</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="price-2" />
+            <input type="checkbox"  value="100-200" (change)="SelectRange($event)"  class="custom-control-input" id="price-2" />
             <label class="custom-control-label" for="price-2"
               >$100 - $200</label
             >
@@ -53,7 +53,7 @@
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="price-3" />
+            <input type="checkbox"  value="200-300" (change)="SelectRange($event)"   class="custom-control-input" id="price-3" />
             <label class="custom-control-label" for="price-3"
               >$200 - $300</label
             >
@@ -62,7 +62,7 @@
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="price-4" />
+            <input value="300-400" (change)="SelectRange($event)"  type="checkbox" class="custom-control-input" id="price-4" />
             <label class="custom-control-label" for="price-4"
               >$300 - $400</label
             >
@@ -71,7 +71,7 @@
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between"
           >
-            <input type="checkbox" class="custom-control-input" id="price-5" />
+            <input value="400-500" (change)="SelectRange($event)"  type="checkbox" class="custom-control-input" id="price-5" />
             <label class="custom-control-label" for="price-5"
               >$400 - $500</label
             >
@@ -82,57 +82,53 @@
       <!-- Price End -->
 
       <!-- Color Start -->
+
       <div class="border-bottom mb-4 pb-4">
         <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-        <form>
+        <form [formGroup]="form">
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input
-              type="checkbox"
-              class="custom-control-input"
-              checked
-              id="color-all"
-            />
-            <label class="custom-control-label" for="price-all"
+          <input value="All"  (change)="Color($event)"  for type="checkbox" class="custom-control-input" id="color-0" />
+            <label class="custom-control-label" for="color-0"
               >All Color</label
             >
-            <span class="badge border font-weight-normal">1000</span>
+            <span class="badge border badges font-weight-normal">{{allCount}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="color-1" />
+            <input value="Black"  (change)="Color($event)"  for type="checkbox" class="custom-control-input" id="color-1" />
             <label class="custom-control-label" for="color-1">Black</label>
-            <span class="badge border font-weight-normal">150</span>
+            <span class="badge badges border font-weight-normal">{{blackCount}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="color-2" />
+            <input type="checkbox"   value="White"  (change)="Color($event)"  class="custom-control-input" id="color-2" />
             <label class="custom-control-label" for="color-2">White</label>
-            <span class="badge border font-weight-normal">295</span>
+            <span class="badge border badges font-weight-normal">{{whiteCount}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="color-3" />
+            <input   value="Red"  (change)="Color($event)"   type="checkbox" class="custom-control-input" id="color-3" />
             <label class="custom-control-label" for="color-3">Red</label>
-            <span class="badge border font-weight-normal">246</span>
+            <span class="badge border badges font-weight-normal">{{redCount}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="color-4" />
+            <input   value="Blue"  (change)="Color($event)"  type="checkbox" class="custom-control-input" id="color-4" />
             <label class="custom-control-label" for="color-4">Blue</label>
-            <span class="badge border font-weight-normal">145</span>
+            <span class="badge border badges font-weight-normal">{{blueCount}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between"
           >
-            <input type="checkbox" class="custom-control-input" id="color-5" />
+            <input   value="Green"  (change)="Color($event)"   type="checkbox" class="custom-control-input" id="color-5" />
             <label class="custom-control-label" for="color-5">Green</label>
-            <span class="badge border font-weight-normal">168</span>
+            <span class="badge border badges font-weight-normal">{{greenCount}}</span>
           </div>
         </form>
       </div>
@@ -218,9 +214,9 @@
             </form>
             <select (change)="changeData($event)" class="form-select" aria-label="Default select example">
               <option selected>Open this select menu</option>
+              <option value="2">2</option>
               <option value="5">5</option>
               <option value="10">10</option>
-              <option value="25">25</option>
             </select>
           </div>
         </div>
@@ -253,7 +249,7 @@
             >
               <h6 class="text-truncate mb-3">{{ p.name }}</h6>
               <div class="d-flex justify-content-center">
-                <h6>$123.00</h6>
+                <h6>${{ p.mobilePrice }}</h6>
                 <h6 class="text-muted ml-2">
                   <del>${{ p.price }}</del>
                 </h6>

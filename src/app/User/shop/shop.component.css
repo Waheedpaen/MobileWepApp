@@ -4372,6 +4372,10 @@ input[type="button"].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+.badges{
+  background-color: #2907ff !important
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;

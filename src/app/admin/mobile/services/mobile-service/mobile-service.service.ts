@@ -40,4 +40,10 @@ export class MobileServiceService {
    GetMobileByBrand(id:number){
     return this._mobileRepositoryService.GetMobileByBrand(id);
    }
+   GetMobilesByColor(name: string){
+    return this._mobileRepositoryService.GetMobilesByColor(name);
+   }
+   GetMobilesByPrice(range: any) {
+ return this._mobileRepositoryService.GetMobilesByPrice(range);
+   }
 }

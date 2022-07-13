@@ -14,6 +14,12 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root'
 })
 export class MobileRepositoryService extends  IMobileRepository{
+  GetMobilesByPrice(Model: any) {
+    return this.http.post(environment.urlMobile + '/GetMobilesByPrice' , Model);
+  }
+  GetMobilesByColor(name: string) {
+     return this.http.get(environment.urlMobile + '/GetMobileByColor/' +  name);
+  }
   GetMobileByBrand(id: number) {
    return this.http.get(environment.urlMobile + '/GetMobileByBrand/' + id);
   }
@@ -21,13 +27,12 @@ export class MobileRepositoryService extends  IMobileRepository{
     return this.http.post(environment.urlMobile + '/MobileImageSave',obj);
   }
   GetColor() {
- return    this.http.get(environment.urlMobile + '/GetColor')
+   return    this.http.get(environment.urlMobile + '/GetColor')
   }
 
   constructor(public http: HttpClient) {
     super();
   }
-
   setiFrameForPrint(doc: any) {
     const iframe = document.createElement("iframe");
     iframe.id = "iprint";

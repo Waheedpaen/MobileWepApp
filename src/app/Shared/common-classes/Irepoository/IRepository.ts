@@ -1,4 +1,3 @@
-import { AutofillMonitor } from "@angular/cdk/text-field";
 
 export  abstract class  IRepository {
  abstract GetAll():any;
@@ -38,4 +37,6 @@ export abstract class IMobileRepository extends IRepository{
   abstract GetOSVByOperatingSystemId(id: number): any;
   abstract GetColor(): any;
   abstract GetImageForSaveList(obj:any):any;
+  abstract GetMobilesByColor(name:string):any;
+  abstract GetMobilesByPrice(range:any):any;
 }

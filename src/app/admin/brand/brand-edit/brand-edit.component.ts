@@ -21,10 +21,11 @@ data: any = {};
 @ViewChild(NgForm) Form: any;
   response: any;
   file: string | ArrayBuffer | null | undefined;
-  constructor(  public formBulider:UntypedFormBuilder,
+  constructor(
+    public formBulider:UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-   private brandServices: BrandService,
+    private brandServices: BrandService,
     private _NgbActiveModal: NgbActiveModal) {
       this.form = this.formBulider.group({
         Id:[''],
