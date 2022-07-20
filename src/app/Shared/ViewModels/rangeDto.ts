@@ -3,3 +3,8 @@ export class RangeViewModel{
   second!:number;
   ;
 }
+export class RangeScreenSizeDto{
+  first!:any;
+  second!:any;
+  
+}

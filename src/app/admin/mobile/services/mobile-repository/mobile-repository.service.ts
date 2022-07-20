@@ -14,6 +14,9 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root'
 })
 export class MobileRepositoryService extends  IMobileRepository{
+  GetMobilesByScreen(range: any) {
+    return this.http.post(environment.urlMobile + '/GetMobilesByScreen' , range);
+  }
   GetMobilesByPrice(Model: any) {
     return this.http.post(environment.urlMobile + '/GetMobilesByPrice' , Model);
   }

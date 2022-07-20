@@ -13,6 +13,9 @@ export class MobileServiceService {
   GetMobileDetail(id : number){
     return this._mobileRepositoryService.GetData(id);
   }
+  GetMobilesByScreen(range:any){
+  return this._mobileRepositoryService.GetMobilesByScreen(range);
+  }
   UpdateMobileData(obj: any){
     return this._mobileRepositoryService.UpdateData(obj);
   }
@@ -46,4 +49,5 @@ export class MobileServiceService {
    GetMobilesByPrice(range: any) {
  return this._mobileRepositoryService.GetMobilesByPrice(range);
    }
+ 
 }

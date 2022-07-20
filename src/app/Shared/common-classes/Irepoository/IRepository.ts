@@ -39,4 +39,5 @@ export abstract class IMobileRepository extends IRepository{
   abstract GetImageForSaveList(obj:any):any;
   abstract GetMobilesByColor(name:string):any;
   abstract GetMobilesByPrice(range:any):any;
+  abstract GetMobilesByScreen(range:any):any;
 }

@@ -7,7 +7,7 @@ import { BrandService } from 'src/app/admin/brand/services/brand-service/brand.s
 import { MobileServiceService } from 'src/app/admin/mobile/services/mobile-service/mobile-service.service';
 import { OperatingsystemService } from 'src/app/admin/operating-system/services/operatingsystem-service/operatingsystem.service';
 import { OSVersionService } from 'src/app/admin/os-version/services/operatingsystem-version-service/osversion.service';
-import { RangeViewModel } from 'src/app/Shared/ViewModels/rangeDto';
+import { RangeScreenSizeDto, RangeViewModel } from 'src/app/Shared/ViewModels/rangeDto';
 
 @Component({
   selector: 'app-shop',
@@ -16,6 +16,10 @@ import { RangeViewModel } from 'src/app/Shared/ViewModels/rangeDto';
 })
 export class ShopComponent implements OnInit {
   response: any;
+  sScreen!:number;
+  mScreen!:number;
+  xScreen!:number;
+
   blackCount:any;
   redCount:any;
   greenCount:any
@@ -72,7 +76,10 @@ export class ShopComponent implements OnInit {
           this.greenCount = data.length;
           var data4 =             this.rows.filter((data: { color: { name: string; }; })=>data.color.name == 'Blue');
           this.blueCount = data4.length;
-
+          var list = this.rows.filter((data: { screenSize: number; })=>data.screenSize>=1 &&data.screenSize<=3);
+        this.sScreen = list.length;
+        var list1 = this.rows.filter((data: { screenSize: number; })=>data.screenSize>=4 &&data.screenSize<=5);
+        this.mScreen = list1.length;
         this.suggestion = this.rows;
         this.spinner.hide;
       }
@@ -163,9 +170,37 @@ export class ShopComponent implements OnInit {
   this.responseRange = res;
   if(this.responseRange.success == true){
     this.rows = this.responseRange.data;
+
     this.page =  1;
   }
    })
+
+  }
+
+  GetMobilesByScreen(range:any){
+    debugger;
+    var data = range.target.value;
+    if( data  == 'All'){
+      this.getMobileList();
+    }
+    else{
+      var obj = data.split('-')
+      var d1 =   Number(obj[0])
+      var da2 =    Number(obj[1]) ;
+      var dto = new RangeScreenSizeDto();
+      dto.first = d1;
+      dto.second = da2;
+      this._mobileServices. GetMobilesByScreen(dto).subscribe(res=>{
+       this.responseRange = res;
+       if(this.responseRange.success == true){
+         this.rows = this.responseRange.data;
+
+         this.page =  1;
+       }
+        })
+    }
+
+
 
   }
 }

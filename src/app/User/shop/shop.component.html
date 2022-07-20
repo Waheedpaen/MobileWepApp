@@ -39,7 +39,7 @@
           >
             <input type="checkbox" value="0-100" (change)="SelectRange($event)" class="custom-control-input" id="price-1" />
             <label class="custom-control-label" for="price-1">$0 - $100</label>
-            <span class="badge border font-weight-normal">150</span>
+            <span class="badge border badges font-weight-normal">150</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
@@ -48,7 +48,7 @@
             <label class="custom-control-label" for="price-2"
               >$100 - $200</label
             >
-            <span class="badge border font-weight-normal">295</span>
+            <span class="badge border badges font-weight-normal">295</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
@@ -57,7 +57,7 @@
             <label class="custom-control-label" for="price-3"
               >$200 - $300</label
             >
-            <span class="badge border font-weight-normal">246</span>
+            <span class="badge border badges font-weight-normal">246</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
@@ -66,7 +66,7 @@
             <label class="custom-control-label" for="price-4"
               >$300 - $400</label
             >
-            <span class="badge border font-weight-normal">145</span>
+            <span class="badge border badges font-weight-normal">145</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between"
@@ -75,7 +75,7 @@
             <label class="custom-control-label" for="price-5"
               >$400 - $500</label
             >
-            <span class="badge border font-weight-normal">168</span>
+            <span class="badge border badges font-weight-normal">168</span>
           </div>
         </form>
       </div>
@@ -146,44 +146,45 @@
               class="custom-control-input"
               checked
               id="size-all"
+              value="All" (change)="GetMobilesByScreen($event)"
             />
             <label class="custom-control-label" for="size-all">All Size</label>
-            <span class="badge border font-weight-normal">1000</span>
+            <span class="badge border badges font-weight-normal">{{allCount}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
             <input type="checkbox" class="custom-control-input" id="size-1" />
             <label class="custom-control-label" for="size-1">XS</label>
-            <span class="badge border font-weight-normal">150</span>
+            <span class="badge border badges font-weight-normal">150</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="size-2" />
+            <input  value="1.0-3.0" (change)="GetMobilesByScreen($event)" type="checkbox" class="custom-control-input" id="size-2" />
             <label class="custom-control-label" for="size-2">S</label>
-            <span class="badge border font-weight-normal">295</span>
+            <span class="badge border badges font-weight-normal">{{sScreen}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
-            <input type="checkbox" class="custom-control-input" id="size-3" />
+            <input value="4.0-5.0" (change)="GetMobilesByScreen($event)" type="checkbox" class="custom-control-input" id="size-3" />
             <label class="custom-control-label" for="size-3">M</label>
-            <span class="badge border font-weight-normal">246</span>
+            <span class="badge border badges font-weight-normal">{{mScreen}}</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
           >
             <input type="checkbox" class="custom-control-input" id="size-4" />
             <label class="custom-control-label" for="size-4">L</label>
-            <span class="badge border font-weight-normal">145</span>
+            <span class="badge border badges font-weight-normal">145</span>
           </div>
           <div
             class="custom-control custom-checkbox d-flex align-items-center justify-content-between"
           >
             <input type="checkbox" class="custom-control-input" id="size-5" />
             <label class="custom-control-label" for="size-5">XL</label>
-            <span class="badge border font-weight-normal">168</span>
+            <span class="badge border badges font-weight-normal">168</span>
           </div>
         </form>
       </div>
