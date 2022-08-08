@@ -142,6 +142,7 @@ export class ShopComponent implements OnInit {
    }
 
   Color(data:any){
+    debugger;
   var colorName = data.target.value;
   if(colorName == 'All'){
     this.getMobileList();

@@ -32,12 +32,12 @@ const routes: Routes = [
     ],
   },
   {
-    path: 's',
+    path: 'shop',
 
     loadChildren: UserModules,
 
     data: {
-      role: 'Restaurant',
+      role: 'User',
     },
   },
 ];

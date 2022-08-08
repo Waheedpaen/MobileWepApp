@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +18,7 @@ roleAs!: string;
 response:any;
 tokeForSave: any;
 tokenInfo:any;
-
+public subject = new Subject<any>();
 tokenforsave:any;
 tokeninfo:any;
   constructor(
@@ -43,8 +43,8 @@ debugger
             // Token Decyrepted data
             this.tokenforsave =this.response.data.token;
             console.log(this.tokenforsave)
-            this.tokeninfo = this.getDecodedAccessToken(this.response.data.token);
-            console.log(    this.tokeninfo)
+            let tokenData = this.getDecodedAccessToken(this.response.data.token);
+            this.subject.next(tokenData);
             // Token Decyrepted data
             this.isLogin = true;
             this.roleAs = this.response.data;
@@ -53,18 +53,18 @@ debugger
 
             //var decrypted = this.EncrDecr.get('123456$#@$^@1ERF', encrypted);
             sessionStorage.setItem('STATE', 'true');
-            if (this.response.data.loggedInUserTypeId == '2') {
+            if (this.response.data.loggedInUserTypeId == '1') {
               debugger
               // Encripted data
               var Admin = this.EncrDecr.set('123456$#@$^@1ERF', 'Admin');
               console.log(Admin)
               sessionStorage.setItem('ROLE', Admin);
             }
-            // else if (this.response.data.loggedInUserTypeId == '2') {
+              else if (this.response.data.loggedInUserTypeId == '2') {
             //   // Encripted data
-            //   var Restaurant = this.EncrDecr.set('123456$#@$^@1ERF', 'Restaurant');
-            //   sessionStorage.setItem('ROLE', Restaurant);
-            // }
+               var User = this.EncrDecr.set('123456$#@$^@1ERF', 'User');
+                sessionStorage.setItem('ROLE', User);
+             }
             else {
               sessionStorage.setItem('ROLE', '');
             }

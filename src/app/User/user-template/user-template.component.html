@@ -52,11 +52,11 @@
             <div class="col-lg-3 col-6 text-right">
                 <a href="" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge text-dark">123</span>
                 </a>
-                <a href="" class="btn border">
+                <a  [routerLink]="['/shop/temp/cartItem' ]" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge text-dark ">{{totalCartCount}}</span>
                 </a>
             </div>
         </div>
@@ -104,8 +104,8 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a  [routerLink]="'/s/rs/shop'" class="nav-item nav-link active">Shop</a>
+                            <a [routerLink]="'/shop/temp/home'" class="nav-item nav-link">Home</a>
+                            <a  [routerLink]="'/shop/temp/product'" class="nav-item nav-link active">Shop</a>
                             <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -114,11 +114,18 @@
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
+
+
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+
+                        <div *ngIf="response ! null" class="navbar-nav   py-0">
+                          {{response?.UserName?? ''}}
+                          <i class="fa fa-sign-out" (click)="signOut()"></i>
+                      </div>
+                       <div *ngIf="response == null" class="navbar-nav ml-auto py-0">
+                            <a   [routerLink]="'/shop/login'" class="nav-item nav-link">Login</a>
+                            <a  [routerLink]="'/shop/signup'" href="" class="nav-item nav-link">Register</a>
                         </div>
                     </div>
                 </nav>

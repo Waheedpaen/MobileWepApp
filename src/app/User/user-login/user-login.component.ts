@@ -5,18 +5,28 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { AuthSystemService } from '../Shared/auth/auth.system.service';
-import { UserForLoginDto } from '../Shared/Components/login/login-entity/User';
-import { LoginComponent } from '../Shared/Components/login/login.component';
-import { UserService } from '../Shared/Components/login/services/user-service/user.service';
+import { AuthSystemService } from 'src/app/Shared/auth/auth.system.service';
+import { UserForLoginDto } from 'src/app/Shared/Components/login/login-entity/User';
+import { UserService } from 'src/app/Shared/Components/login/services/user-service/user.service';
+import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 @Component({
-  selector: 'app-first-page',
-  templateUrl: './first-page.component.html',
-  styleUrls: ['./first-page.component.css']
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.css']
 })
-export class FirstPageComponent implements OnInit {
+export class UserLoginComponent implements OnInit {
 
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
+}
   form:any
   @ViewChild('container') container!: ElementRef
   response: any;
@@ -51,19 +61,6 @@ export class FirstPageComponent implements OnInit {
 
 
 
-  siginPopUp() {
-    const modalRef = this.modalService.open(LoginComponent, { centered: true, size: 'lg' });
-    modalRef.result.then((data: boolean) => {
-      // on close
-      if (data == true) {
-
-
-
-      }
-    }, () => {
-      // on dismiss
-    });
-  }
 
 
 
@@ -73,23 +70,17 @@ loginMethod(){
   const obj = new  UserForLoginDto();
    obj.email = this.form.value. Email,
    obj.password = this.form.value.Password;
-   obj.userTypeId = 1;
+   obj.userTypeId = 2;
     this.serviceSystem.login (obj).subscribe(res=>{
       this.response = res;
 
-       if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '1'){
-
-        debugger;
-        this.router.navigate(['/admin']);
+       if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '2'){
+  
+        this.router.navigate(['/shop/temp/home']);
      this.spinner.hide();
 
       }
-      else  if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '2'){
 
-        debugger;
-        this.router.navigate(['/admin']);
-        this.spinner.hide();
-      }
 else{
   this.toastr.error(this.response.message,'Message.');
   this.spinner.hide();
@@ -102,6 +93,6 @@ else{
 get activeModal() {
   return this._NgbActiveModal;
 }
-  }
 
 
+}

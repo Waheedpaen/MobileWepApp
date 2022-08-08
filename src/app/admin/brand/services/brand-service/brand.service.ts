@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { map ,take} from 'rxjs';
 import { BrandRepositoryService } from '../brand-repository/brand-repository.service';
 
 @Injectable({
@@ -8,8 +9,32 @@ export class BrandService {
 
   constructor(public brandRepository: BrandRepositoryService ) { }
   GetBrandList(){
-    return this.brandRepository.GetAll();
+    return this.brandRepository.GetAll()
+    // pipe with map data
+    // .pipe(
+    //   take(1),
+    //   map((data:any=[]) => {
+
+    //  const    list: any[] =[];
+    //  data.data.forEach((element:any) => {
+    //   let obj:any ={};
+    //   if(element.name == 'love'){
+    //     obj.name =  element.name = 'fuck me'
+    //     obj.imageUrl = element.imageUrl
+    //      }
+    //      else{
+    //       obj.name =  element.name
+    //       obj.imageUrl = element.imageUrl
+    //      }
+    //      list.push(obj)
+    //  });
+
+
+    //  return list ;
+    //   })
+    // );
   }
+
   GetBrandDetail(id: number){
     return this.brandRepository.GetData(id);
   }

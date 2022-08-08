@@ -51,6 +51,7 @@ this.getList();
 getList(){
   const toke = sessionStorage.getItem('Token')
   var data = this.getDecodedAccessToken(toke);
+  console.log(data)
   this.obj=data;
    this.imageUrl = data.ImageUrl;
 }

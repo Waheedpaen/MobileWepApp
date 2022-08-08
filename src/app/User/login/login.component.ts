@@ -5,17 +5,17 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { AuthSystemService } from '../Shared/auth/auth.system.service';
-import { UserForLoginDto } from '../Shared/Components/login/login-entity/User';
-import { LoginComponent } from '../Shared/Components/login/login.component';
-import { UserService } from '../Shared/Components/login/services/user-service/user.service';
+import { AuthSystemService } from 'src/app/Shared/auth/auth.system.service';
+import { UserForLoginDto } from 'src/app/Shared/Components/login/login-entity/User';
+import { UserService } from 'src/app/Shared/Components/login/services/user-service/user.service';
 
 @Component({
-  selector: 'app-first-page',
-  templateUrl: './first-page.component.html',
-  styleUrls: ['./first-page.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class FirstPageComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
 
   form:any
   @ViewChild('container') container!: ElementRef
@@ -73,7 +73,7 @@ loginMethod(){
   const obj = new  UserForLoginDto();
    obj.email = this.form.value. Email,
    obj.password = this.form.value.Password;
-   obj.userTypeId = 1;
+   obj.userTypeId = 2;
     this.serviceSystem.login (obj).subscribe(res=>{
       this.response = res;
 
@@ -102,6 +102,5 @@ else{
 get activeModal() {
   return this._NgbActiveModal;
 }
-  }
 
-
+}

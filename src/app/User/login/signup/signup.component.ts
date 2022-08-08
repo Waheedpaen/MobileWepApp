@@ -1,23 +1,23 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { SocialAuthService } from 'angularx-social-login';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { SocialUser } from "angularx-social-login";
-import { UserService } from './services/user-service/user.service';
-import { UserForLoginDto } from './login-entity/User';
-import { AuthSystemService } from '../../auth/auth.system.service';
 import { AbstractControl, AsyncValidatorFn, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
-import { MustMatch } from './MatchPassword/password-Matching.validator';
+
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
+import { UserService } from 'src/app/Shared/Components/login/services/user-service/user.service';
+import { AuthSystemService } from 'src/app/Shared/auth/auth.system.service';
+import { MustMatch } from 'src/app/Shared/Components/login/MatchPassword/password-Matching.validator';
+import { UserForLoginDto } from 'src/app/Shared/Components/login/login-entity/User';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
   form:any
   @ViewChild('container') container!: ElementRef
   response: any;
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
     public http:HttpClient,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    public userService: UserService
-    ,private _NgbActiveModal: NgbActiveModal,
+    public userService: UserService,
+     private _NgbActiveModal: NgbActiveModal,
     private serviceSystem: AuthSystemService,
     private router: Router,
     private socialAuthService:  SocialAuthService,
@@ -134,7 +134,7 @@ debugger;
       'Username': this.data.name,
       'fullName': this.data.fullName,
       'email': this.data.email,
-      'userTypeId': 1,
+      'userTypeId': 2,
       'password': this.data.password,
 
     };
@@ -159,28 +159,30 @@ debugger;
 
   addUserMethod() {
 
-    debugger;
+    this.spinner.show();
    const obj = new  UserForLoginDto();
    obj.username =  this.form.value.UserName;
    obj.password =  this.form.value.Password;
    obj.fullName = this.form.value.FullName;
    obj.email = this.form.value.Email;
-   obj.userTypeId = 1;
+   obj.userTypeId = 2;
    obj.imageUrl = this.file;
     this.serviceSystem.signup (obj).subscribe(res=>{
       this.response = res;
-      this.spinner.show();
+
       if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '2'){
-        this.spinner.show();
+
         debugger;
-        this.router.navigate(['/admin']);
-        this.activeModal.close(true);
-        this.spinner.hide();
+
+
+        this.router.navigate(['/shop/temp/home']);
+     this.spinner.hide();
+
       }
 else{
   this.toastr.error(this.response.message,'Message.');
-  this.spinner.hide();
-  this.spinner.hide();
+
+
 }
 
     })
@@ -208,6 +210,4 @@ else{
   //   }
   // }
 
-  }
-
-
+}
