@@ -12,111 +12,36 @@
                   </tr>
               </thead>
               <tbody class="align-middle">
-                  <tr>
-                      <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                      <td class="align-middle">$150</td>
+                  <tr *ngFor="let item of carList">
+                      <td class="align-middle"><img src="{{item.mobileImages[0]?.imageUrl}}" alt="" style="width: 50px;"> {{item.name}}</td>
+                      <td class="align-middle">{{item.mobilePrice}}</td>
                       <td class="align-middle">
                           <div class="input-group quantity mx-auto" style="width: 100px;">
                               <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-minus" >
+                                  <button   (click)="dec(item)" class="btn btn-sm btn-primary btn-minus" >
                                   <i class="fa fa-minus"></i>
                                   </button>
                               </div>
-                              <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
+                              <span   style="
+                              width: 28px;
+                              text-align: center;
+
+                              margin-top: 10px;
+
+                          ">
+                                {{item.qty}}
+                              </span>
                               <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-plus">
+                                  <button (click)="inc(item)" class="btn btn-sm btn-primary btn-plus">
                                       <i class="fa fa-plus"></i>
                                   </button>
                               </div>
                           </div>
                       </td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                      <td class="align-middle">{{item.qty * item.mobilePrice}}</td>
+                      <td class="align-middle"><button (click)="cartSingleDeleteData(item)" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                   </tr>
-                  <tr>
-                      <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle">
-                          <div class="input-group quantity mx-auto" style="width: 100px;">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-minus" >
-                                  <i class="fa fa-minus"></i>
-                                  </button>
-                              </div>
-                              <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-plus">
-                                      <i class="fa fa-plus"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                  <tr>
-                      <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle">
-                          <div class="input-group quantity mx-auto" style="width: 100px;">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-minus" >
-                                  <i class="fa fa-minus"></i>
-                                  </button>
-                              </div>
-                              <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-plus">
-                                      <i class="fa fa-plus"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                  <tr>
-                      <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle">
-                          <div class="input-group quantity mx-auto" style="width: 100px;">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-minus" >
-                                  <i class="fa fa-minus"></i>
-                                  </button>
-                              </div>
-                              <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-plus">
-                                      <i class="fa fa-plus"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                  <tr>
-                      <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle">
-                          <div class="input-group quantity mx-auto" style="width: 100px;">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-minus" >
-                                  <i class="fa fa-minus"></i>
-                                  </button>
-                              </div>
-                              <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-sm btn-primary btn-plus">
-                                      <i class="fa fa-plus"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="align-middle">$150</td>
-                      <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                  </tr>
+
               </tbody>
           </table>
       </div>
@@ -136,7 +61,7 @@
               <div class="card-body">
                   <div class="d-flex justify-content-between mb-3 pt-1">
                       <h6 class="font-weight-medium">Subtotal</h6>
-                      <h6 class="font-weight-medium">$150</h6>
+                      <h6 class="font-weight-medium">${{totalSub}}</h6>
                   </div>
                   <div class="d-flex justify-content-between">
                       <h6 class="font-weight-medium">Shipping</h6>
@@ -146,7 +71,7 @@
               <div class="card-footer border-secondary bg-transparent">
                   <div class="d-flex justify-content-between mt-2">
                       <h5 class="font-weight-bold">Total</h5>
-                      <h5 class="font-weight-bold">$160</h5>
+                      <h5 class="font-weight-bold">${{10 + totalSub}}</h5>
                   </div>
                   <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
               </div>
