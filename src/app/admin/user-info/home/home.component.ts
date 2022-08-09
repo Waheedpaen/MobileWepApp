@@ -23,9 +23,7 @@ export class HomeComponent implements OnInit {
    ) { }
   ngOnInit() {
     // this.brandList();
-    let tokenInfo = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
-     this.response = tokenInfo.Email
-
+    
   }
   // brandList(){
   //   this._brandService.GetBrandList().subscribe((data:any)=>{

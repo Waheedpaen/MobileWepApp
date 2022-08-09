@@ -13,8 +13,8 @@
               </thead>
               <tbody class="align-middle">
                   <tr *ngFor="let item of carList">
-                      <td class="align-middle"><img src="{{item.mobileImages[0]?.imageUrl}}" alt="" style="width: 50px;"> {{item.name}}</td>
-                      <td class="align-middle">{{item.mobilePrice}}</td>
+                      <td class="align-middle"><img src="{{item.imgUrl}}" alt="" style="width: 50px;"> {{item.mobileName}}</td>
+                      <td class="align-middle">{{item.price}}</td>
                       <td class="align-middle">
                           <div class="input-group quantity mx-auto" style="width: 100px;">
                               <div class="input-group-btn">
@@ -29,7 +29,7 @@
                               margin-top: 10px;
 
                           ">
-                                {{item.qty}}
+                                {{item.Quantity}}
                               </span>
                               <div class="input-group-btn">
                                   <button (click)="inc(item)" class="btn btn-sm btn-primary btn-plus">
@@ -38,7 +38,7 @@
                               </div>
                           </div>
                       </td>
-                      <td class="align-middle">{{item.qty * item.mobilePrice}}</td>
+                      <td class="align-middle">{{item.Quantity * item.price}}</td>
                       <td class="align-middle"><button (click)="cartSingleDeleteData(item)" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                   </tr>
 

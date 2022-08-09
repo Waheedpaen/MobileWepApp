@@ -76,28 +76,45 @@ dec(){
 }
 itemCarts:any=[]=[];
 addCart(){
- debugger
- this.data.qty = this.qty;
 
+ this.data.qty = this.qty;
+ let customObj = {
+  Quantity: this.data.qty,
+  imgUrl: this.data.mobileImages[0] .imageUrl,
+  mobileId: this.data.id,
+  price:this.data.mobilePrice,
+  mobileName:this.data.name,
+  // totalPriceSingleMobile: this.qty * this.data.mobilePrice
+ }
+ debugger
   let cartDataNull = localStorage.getItem('local');
   if(cartDataNull == null){
     debugger
     let storeDataGetL :any= [];
-     storeDataGetL.push(this.data);
+     storeDataGetL.push(customObj);
 
      localStorage.setItem('local',JSON.stringify(storeDataGetL))
  }
  else{
   debugger
-var id = this.data.id;
+  this.data.qty = this.qty;
+  let customObj = {
+   Quantity: this.data.qty,
+   imgUrl: this.data.mobileImages[0] .imageUrl,
+   mobileId: this.data.id,
+   price:this.data.mobilePrice,
+   mobileName:this.data.name,
+   // totalPriceSingleMobile: this.qty * this.data.mobilePrice
+  }
+var id = customObj.mobileId;
 let indexs = -1;
 var data:  any  = localStorage.getItem('local');
 this.itemCarts = JSON.parse(data);
 console.log(this.itemCarts.length);
 console.log(this.itemCarts)
 for (let index = 0; index < this.itemCarts.length; index++) {
-  if(parseInt(id) === parseInt(this.itemCarts[index].id)){
-    this.itemCarts[index].qty = this.data.qty;
+  if(parseInt(id) === parseInt(this.itemCarts[index].mobileId)){
+    this.itemCarts[index].Quantity = customObj.Quantity;
     indexs= index;
     break;
 
@@ -105,7 +122,7 @@ for (let index = 0; index < this.itemCarts.length; index++) {
 
 }
 if(indexs == -1){
-  this.itemCarts.push(this.data);
+  this.itemCarts.push(customObj);
   localStorage.setItem('local',JSON.stringify(this.itemCarts))
 }
 else{
