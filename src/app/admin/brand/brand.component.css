@@ -3,3 +3,15 @@ h2 {
   font-style: oblique;
   font-family: cursive;
 }
+.ngx-spinner-overlay[_ngcontent-osv-c16] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+}
+.overlay[_ngcontent-serverApp-c52] {
+  border-radius: 43px;
+  height: 106% !important;
+  margin-top: -1px;
+}

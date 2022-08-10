@@ -8,6 +8,8 @@ import { OperatingsystemService } from 'src/app/admin/operating-system/services/
 import { OSVersionService } from 'src/app/admin/os-version/services/operatingsystem-version-service/osversion.service';
 
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs';
+import { CommonService } from 'src/app/Shared/services/common.service';
 
 @Component({
   selector: 'app-shop-detail',
@@ -16,9 +18,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ShopDetailComponent implements OnInit {
 _id!:number;
+qty =1;
   response: any;
   data: any ={};
   constructor(
+    public _commonSerivces:CommonService,
     public _routeActivited: ActivatedRoute
     , private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -57,4 +61,89 @@ _id!:number;
       );
   }
 
+  inc(){
+    debugger
+
+    if(this.qty !=5){
+      this.qty += 1;
+    }
+    console.log(this.qty);
+  }
+dec(){
+  if(this.qty!=1){
+    this.qty -=1;
+  }
 }
+itemCarts:any=[]=[];
+addCart(){
+
+ this.data.qty = this.qty;
+ let customObj = {
+  Quantity: this.data.qty,
+  imgUrl: this.data.mobileImages[0] .imageUrl,
+  mobileId: this.data.id,
+  price:this.data.mobilePrice,
+  mobileName:this.data.name,
+  // totalPriceSingleMobile: this.qty * this.data.mobilePrice
+ }
+ debugger
+  let cartDataNull = localStorage.getItem('local');
+  if(cartDataNull == null){
+    debugger
+    let storeDataGetL :any= [];
+     storeDataGetL.push(customObj);
+
+     localStorage.setItem('local',JSON.stringify(storeDataGetL))
+ }
+ else{
+  debugger
+  this.data.qty = this.qty;
+  let customObj = {
+   Quantity: this.data.qty,
+   imgUrl: this.data.mobileImages[0] .imageUrl,
+   mobileId: this.data.id,
+   price:this.data.mobilePrice,
+   mobileName:this.data.name,
+   // totalPriceSingleMobile: this.qty * this.data.mobilePrice
+  }
+var id = customObj.mobileId;
+let indexs = -1;
+var data:  any  = localStorage.getItem('local');
+this.itemCarts = JSON.parse(data);
+console.log(this.itemCarts.length);
+console.log(this.itemCarts)
+for (let index = 0; index < this.itemCarts.length; index++) {
+  if(parseInt(id) === parseInt(this.itemCarts[index].mobileId)){
+    this.itemCarts[index].Quantity = customObj.Quantity;
+    indexs= index;
+    break;
+
+  }
+
+}
+if(indexs == -1){
+  this.itemCarts.push(customObj);
+  localStorage.setItem('local',JSON.stringify(this.itemCarts))
+}
+else{
+  localStorage.setItem('local',JSON.stringify(this.itemCarts))
+}
+ }
+this.cartNumberFunc();
+}
+cartNumber =0;
+cartNumberFunc(){
+  var data:any = localStorage.getItem('local');
+  var cartValue = JSON.parse(data);
+  this.cartNumber = cartValue.length;
+this._commonSerivces.carSubject.next(this.cartNumber)
+}
+
+
+
+
+
+
+}
+
+

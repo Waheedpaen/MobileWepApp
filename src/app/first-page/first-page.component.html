@@ -29,15 +29,15 @@
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input
-            formControlName="UserName"
-            [ngClass]="{'has-error':form.get('UserName').errors && (form.get('UserName').touched || form.get('UserName').dirty|| form.get('UserName').invalid)}"
+            formControlName="Email"
+            [ngClass]="{'has-error':form.get('Email').errors && (form.get('Email').touched || form.get('Email').dirty|| form.get('Email').invalid)}"
             type="text" class="form-control"
             type="email" id="form3Example3" class="form-control form-control-lg"
               placeholder="User Name" />
-              <span   *ngIf=" form.get('UserName').errors && (form.get('UserName').touched || form.get('UserName').dirty )"  >
-                <small class="text-danger" *ngIf="form.get('UserName').errors?.minlength">UserName Name should be of minimum 4  letters</small>
-                <small class="text-danger" *ngIf="form.get('UserName').errors?.pattern">'UserName Name use Alphabets</small>
-                <small class="text-danger" *ngIf="form.get('UserName').errors?.required">UserName Name is required </small>
+              <span   *ngIf=" form.get('Email').errors && (form.get('Email').touched || form.get('Email').dirty )"  >
+                <small class="text-danger" *ngIf="form.get('Email').errors?.minlength">Email   should be of minimum 4  letters</small>
+                <small class="text-danger" *ngIf="form.get('Email').errors?.pattern">'Email  use Alphabets</small>
+                <small class="text-danger" *ngIf="form.get('Email').errors?.required">Email  is required </small>
               </span>
           </div>
 

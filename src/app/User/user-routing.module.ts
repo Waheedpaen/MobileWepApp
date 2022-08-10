@@ -25,9 +25,29 @@ import { HomeComponent } from '../admin/user-info/home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ShopDetailComponent } from './shop/shop-detail/shop-detail.component';
+import { LoginComponent } from './login/login.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { SignupComponent } from './login/signup/signup.component';
+import { CommonService } from '../Shared/services/common.service';
+import { CartItemComponent } from './shop/cart-info/cart-item/cart-item.component';
 const route:Routes = [
+  {path:'login',component:UserLoginComponent,
+  title: 'login',
+   //canActivate: [AuthGuard],
+  data: {
+    role: 'Admin'
+  },
+  },
+  {path:'signup',component:SignupComponent,
+  title: 'SignUp',
+   //canActivate: [AuthGuard],
+  data: {
+    role: 'Admin'
+  },
+  },
   {
-    path:'rs',component: UserTemplateComponent,
+
+    path:'temp',component: UserTemplateComponent,
     children:[
       {path:'home',component:HomeComponent,
       title: 'Home',
@@ -36,17 +56,35 @@ const route:Routes = [
         role: 'Admin'
       },
       },
-    {path:'shop',component:ShopComponent,
+
+
+
+    {path:'product',component:ShopComponent,
     title: 'Shop',
      //canActivate: [AuthGuard],
     data: {
-      role: 'Admin'
+      role: 'User'
     },
     },
     {path:'detail/:id',component:ShopDetailComponent,
     title: 'Shop',
      //canActivate: [AuthGuard],
 
+    },
+
+    {path:'login',component:LoginComponent,
+    title: 'Home',
+     //canActivate: [AuthGuard],
+    data: {
+      role: 'Admin'
+    },
+    },
+    {path:'cartItem',component:CartItemComponent,
+    title: 'CartItem',
+     //canActivate: [AuthGuard],
+    data: {
+      role: 'Admin'
+    },
     },
   ]}
   ]
@@ -81,9 +119,10 @@ export const allComponent = [
   UserAdminComponent,
    ShopComponent,
    HomeComponent,
-   ShopDetailComponent
-
-
+   ShopDetailComponent,
+   UserLoginComponent,
+    SignupComponent,
+    CartItemComponent,
 ];
 export const allServices  = [
   BrandRepositoryService,
@@ -93,5 +132,6 @@ export const allServices  = [
   OperatingsystemVersionRepositoryService,
   OSVersionService ,
   MobileRepositoryService,
-  MobileServiceService
+  MobileServiceService,
+  CommonService
 ]

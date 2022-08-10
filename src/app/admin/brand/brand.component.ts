@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as XLSX from 'xlsx';
 import { BrandService } from './services/brand-service/brand.service';
 import Swal from 'sweetalert2'
+import { map ,take} from 'rxjs';
 import { GlobalConstants } from 'src/app/Shared/common-classes/GlobalConstants/GlobalConstants';
 import { BrandEditComponent } from './brand-edit/brand-edit.component';
 import { SearchBrand } from './brand-entity/brand';
@@ -37,13 +38,25 @@ export class BrandComponent implements OnInit {
     this.brandList();
   }
   brandList(){
-    this.brandService.GetBrandList().subscribe((data:any)=>{
+    this.spinner.show();
+    this.brandService.GetBrandList().pipe(take(1)).subscribe((data:any)=>{
       this.response = data;
       if(this.response.success  == true){
         debugger
-
+        // this.response.data.forEach((element:any )=> {
+        //   let obj:any ={};
+        //        if(element.name == 'love'){
+        //       obj.name =  element.name = 'fuck me'
+        //       obj.imageUrl = element.imageUrl
+        //        }
+        //        else{
+        //         obj.name =  element.name
+        //         obj.imageUrl = element.imageUrl
+        //        }
+        //        List.push(obj)
+        // });
         this.rows = this.response.data;
-        this.spinner.hide;
+        this.spinner.hide();
       }
       else{
         this.toastr.error(this.response.message,'Message. ')
@@ -95,7 +108,7 @@ const modalRef = this.modalService.open(BrandEditComponent,{ centered: true });
 modalRef.componentInstance.statusCheck = obj;
 modalRef.result.then((data) => {
   this.ngOnInit();
-  if (data == true) { 
+  if (data == true) {
   }
 }, (reason) => {
   // on dismiss

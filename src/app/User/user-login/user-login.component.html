@@ -1,0 +1,90 @@
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<div class="row mt-5">
+  <div class="col-4 offset-4">
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+        <form [formGroup]="form">
+          <div class="text-center mb-3">
+            <p>Sign in with:</p>
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </button>
+
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-github"></i>
+            </button>
+          </div>
+
+          <p class="text-center">or:</p>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input
+            formControlName="Email"
+            [ngClass]="{'has-error':form.get('Email').errors && (form.get('Email').touched || form.get('Email').dirty|| form.get('Email').invalid)}"
+            type="text" class="form-control"
+            type="email" id="form3Example3" class="form-control form-control-lg"
+              placeholder="User Name" />
+              <span   *ngIf=" form.get('Email').errors && (form.get('Email').touched || form.get('Email').dirty )"  >
+                <small class="text-danger" *ngIf="form.get('Email').errors?.minlength">Email   should be of minimum 4  letters</small>
+                <small class="text-danger" *ngIf="form.get('Email').errors?.pattern">'Email  use Alphabets</small>
+                <small class="text-danger" *ngIf="form.get('Email').errors?.required">Email  is required </small>
+              </span>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input
+            formControlName="Password"
+            [ngClass]="{'has-error':form.get('Password').errors&&(form.get('Password').touched || form.get('Password').dirty|| form.get('Password').invalid)}"
+            type="password" id="form3Example4" class="form-control form-control-lg"
+              placeholder="Enter password" />
+              <span   *ngIf=" form. get('Password').errors && (form.get('Password').touched || form.get('Password').dirty )"  >
+                <small class="text-danger" *ngIf="form.get('Password').errors?.minlength">Password should be of minimum 6 letters</small>
+                <small class="text-danger" *ngIf="form.get('Password').errors?.pattern">'Please use Alphabets</small>
+                <small class="text-danger" *ngIf="form.get('Password').errors?.required">Password is required </small>
+              </span>
+          </div>
+
+          <!-- 2 column grid layout -->
+          <div class="row mb-4">
+            <div class="col-md-6 d-flex justify-content-center">
+              <!-- Checkbox -->
+              <div class="form-check mb-3 mb-md-0">
+                <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                <label class="form-check-label" for="loginCheck"> Remember me </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center">
+              <!-- Simple link -->
+              <a href="#!">Forgot password?</a>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <button  (click)="loginMethod()"    [disabled]="!form.valid" type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>Not a member? <a href="#!">Register</a></p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Pills content -->
