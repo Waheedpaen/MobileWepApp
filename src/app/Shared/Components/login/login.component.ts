@@ -165,7 +165,7 @@ debugger;
    obj.password =  this.form.value.Password;
    obj.fullName = this.form.value.FullName;
    obj.email = this.form.value.Email;
-   obj.userTypeId = 2;
+   obj.userTypeId = 1;
    obj.imageUrl = this.file;
     this.serviceSystem.signup (obj).subscribe(res=>{
       this.response = res;

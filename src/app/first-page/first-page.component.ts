@@ -73,7 +73,7 @@ loginMethod(){
   const obj = new  UserForLoginDto();
    obj.email = this.form.value. Email,
    obj.password = this.form.value.Password;
-   obj.userType = 2;
+   obj.userTypeId = 1;
     this.serviceSystem.login (obj).subscribe(res=>{
       this.response = res;
 
@@ -84,12 +84,12 @@ loginMethod(){
      this.spinner.hide();
 
       }
-      else  if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '2'){
+      // else  if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '2'){
 
-        debugger;
-        this.router.navigate(['/admin']);
-        this.spinner.hide();
-      }
+      //   debugger;
+      //   this.router.navigate(['/admin']);
+      //   this.spinner.hide();
+      // }
 else{
   this.toastr.error(this.response.message,'Message.');
   this.spinner.hide();

@@ -64,7 +64,7 @@ export class UserLoginComponent implements OnInit {
 
 
 
-loginMethod(){
+loginMethodForClientSide(){
   debugger;
   this.spinner.show();
   const obj = new  UserForLoginDto();
@@ -75,7 +75,7 @@ loginMethod(){
       this.response = res;
 
        if(this.response.success == true && this.response.data != null && this.response.data.loggedInUserTypeId == '2'){
-  
+
         this.router.navigate(['/shop/temp/home']);
      this.spinner.hide();
 
