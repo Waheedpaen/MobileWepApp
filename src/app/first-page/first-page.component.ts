@@ -73,7 +73,7 @@ loginMethod(){
   const obj = new  UserForLoginDto();
    obj.email = this.form.value. Email,
    obj.password = this.form.value.Password;
-   obj.userTypeId = 1;
+   obj.userType = 2;
     this.serviceSystem.login (obj).subscribe(res=>{
       this.response = res;
 

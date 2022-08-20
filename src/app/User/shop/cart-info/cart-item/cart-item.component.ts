@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/Shared/services/common.service';
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
@@ -17,6 +17,14 @@ carList:any=[];
     this.getCartItemList();
   }
 
+  getDecodedAccessToken(token: any): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
+  }
   getCartItemList(){
     if(localStorage.getItem('local')){
      let car:any=[];
@@ -70,15 +78,11 @@ carList:any=[];
       let car:any=[];
       car =   localStorage.getItem('local');
       this.carList =           JSON.parse(car);
-      for (let index = 0; index < this.carList.length; index++) {
-        if(this.carList[index].id === obj.id){
-          this.carList.splice(index,1);
-          localStorage.setItem('local',this.carList)
-          this.getCartItemList()
-           this.cartNumberFunc();
-        }
-
-        }
+      const findingIdInCartArray = this.carList.findIndex((a: { mobileId: any; }) => a.mobileId == obj.mobileId);
+      this.carList.splice(findingIdInCartArray,1);
+      localStorage.setItem("local", JSON.stringify(this.carList)); //when Data is deleted then again or replace or set that ArrayList all data in the LocalStorage
+      this.getCartItemList();
+      this.cartNumberFunc()
     }
   }
 
@@ -89,4 +93,29 @@ carList:any=[];
     this.cartNumber = cartValue.length;
   this._commonSerivces.carSubject.next(this.cartNumber)
   }
+
+
+
+  sendUserOrder(){
+debugger
+let tokenInfo = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
+let car:any=[];
+car =   localStorage.getItem('local');
+let getDataFromOrderDetailLocalStorage =           JSON.parse(car)
+
+    let getCartList : any[]=[];
+    getDataFromOrderDetailLocalStorage.forEach((element: any) => {
+      getCartList.push({
+        mobile_Id: element.mobileId,
+        price:element.price,
+        quantity: element.Quantity,
+        productName: element.mobileName,
+
+      })
+    });
+    debugger
+  }
+
+
+
 }

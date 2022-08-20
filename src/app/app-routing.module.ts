@@ -17,6 +17,7 @@ const UserModules = () =>
 const routes: Routes = [
   { path: 'first-page', redirectTo: 'first-page', pathMatch: 'full' },
   { path: '', component: FirstPageComponent },
+
   {
     path: '',
     component: AdminTemplateComponent,
