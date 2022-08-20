@@ -34,6 +34,7 @@ export class UserTemplateComponent implements OnInit {
     // this.brandList();
     let tokenInfo = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
      this.response = tokenInfo
+     console.log(this.response)
   this.countCartTotal();
   }
 

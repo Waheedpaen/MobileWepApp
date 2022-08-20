@@ -120,7 +120,7 @@
                         </div>
 
                         <div *ngIf="response ! null" class="navbar-nav   py-0">
-                          {{response?.UserName?? ''}}
+                        <h5>  {{response?.Name?? ''}}</h5>
                           <i class="fa fa-sign-out" (click)="signOut()"></i>
                       </div>
                        <div *ngIf="response == null" class="navbar-nav ml-auto py-0">

@@ -100,6 +100,7 @@ carList:any=[];
 debugger
 let tokenInfo = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
 let car:any=[];
+let userTypeId = tokenInfo.UserTypeId;
 car =   localStorage.getItem('local');
 let getDataFromOrderDetailLocalStorage =           JSON.parse(car)
 
