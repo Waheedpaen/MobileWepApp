@@ -9,6 +9,8 @@ export const environment = {
   urlOperatingSystemVersion: 'https://localhost:44338/api/OSVersion',
   urlMobile: 'https://localhost:44338/api/Mobile',
   urlUser: 'https://localhost:44338/api/Auths',
+  urlOrder:'https://localhost:44338/api/Order',
+
 };
 
 /*

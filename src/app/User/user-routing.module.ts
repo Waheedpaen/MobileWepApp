@@ -30,6 +30,8 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { SignupComponent } from './login/signup/signup.component';
 import { CommonService } from '../Shared/services/common.service';
 import { CartItemComponent } from './shop/cart-info/cart-item/cart-item.component';
+import { OrderService } from './shop/services/order-services/order.service';
+import { OrderRepositoryService } from './shop/services/order-repository/order-repository.service';
 const route:Routes = [
   {path:'login',component:UserLoginComponent,
   title: 'login',
@@ -133,5 +135,7 @@ export const allServices  = [
   OSVersionService ,
   MobileRepositoryService,
   MobileServiceService,
-  CommonService
+  CommonService,
+  OrderService,
+OrderRepositoryService,
 ]

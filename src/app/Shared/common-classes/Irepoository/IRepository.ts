@@ -41,3 +41,8 @@ export abstract class IMobileRepository extends IRepository{
   abstract GetMobilesByPrice(range:any):any;
   abstract GetMobilesByScreen(range:any):any;
 }
+
+export abstract class IOrderRepository extends IRepository
+{
+  abstract AddUserOrder(usreTypeId: number,OrderList:any):any;
+}

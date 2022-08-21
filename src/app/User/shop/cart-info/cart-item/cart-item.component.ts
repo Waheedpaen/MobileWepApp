@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/Shared/services/common.service';
 import jwt_decode from 'jwt-decode';
+import { OrderService } from '../../services/order-services/order.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
@@ -10,7 +12,9 @@ export class CartItemComponent implements OnInit {
 carList:any=[];
   qty: any ;
 
-  constructor(public _commonSerivces:CommonService,) { }
+  constructor(public _commonSerivces:CommonService,
+public _orderServices: OrderService
+    ) { }
 
   ngOnInit(): void {
     this.subTotal()
@@ -100,7 +104,7 @@ carList:any=[];
 debugger
 let tokenInfo = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
 let car:any=[];
-let userTypeId = tokenInfo.UserTypeId;
+let UserId = tokenInfo.UserId;
 car =   localStorage.getItem('local');
 let getDataFromOrderDetailLocalStorage =           JSON.parse(car)
 
@@ -111,10 +115,14 @@ let getDataFromOrderDetailLocalStorage =           JSON.parse(car)
         price:element.price,
         quantity: element.Quantity,
         productName: element.mobileName,
-
+        totalPrice : element.price * element.Quantity
       })
     });
-    debugger
+    this._orderServices.AddUserOrder(Number(UserId),getCartList).subscribe(
+      res=>{
+
+
+      });
   }
 
 
