@@ -29,6 +29,8 @@ export  abstract class IUserRepository extends IRepository{
   abstract GetUsers():any;
   abstract GetUserCount():any;
   abstract  GetUserTypes():any;
+  abstract ChangePassword(obj:any):any;
+  
 }
 
 export abstract class IMobileRepository extends IRepository{

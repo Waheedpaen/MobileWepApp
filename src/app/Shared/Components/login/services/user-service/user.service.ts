@@ -43,6 +43,10 @@ return this.userRepositoryService.login(obj);
       return this.userRepositoryService.UpdateData(obj);
     }
 
+    ChangePassword(obj:any){
+      return this.userRepositoryService.ChangePassword(obj);
+    }
+
     signOut(): void {
     this. socialAuthService.signOut();
     }

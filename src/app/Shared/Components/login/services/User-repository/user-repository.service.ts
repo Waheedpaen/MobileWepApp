@@ -14,6 +14,9 @@ import { AuthSystemService } from 'src/app/Shared/auth/auth.system.service';
   providedIn: 'root'
 })
 export class UserRepositoryService extends IUserRepository  {
+  ChangePassword(obj: any) {
+    return this.http.put(environment.urlUser +  '/UpdatePassword',obj)
+  }
    GetUserTypes() {
     return this.http.get(environment.urlUser + '/GetUserTypes')
   }

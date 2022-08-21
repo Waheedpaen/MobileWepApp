@@ -7,6 +7,7 @@ import { GlobalConstants } from 'src/app/Shared/common-classes/GlobalConstants/G
 import { UserService } from 'src/app/Shared/Components/login/services/user-service/user.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 
 @Component({
@@ -166,4 +167,41 @@ this.GetUsers();
       // on dismiss
     });
       }
+
+
+
+
+
+    changePassword(obj: any, check: any, name:any){
+        const modelRef = this.modalService.open(ChangePasswordComponent,{centered:true});
+        modelRef.componentInstance.Id = obj.id;
+        modelRef.componentInstance.statusCheck = check;
+        modelRef.componentInstance.FormName = name;
+          modelRef.result.then((data:any) => {
+         // on close this.ngOnInit();
+         if (data == true) {
+           this.GetUsers();
+         }
+       }, (reason:any) => {
+         // on dismiss
+       });
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

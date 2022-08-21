@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import {AllCommonModule, allComponent, allServices } from './admin-routing.module';
+import { ChangePasswordComponent } from './user-info/change-password/change-password.component';
  
 @NgModule({
-  declarations: [allComponent, ],
+  declarations: [allComponent, ChangePasswordComponent, ],
   imports: [AllCommonModule],
   providers:[
     allServices
