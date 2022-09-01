@@ -1,0 +1,24 @@
+<div class="c-email">
+    <div class="c-email__header">
+      <h1 class="c-email__header__title">Your Verification Code</h1>
+    </div>
+    <div class="c-email__content">
+      <p class="c-email__content__text text-title">
+        Enter this verification code in field:
+      </p>
+      <div class="c-email__code">
+        <span class="c-email__code__text">
+            <input type="text"  placeholder="Code"
+            #code="ngModel" class="form-control"
+            [(ngModel)]="data.code" name="code">
+        </span>
+      </div>
+      <p class="c-email__content__text text-italic opacity-30 text-title mb-0"> </p>
+    </div>
+    <div class="c-email__footer">
+
+        <button class="btn btn-warning col-md-3" style="margin: 0px 0px 0px 266px !important;" (click)="send()" type="submit" >
+        Verify
+    </button>
+    </div>
+  </div>

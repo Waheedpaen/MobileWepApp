@@ -34,6 +34,7 @@ import { AuthInterceptor } from './Shared/auth/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './Shared/Components/login/services/user-service/user.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CodeComponent } from './Shared/Components/code/code.component';
 export function provideConfig() {
   return 'config';
 }
@@ -43,7 +44,8 @@ export function provideConfig() {
     AppComponent,
     LoginComponent,
     SignupComponent,
-    FirstPageComponent
+    FirstPageComponent,
+    CodeComponent
   ],
   imports: [
     allModules,

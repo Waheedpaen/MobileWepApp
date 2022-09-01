@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SocialAuthService } from 'angularx-social-login';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,7 @@ import { AbstractControl, AsyncValidatorFn, UntypedFormBuilder, UntypedFormContr
 import { MustMatch } from './MatchPassword/password-Matching.validator';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
+import { CodeComponent } from '../code/code.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,11 +26,14 @@ export class LoginComponent implements OnInit {
   public isErrorOnSubmit!: boolean;
   user!: SocialUser  ;
   file: any;
+  verifyEmailResponce:any;
   Url:any;
   fileToUpload: any;
   FileName: any;
+  IsVerified  = false;
   constructor(
     public http:HttpClient,
+    private modalService: NgbModal,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     public userService: UserService
@@ -155,6 +159,36 @@ debugger;
     this.container.nativeElement.classList.add('right-panel-active');
   }
 
+  verifyEmailCode (){
+    this.spinner.show();
+    this.userService.GetAll().subscribe(
+      res=>{
+  this.verifyEmailResponce =res;
+  if(this.verifyEmailResponce.success == true){
+    this.spinner.hide();
+    this.IsVerified = true;
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false,
+      centered: true
+  };
+       const modalRef = this.modalService.open(CodeComponent, ngbModalOptions);
+       modalRef.componentInstance.email = this.form.get('Email')?.value;
+       modalRef.result.then((data) => {
+         if (data == true) {
+
+         }
+       }, (reason) => {
+       });
+  }
+  else {
+    this.IsVerified = false;
+    this.toastr.error(this.response.message,'Message .');
+    this.spinner.hide();
+  }
+      }
+    )
+  }
 
 
   addUserMethod() {

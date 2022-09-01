@@ -43,19 +43,25 @@
           </span>
         </div>
           </div>
-      <div class="form-group">
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-      <input
-      formControlName="Email"
-                            [ngClass]="{'has-error':form.get('Email').errors&&(form.get('Email').touched || form.get('Email').dirty|| form.get('Email').invalid)}"
-      type="email" class="form-control" name="email" placeholder="Email Address" required="required">
-      <span   *ngIf=" form. get('Email').errors && (form.get('Email').touched || form.get('Email').dirty )"  >
-        <small class="text-danger" *ngIf="form.get('Email').errors?.minlength">Email Name should be of minimum 4  letters</small>
-        <small class="text-danger" *ngIf="form.get('Email').errors?.pattern">'Email Pattern are invalid</small>
-        <small class="text-danger" *ngIf="form.get('Email').errors?.required">Email Name is required </small>
-      </span>
-    </div>
+      <div class="form-group row">
+<div class="col-10">
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+    <input
+    formControlName="Email"
+                          [ngClass]="{'has-error':form.get('Email').errors&&(form.get('Email').touched || form.get('Email').dirty|| form.get('Email').invalid)}"
+    type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+    <span   *ngIf=" form. get('Email').errors && (form.get('Email').touched || form.get('Email').dirty )"  >
+      <small class="text-danger" *ngIf="form.get('Email').errors?.minlength">Email Name should be of minimum 4  letters</small>
+      <small class="text-danger" *ngIf="form.get('Email').errors?.pattern">'Email Pattern are invalid</small>
+      <small class="text-danger" *ngIf="form.get('Email').errors?.required">Email Name is required </small>
+    </span>
+  </div>
+</div>
+<div class="col-sm-1">
+  <button type="button" class="btn btn-primary" (click)="verifyEmailCode()">VerIfied Code </button>
+</div>
+
       </div>
   <div class="form-group">
     <div class="input-group">
@@ -125,7 +131,7 @@
           [disabled]="!form.valid"
           type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
       </div>
- 
+
   <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
   </form>
 <!-- <div class="text-center">Already have an account? <a href="#">Login here</a>.</div> -->
