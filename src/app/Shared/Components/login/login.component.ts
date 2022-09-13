@@ -78,9 +78,6 @@ debugger;
     }
   }
 
-
-
-
   public handleFileInput(files: any) {
     this.fileToUpload = files.item(0);
     const file: File = files.item(0);
@@ -160,34 +157,42 @@ debugger;
   }
 
   verifyEmailCode (){
+    debugger
     this.spinner.show();
-    this.userService.GetAll().subscribe(
-      res=>{
-  this.verifyEmailResponce =res;
-  if(this.verifyEmailResponce.success == true){
-    this.spinner.hide();
-    this.IsVerified = true;
-    let ngbModalOptions: NgbModalOptions = {
-      backdrop : 'static',
-      keyboard : false,
-      centered: true
-  };
-       const modalRef = this.modalService.open(CodeComponent, ngbModalOptions);
-       modalRef.componentInstance.email = this.form.get('Email')?.value;
-       modalRef.result.then((data) => {
-         if (data == true) {
+if(this.form.get('Email')?.value !=null){
+  this.userService.VerifyedEmailCodeAndEmail(this.form.get('Email')?.value).subscribe(
+    res=>{
+this.verifyEmailResponce =res;
+if(this.verifyEmailResponce.success == true){
+  this.spinner.hide();
+  this.IsVerified = true;
+  let ngbModalOptions: NgbModalOptions = {
+    backdrop : 'static',
+    keyboard : false,
+    centered: true
+};
+     const modalRef = this.modalService.open(CodeComponent, ngbModalOptions);
+     modalRef.componentInstance.email = this.form.get('Email')?.value;
+     modalRef.result.then((data) => {
+       if (data == true) {
 
-         }
-       }, (reason) => {
-       });
-  }
-  else {
-    this.IsVerified = false;
-    this.toastr.error(this.response.message,'Message .');
-    this.spinner.hide();
-  }
-      }
-    )
+       }
+     }, (reason) => {
+     });
+}
+else {
+  this.IsVerified = false;
+  this.toastr.error(this.response.message,'Message .');
+  this.spinner.hide();
+}
+    }
+  )
+}
+else{
+  this.toastr.error('Please Write Correct Email','Message')
+  this.spinner.hide()
+}
+
   }
 
 

@@ -52,6 +52,7 @@ export class FirstPageComponent implements OnInit {
 
 
   siginPopUp() {
+    this.userService.hidden = true;
     const modalRef = this.modalService.open(LoginComponent, { centered: true, size: 'lg' });
     modalRef.result.then((data: boolean) => {
       // on close

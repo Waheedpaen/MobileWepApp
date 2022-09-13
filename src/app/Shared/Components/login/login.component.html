@@ -59,7 +59,7 @@
   </div>
 </div>
 <div class="col-sm-1">
-  <button type="button" class="btn btn-primary" (click)="verifyEmailCode()">VerIfied Code </button>
+  <button type="button" *ngIf="userService.hidden == true? true:false " class="btn btn-primary" (click)="verifyEmailCode()">VerIfied Code </button>
 </div>
 
       </div>

@@ -8,6 +8,7 @@ import { UntypedFormBuilder, Validators } from '@angular/forms';
   providedIn: 'root'
 })
 export class UserService {
+  hidden:any =true;
 Form: any;
 emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(
@@ -18,6 +19,10 @@ this.Form = this.formBuilder.group({
   Password:['',[Validators.required  ]]
 })
 
+    }
+
+    verifyEmailCodeAndEmailCheck(emailAddress: any, code: any){
+      return this.userRepositoryService.verifyEmailCodeAndEmailCheck(emailAddress,code);
     }
 
     GetAll(){
@@ -46,7 +51,9 @@ return this.userRepositoryService.login(obj);
     ChangePassword(obj:any){
       return this.userRepositoryService.ChangePassword(obj);
     }
-
+    VerifyedEmailCodeAndEmail(email: any){
+      return this.userRepositoryService.VerifyedEmailCodeAndEmail(email);
+    }
     signOut(): void {
     this. socialAuthService.signOut();
     }

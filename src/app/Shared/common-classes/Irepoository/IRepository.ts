@@ -30,7 +30,10 @@ export  abstract class IUserRepository extends IRepository{
   abstract GetUserCount():any;
   abstract  GetUserTypes():any;
   abstract ChangePassword(obj:any):any;
-  
+  abstract VerifyedEmailCodeAndEmail(email:any):any;
+  abstract verifyEmailCodeAndEmailCheck(ememailAddressail:any,code:any):any;
+
+
 }
 
 export abstract class IMobileRepository extends IRepository{
