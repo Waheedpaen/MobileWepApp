@@ -32,6 +32,10 @@ import { MobileDetailComponent } from './mobile/mobile-detail/mobile-detail.comp
  ;
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UserAddEditComponent } from './user-info/user-add-edit/user-add-edit.component';
+import { InputRestrictionDirective } from '../Shared/CommonPipe/pipe';
+import { AutofocusDirective } from '../Shared/CommonPipe/focus';
+
+
 
 const route:Routes = [
 {
@@ -96,7 +100,9 @@ export const allComponent = [
   MobileComponent,
   MobileDetailComponent,
   UserInfoComponent,
-  UserAddEditComponent
+  UserAddEditComponent,
+  InputRestrictionDirective,
+  AutofocusDirective,
 ];
 export const allServices  = [
   BrandRepositoryService,

@@ -14,6 +14,7 @@ import { BrandService } from '../services/brand-service/brand.service';
 })
 export class BrandEditComponent implements OnInit {
 form: any;
+
 @Input() Id!: number;
 @Input() statusCheck: any;
 data: any = {};

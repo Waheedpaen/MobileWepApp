@@ -17,7 +17,9 @@ import { SearchBrand } from './brand-entity/brand';
 })
 export class BrandComponent implements OnInit {
   rows: any = [];
+  clearData:any;
   columns: any = [];
+  bool= false;
   temp: any = [];
   response: any;
   data: any = {};
@@ -35,9 +37,12 @@ export class BrandComponent implements OnInit {
     private modalService: NgbModal,
    public brandService: BrandService) { }
   ngOnInit() {
+    this.bool = false;
     this.brandList();
+
   }
   brandList(){
+    this.bool = true;
     this.spinner.show();
     this.brandService.GetBrandList().pipe(take(1)).subscribe((data:any)=>{
       this.response = data;
@@ -57,6 +62,7 @@ export class BrandComponent implements OnInit {
         // });
         this.rows = this.response.data;
         this.spinner.hide();
+        this.bool = false;
       }
       else{
         this.toastr.error(this.response.message,'Message. ')
@@ -69,7 +75,7 @@ export class BrandComponent implements OnInit {
   }
   deleteBrandData(row: any){
   Swal.fire({
-    title: GlobalConstants.deleteTitle,
+    title: row.name,
     text: GlobalConstants.deleteMessage,
     icon: 'error',
     showCancelButton: true,
@@ -81,6 +87,7 @@ export class BrandComponent implements OnInit {
     position: 'top',
   }).then((result)=>{
     if(result.isConfirmed){
+      this.bool = true;
       this.spinner.show();
       this.brandService.DeleteBrandData(row.id).subscribe(
         res=>{
@@ -89,10 +96,12 @@ export class BrandComponent implements OnInit {
             this.brandList();
             this.toastr.error(GlobalConstants.deleteSuccess, 'Message. ')
             this.spinner.hide();
+            this.bool = false;
           }
         },err=>{
           if(err.status == 400){
             this.toastr.error(this.response.message,'Message');
+            this.bool = false;
           }
         },
       )
@@ -107,8 +116,11 @@ export class BrandComponent implements OnInit {
 const modalRef = this.modalService.open(BrandEditComponent,{ centered: true });
 modalRef.componentInstance.statusCheck = obj;
 modalRef.result.then((data) => {
-  this.ngOnInit();
+this.ngOnInit();
+this.clearData = '';
   if (data == true) {
+
+
   }
 }, (reason) => {
   // on dismiss
