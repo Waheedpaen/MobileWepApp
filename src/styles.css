@@ -7,28 +7,137 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-.ngx-datatable .datatable-header {
-  border-top: 1px solid #dee2e6;
-  display: block;
+.ng-select .ng-select-container {
+  cursor: default;
+  display: flex;
+  outline: none;
   overflow: hidden;
-  background-color: #093560 !important;
+  position: relative;
+  width: 100%;
+
+}
+body {
+  --my-var: #000
+}
+
+.searchBox {
+  width: 100%;
+  padding: 0px 0px 0px 0px !important;
+  font-size: 16px;
+  color: #fff !important;
+  letter-spacing: 0.062rem;
+  border: none;
+  border-bottom: 0.065rem solid #fff !important;
+  outline: none;
+  background: transparent !important;
+  height: 33px !important;
+  }
+  .form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da00;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 rgb(0 0 0 / 0%);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.dynamicClassColor{
+  background-color: var(--my-var);
+}
+ 
+.content-wrapper {
+  background: #f4f6f900 !important;
+}
+.main-header {
+  border-bottom: 1px solid #3272b100 !important;
+  z-index: 1034;
+}
+.navbar-dark {
+  /* background-color: #3c6aecd6  !important; */
+  background-color: rgba(0,0,0,.2) !important;
+    -webkit-box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+}
+[class*='sidebar-dark-'] {
+  /* background-color: #3c6aecd6  !important; */
+  background-color: rgba(0,0,0,.2) !important;
+    -webkit-box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+}
+
+.layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
+  /* background-color: #3c6aecd6  !important; */
+  background-color: rgba(0,0,0,.2 ) !important;
+    -webkit-box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  /* border-radius: 0px 30px 0px 0px !important; */
 }
 .ngx-datatable.material .datatable-header .datatable-header-cell {
-  border-top: 1px solid #dee2e6;
-  display: block;
-  overflow: hidden;
-  background-color: #093560 !important;
-
+    /* background-color:  #3c6aecd6  !important; */
+    background-color: rgba(0,0,0,.2) !important;
+    -webkit-box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
     font-size: 14px !important;
     color: white;
     font-weight: normal;
+  }
+
+  body::-webkit-scrollbar {
+    width: 3px !important;               /* width of the entire scrollbar */
+  }
+
+  body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.445) !important;         /* color of the tracking area */
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #12255C !important;     /* color of the scroll thumb */
+    border-radius: 20px !important;        /* roundness of the scroll thumb */
+    border: 3px solid rgba(51, 50, 47, 0.637) !important;   /* creates padding around scroll thumb */
   }
   .ngx-datatable .datatable-header {
     border-top: 1px solid #dee2e6;
     display: block;
     overflow: hidden;
-    background-color: #093560 !important;
+    background-color:  #022938bf !important;
   }
+  .ngx-datatable.bootstrap .datatable-body .datatable-body-row {
+    vertical-align: top;
+    border-top: 1px solid #ccdae85e !important;
+}
+  .ngx-datatable::-webkit-scrollbar-track{
+    border-radius: 50px !important;
+    width: 5px !important;
+    background-color: #022938bf !important;
+}
+  .ngx-datatable.bootstrap .datatable-footer {
+    background: #022938bf !important;
+    color: #ededed;
+    margin-top: -1px;
+}
+.ngx-datatable.scroll-vertical ::-webkit-scrollbar-track{
+  border-radius: 50px !important;
+  width: 5px !important;
+  background-color: #022938bf !important;
+}
+
+.ngx-datatable.scroll-vertical .datatable-body {
+  overflow-y: auto;
+}
+
+
+.ngx-datatable .datatable-footer {
+  display: block;
+  overflow: hidden !important;
+  width: 100%;
+}
   .ngx-datatable.material .datatable-body{
     border-top: 1px solid #dee2e6;
   }
@@ -45,19 +154,111 @@
 
     height: 6vh !important;
 }
+
+.modal-content {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #001d26 !important;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 50%);
+  outline: 0;
+}
+.ngx-datatable .datatable-body::-webkit-scrollbar {
+  width: 5px !important;               /* width of the entire scrollbar */
+}
+
+.ngx-datatable .datatable-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.445) !important;         /* color of the tracking area */
+}
+
+.ngx-datatable .datatable-body::-webkit-scrollbar-thumb {
+  background-color: #12255C !important;     /* color of the scroll thumb */
+  border-radius: 20px !important;        /* roundness of the scroll thumb */
+  border: 3px solid rgba(51, 50, 47, 0.637) !important;   /* creates padding around scroll thumb */
+}
+
+.datatable-circle {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(44,108,128)
+  }
+
+  .datatable-circle::before {
+    content: "+";
+    height:200px;
+    width:200px;
+    font-size:200px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-family:courier;
+    color:white;
+  }
+  .sketch-picker{
+    padding: 10px 10px 0;
+    box-sizing: initial;
+    background: #7129a3d6 !important;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+.control-sidebar-dark {
+  background: #002b4ee8  !important;
+}
+  .datatable-circle-1 {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(44,108,128)
+    }
+
+    .datatable-circle-1::before {
+      content: "-";
+      height:200px;
+      width:200px;
+      font-size:200px;
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+      font-family:courier;
+      color:white;
+    }
   .p-heading{
-    font-size: 25px;
+    font-size: 20px;
     color: #ffffff;
-    padding: 0px 10px 0px;
+    padding: 7px 10px 0px !important;
+    font-weight: 800 !important;
   }
   .dinfo{
-    background-color: #FBB040 !important;
+    /* background-color: #FBB040 !important; */
   }
   .btn-warning {
     background-color: #FBB040 !important;
     border-color: #FBB040 !important;
 
 }
+
+.imagebtn {
+  cursor: pointer !important;
+  transition: transform .2s;
+
+}
+
+.imagebtn:hover {
+  transform: scale(1.5);
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal !important;
 }
@@ -67,8 +268,6 @@ h1 {
 }
 h2 {
     font-size: 30px;
-    font-style: oblique;
-    font-family: cursive;
 }
 h3 {
     font-size: 24px;
@@ -98,7 +297,7 @@ h6 {
 .modal-header {
   display: block !important;
   padding: 10px 8px !important;
-  background-color: #343a40;
+  background-color: rgba(0,0,0,.2) !important;
 }
 .BG {
   background-color: #f8fafb !important;
@@ -156,7 +355,23 @@ label:not(.form-check-label):not(.custom-file-label) {
 .ng-select.ng-select-single .ng-select-container {
   height: 38px !important;
 }
-
+.layout-navbar-fixed .wrapper .main-header {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1037;
+  /* border-radius: 30px !important; */
+}
+.layout-fixed .main-sidebar {
+  bottom: 0;
+  float: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  /* border-radius: 0px 30px 30px 0px !important; */
+}
 .bgblack{
   background: #202020;
 }
@@ -170,14 +385,29 @@ label:not(.form-check-label):not(.custom-file-label) {
   background: #707070;
 }
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #fcb042 !important;
-  color: #202020 !important;
-}
-.card-dark:not(.card-outline)>.card-header {
-  background-color: #093560;
-  border-radius: 10%;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fcfcfc !important;
 }
 
+.main-footer {
+  /* background: #ffffff; */
+  border-top: 1px solid rgba(0,0,0,.2) !important;
+  background-color: rgba(0,0,0,.2) !important;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  color: #869099;
+  padding: 1rem;
+}
+.bg-theme {
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  transition: background .3s;
+}
+[class*='sidebar-dark-'] .nav-treeview > .nav-item > .nav-link.active, [class*='sidebar-dark-'] .nav-treeview > .nav-item > .nav-link.active:hover, [class*='sidebar-dark-'] .nav-treeview > .nav-item > .nav-link.active:focus {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fcfcfc !important;
+}
 .dark-mode .card {
   background-color: #343a40 !important;
   color: #fff;
@@ -290,4 +520,142 @@ label:not(.form-check-label):not(.custom-file-label) {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   box-shadow: none;
+}
+
+
+.card{
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%) !important;
+  border: none;
+  background-color: rgba(0,0,0,.2) !important;
+  color: #fff;
+}
+
+.ng-select.ng-select-opened>.ng-select-container {
+  background: #fff0 !important;
+  border-color: #b3b3b300 #ccc0 #d9d9d9 !important;
+}
+.ng-select .ng-select-container {
+  color: #f3ebebed !important;
+  background-color: #fff0 !important;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  min-height: 36px;
+  align-items: center;
+}
+
+.ng-dropdown-panel {
+  background-color: #43475c !important;
+  border: 1px solid #ccc0  !important;
+  box-shadow: 0 1px 0rgba(0,0,0,0.06);
+  left: 0;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #264a6e00;
+  color: #fcfcfca8 !important;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  background: rgb(0 0 0 / 39%);
+  border-radius: 0.625rem;
+}
+
+.box h2 {
+  margin: 0 0 1.875rem;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.box .inputBox {
+  position: relative;
+}
+
+.box .inputBox input {
+  width: 100%;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.062rem;
+  margin-bottom: 1.875rem;
+  border: none;
+  border-bottom: 0.065rem solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.box .inputBox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff !important;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.box .inputBox input:focus ~ label,
+.box .inputBox input:valid ~ label,
+.box .inputBox input:not([value=""]) ~ label {
+  top: -1.125rem;
+  left: 0;
+  color: #03a9f4;
+  font-size: 0.75rem;
+}
+
+.box .inputBox textarea {
+  width: 100%;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff !important;
+  letter-spacing: 0.062rem;
+  margin-bottom: 1.875rem;
+  border: none;
+  border-bottom: 0.065rem solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+
+.box .inputBox textarea:focus ~ label,
+.box .inputBox textarea:valid ~ label,
+.box .inputBox textarea:not([value=""]) ~ label {
+  top: -1.125rem;
+  left: 0;
+  color: #03a9f4;
+  font-size: 0.75rem;
+}
+
+.box .inputBox ng-select:focus ~ label,
+.box .inputBox ng-select:valid ~ label,
+.box .inputBox ng-select:not([value=""]) ~ label {
+  top: -1.125rem;
+  left: 0;
+  color: #03a9f4;
+  font-size: 0.75rem;
+}
+
+
+.box input[type="submit"] {
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: #03a9f4;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  border-radius: 0.312rem;
+  font-size: 1rem;
+}
+
+.box input[type="submit"]:hover {
+  background-color: #1cb1f5;
 }

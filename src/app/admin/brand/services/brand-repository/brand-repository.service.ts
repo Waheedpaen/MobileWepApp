@@ -82,6 +82,7 @@ export class BrandRepositoryService  extends   IBrandRepository {
   return this.http.get(environment.brandUrl + '/BrandDetail/' + id);
   }
   SaveData(obj: any) {
+    debugger
   return this.http.post(environment.brandUrl + '/SaveBrand',obj);
   }
   DeleteData(id: number) {

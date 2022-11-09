@@ -21,7 +21,9 @@ data: any = {};
 
 @ViewChild(NgForm) Form: any;
   response: any;
-  file: string | ArrayBuffer | null | undefined;
+  file: any
+  fileToUpload: any
+  FileName: any;
   constructor(
     public formBulider:UntypedFormBuilder,
     private spinner: NgxSpinnerService,
@@ -72,12 +74,17 @@ debugger
     return this._NgbActiveModal;
   }
   addBrand(form: NgForm){
+    debugger
 console.log(form);
 this.spinner.show();
 const obj = new Brand();
-obj.imageUrl = this.file;
+obj.photo = this.file;
 obj.name = this.form.get('Name')?.value;
-this.brandServices.SaveBrandData(obj).subscribe(
+const formData = new FormData();
+formData.append('Photo', this.file );
+formData.append('name', this.form.get('Name')?.value);
+
+this.brandServices.SaveBrandData(formData).subscribe(
   res=>{
     this.response = res;
     if(this.response.success == true){
@@ -103,7 +110,7 @@ this.brandServices.SaveBrandData(obj).subscribe(
   const obj = new  Brand();
   obj.id = +this.form.get('Id')?.value;
   obj.name = this.form.get('Name')?.value,
-  obj.imageUrl = this.file
+  obj.photo = this.file
   this.brandServices.UpdateBrandData(obj).subscribe(
     (    res: any) =>{
       this.response = res;
@@ -133,13 +140,22 @@ this.brandServices.SaveBrandData(obj).subscribe(
       this.updateBrand(this.Form);
     }
   }
-  public uploadFinished(event:any) {
+  public uploadFinished(event: any) {
+    this.handleFileInput(event.target.files);
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.file  = event?.target?.result;
+        this.file = event.target?.result;
       }
     }
   }
+  public handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    let file: any = files.item(0);
+    this.FileName = file.name;
+    this.fileToUpload = files.item(0);
+  }
+
+
 }

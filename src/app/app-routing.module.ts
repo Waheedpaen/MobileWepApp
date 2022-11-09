@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './Shared/common-module/shared.module';
 import { UserTemplateComponent } from './User/user-template/user-template.component';
 import { UserModule } from './User/user.module';
+
 const adminModule = () =>
   import('./admin/admin.module').then((x) => x.AdminModule);
 const UserModules = () =>
@@ -50,10 +51,11 @@ export class AppRoutingModule {}
 
 export const allModules = [
   BrowserModule,
+
   AppRoutingModule,
   UserModule,
   BrowserAnimationsModule,
-  SharedModule,
+  SharedModule, 
   ToastrModule.forRoot({
     progressBar: true,
   }),

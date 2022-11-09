@@ -31,7 +31,9 @@
                     <input type="text" hidden
                     formControlName="Id"
                        />
-                    <input [ngClass]="{'has-error':form.get('Name').errors&&(form.get('Name').touched || form.get('Name').dirty|| form.get('Name').invalid)}" type="text" class="form-control" placeholder="Name"
+                    <input
+                    appInputRestriction
+                    type="text" class="form-control" placeholder="Name"
                     formControlName="Name"
                        />
                        <span   *ngIf=" form. get('Name').errors && (form.get('Name').touched || form.get('Name').dirty )"  >

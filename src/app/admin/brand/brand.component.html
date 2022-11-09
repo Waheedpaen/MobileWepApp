@@ -10,7 +10,7 @@
 </ngx-spinner>
 
 <div class="row d-block">
-  <div class="card card-dark shadow">
+  <div class="card   shadow">
     <div class="card-header card-header-hd py-2 bordert-lr">
       <div class="row">
         <div class="col-lg-4 col-md-7">
@@ -108,6 +108,15 @@
         ngx-datatable-cell-template
       >
         {{ row.name }}
+        <img
+        [src]="row.imageUrl"
+        alt="Snow"
+        style="
+          width: 10%;
+          height: 10%;
+ 
+        "
+      />
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Action" [flexGrow]="0.03" [sortable]="false">

@@ -30,6 +30,7 @@ import { MobileRepositoryService } from './mobile/services/mobile-repository/mob
 import { MobileServiceService } from './mobile/services/mobile-service/mobile-service.service';
 import { MobileDetailComponent } from './mobile/mobile-detail/mobile-detail.component';
  ;
+ import { ColorSketchModule } from 'ngx-color/sketch';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UserAddEditComponent } from './user-info/user-add-edit/user-add-edit.component';
 import { InputRestrictionDirective } from '../Shared/CommonPipe/pipe';
@@ -123,5 +124,6 @@ export const AllCommonModule = [
   SharedModule,
   HttpClientModule,
   NgbDatepickerModule,
+  ColorSketchModule,
   NgSelectModule
 ]

@@ -32,6 +32,8 @@ export  abstract class IUserRepository extends IRepository{
   abstract ChangePassword(obj:any):any;
   abstract VerifyedEmailCodeAndEmail(email:any):any;
   abstract verifyEmailCodeAndEmailCheck(ememailAddressail:any,code:any):any;
+  abstract ColorGetAll():any;
+  abstract UpdateColor(name:any):any;
 
 
 }

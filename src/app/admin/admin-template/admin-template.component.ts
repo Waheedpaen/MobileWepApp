@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { ColorEvent } from 'ngx-color';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Shared/Components/login/services/user-service/user.service';
@@ -13,13 +16,28 @@ import Swal from 'sweetalert2';
 export class AdminTemplateComponent implements OnInit {
 responseCountUser:any;
 imageUrl:any;
+Setup: boolean = false;
+  Accounts:boolean =false;
+
+  data:any={};
+  dataColor:any={}
+  // color: Object;
+  hexColor!: String;
+  rgbaColor!: Object;
+  @HostBinding('class') headerClass!: SafeStyle;
+  hideColorPicker:boolean = true;
+  hideTextInput:boolean = true;
+  color:string = '#EC407A';
+  selectedColor:any;
 userCount:any
 obj:any;
+  responses: any;
   constructor(
     private router: Router,
     private spinner: NgxSpinnerService,
     public  _userServices: UserService,
     private toastr: ToastrService,
+    private sanitizer: DomSanitizer,
   ) { }
   getDecodedAccessToken(token: any): any {
     try{
@@ -30,8 +48,13 @@ obj:any;
     }
   }
   ngOnInit(): void {
+    this.ColorGetAll();
 this.getList();
+
   }
+
+
+
 
   GetUserCount(){
     this._userServices.GetUserCount().subscribe(res=>{
@@ -82,5 +105,76 @@ signOut(): void {
 
     }
   })
+    }
+
+
+    handleChange($event: ColorEvent) {
+      debugger
+      this.selectedColor ="#fff"
+      // this.color = $event.color;
+      this.hexColor = $event.color.hex;
+      this.rgbaColor = $event.color.rgb;
+      let body = document.getElementsByTagName('body')[0];
+      body.classList.remove('bg-theme1');
+      var obj ={
+      'name': this.hexColor,
+      'id': 1,
+      }
+     this._userServices.UpdateColor(obj).subscribe(  (    res: any) =>{
+      this.responses = res;
+      if(this.responses.success == true){
+
+ this.ngOnInit()
+
+      }
+      else {
+        this.toastr.error(this.responses.message,'Message.');
+
+      }
+    },
+    (err:HttpErrorResponse)=>{
+
+      this.toastr.error(err.statusText,'Message.')
+
+      this.spinner.hide();
+    }
+  );
+
+
+    }
+
+
+    ColorGetAll() {
+      debugger
+     this._userServices.ColorGetAll().subscribe(  res=>{
+      this.responses = res;
+      if(this.responses.success == true){
+        this.dataColor  = this.responses.data;
+        debugger
+        console.log(this.dataColor)
+        let body = document.getElementsByTagName('body')[0];
+
+        body.classList.remove('bg-theme1');
+        let objr = this.dataColor[0].name;
+        console.log(objr)
+         let body1 = document.getElementsByTagName('body')[0];
+        body1.classList.add('dynamicClassColor');
+        document.querySelector("body")!.style.cssText = '--my-var:'+objr +';';
+        this.headerClass = this.sanitizer.bypassSecurityTrustStyle('--my-var:'+ this.hexColor +';');
+        this.spinner.hide();
+      }
+      else{
+        this.toastr.error(this.responses.message,'Message.');
+      }
+    },err=>{
+      if(err.status == 400){
+        this.toastr.error(err.error.message, 'Message.');
+        this.spinner.hide();
+      }
+    });
+    }
+
+    UpdateColor(obj: any) {
+      return 0;
     }
 }

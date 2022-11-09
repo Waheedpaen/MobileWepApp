@@ -13,7 +13,7 @@ import { OperatingsystemEditComponent } from './operatingsystem-edit/operatingsy
   styleUrls: ['./operating-system.component.css']
 })
 export class OperatingSystemComponent implements OnInit {
-
+  clearData:any;
   rows: any = [];
   columns: any = [];
   temp: any = [];
@@ -100,9 +100,12 @@ Swal.fire({
   modelRef.componentInstance.FormName = name;
   modelRef.result.then((data) => {
     // on close
-
+    this.ngOnInit();
+    this.clearData = '';
     if (data == true) {
-      this.ngOnInit();
+
+
+
     }
     }, (reason: any) => {
     // on dismiss
@@ -113,6 +116,7 @@ Swal.fire({
       modalRef.componentInstance.statusCheck = check;
        modalRef.result.then((data: any) => {
         this.ngOnInit();
+        this.clearData = '';
       if (data == true) {
 
       }

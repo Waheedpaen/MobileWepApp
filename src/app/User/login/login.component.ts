@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
@@ -15,12 +16,30 @@ import { UserService } from 'src/app/Shared/Components/login/services/user-servi
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  responseCountUser:any;
+  imageUrl:any;
+  Setup: boolean = false;
+    Accounts:boolean =false;
+
+    data:any={};
+    dataColor:any={}
+    // color: Object;
+    hexColor!: String;
+    rgbaColor!: Object;
+    @HostBinding('class') headerClass!: SafeStyle;
+    hideColorPicker:boolean = true;
+    hideTextInput:boolean = true;
+    color:string = '#EC407A';
+    selectedColor:any;
+  userCount:any
+  obj:any;
+    responses: any;
 
 
   form:any
   @ViewChild('container') container!: ElementRef
   response: any;
-  data: any = {};
+
 
   user!: SocialUser  ;
   file: any;
@@ -34,7 +53,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private socialAuthService:  SocialAuthService,
     public formBulider:UntypedFormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private sanitizer: DomSanitizer,
 )
  {
 
@@ -47,6 +67,7 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.ColorGetAll();
   }
 
 
@@ -102,5 +123,33 @@ else{
 get activeModal() {
   return this._NgbActiveModal;
 }
+ColorGetAll() {
+  debugger
+ this.userService.ColorGetAll().subscribe(  res=>{
+  this.responses = res;
+  if(this.responses.success == true){
+    this.dataColor  = this.responses.data;
+    debugger
+    console.log(this.dataColor)
+    let body = document.getElementsByTagName('body')[0];
 
+    body.classList.remove('bg-theme1');
+    let objr = this.dataColor[0].name;
+    console.log(objr)
+     let body1 = document.getElementsByTagName('body')[0];
+    body1.classList.add('dynamicClassColor');
+    document.querySelector("body")!.style.cssText = '--my-var:'+objr +';';
+    this.headerClass = this.sanitizer.bypassSecurityTrustStyle('--my-var:'+ this.hexColor +';');
+    this.spinner.hide();
+  }
+  else{
+    this.toastr.error(this.responses.message,'Message.');
+  }
+},err=>{
+  if(err.status == 400){
+    this.toastr.error(err.error.message, 'Message.');
+    this.spinner.hide();
+  }
+});
+}
 }

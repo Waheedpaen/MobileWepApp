@@ -14,6 +14,12 @@ import { AuthSystemService } from 'src/app/Shared/auth/auth.system.service';
   providedIn: 'root'
 })
 export class UserRepositoryService extends IUserRepository  {
+  ColorGetAll() {
+    return this.http.get(environment.urlUser + '/ColorGetAll' );
+  }
+  UpdateColor(obj: any) {
+    return this.http.put(environment.urlUser +  '/UpdateColor',obj)
+  }
   verifyEmailCodeAndEmailCheck(ememailAddressail: any, code: any) {
     return this.http.get(environment.urlUser + '/verifyEmailCodeAndEmailCheck/' + ememailAddressail + '/' + code);
   }

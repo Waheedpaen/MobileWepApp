@@ -43,7 +43,7 @@ export class BrandComponent implements OnInit {
   }
   brandList(){
     this.bool = true;
-    this.spinner.show();
+ 
     this.brandService.GetBrandList().pipe(take(1)).subscribe((data:any)=>{
       this.response = data;
       if(this.response.success  == true){

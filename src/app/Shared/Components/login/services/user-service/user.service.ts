@@ -73,6 +73,13 @@ return this.userRepositoryService.login(obj);
     return this.userRepositoryService.DeleteData(id);
       }
      SearchUserData(obj:any){
-    return this.userRepositoryService.SearchData(obj);
+    return this.userRepositoryService .SearchData(obj);
+    }
+
+    ColorGetAll() {
+      return this.userRepositoryService.ColorGetAll();
+    }
+    UpdateColor(obj: any) {
+      return this.userRepositoryService.UpdateColor(obj);
     }
 }
