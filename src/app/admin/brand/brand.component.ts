@@ -43,7 +43,7 @@ export class BrandComponent implements OnInit {
   }
   brandList(){
     this.bool = true;
- 
+
     this.brandService.GetBrandList().pipe(take(1)).subscribe((data:any)=>{
       this.response = data;
       if(this.response.success  == true){
@@ -85,7 +85,7 @@ export class BrandComponent implements OnInit {
     confirmButtonText: 'Yes',
     reverseButtons: true,
     position: 'top',
-  }).then((result)=>{
+  }).then((result: { isConfirmed: any; })=>{
     if(result.isConfirmed){
       this.bool = true;
       this.spinner.show();
@@ -115,14 +115,14 @@ export class BrandComponent implements OnInit {
   addBrand(obj: any){
 const modalRef = this.modalService.open(BrandEditComponent,{ centered: true });
 modalRef.componentInstance.statusCheck = obj;
-modalRef.result.then((data) => {
+modalRef.result.then((data: boolean) => {
 this.ngOnInit();
 this.clearData = '';
   if (data == true) {
 
 
   }
-}, (reason) => {
+}, () => {
   // on dismiss
 });
   }

@@ -78,13 +78,13 @@ debugger
 console.log(form);
 this.spinner.show();
 const obj = new Brand();
-obj.photo = this.file;
+obj.imageUrl = this.file;
 obj.name = this.form.get('Name')?.value;
 const formData = new FormData();
 formData.append('Photo', this.file );
 formData.append('name', this.form.get('Name')?.value);
 
-this.brandServices.SaveBrandData(formData).subscribe(
+this.brandServices.SaveBrandData(obj).subscribe(
   res=>{
     this.response = res;
     if(this.response.success == true){
@@ -110,7 +110,7 @@ this.brandServices.SaveBrandData(formData).subscribe(
   const obj = new  Brand();
   obj.id = +this.form.get('Id')?.value;
   obj.name = this.form.get('Name')?.value,
-  obj.photo = this.file
+  obj.imageUrl = this.file
   this.brandServices.UpdateBrandData(obj).subscribe(
     (    res: any) =>{
       this.response = res;

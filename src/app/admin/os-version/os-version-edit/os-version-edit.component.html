@@ -41,15 +41,16 @@
 
                   </div>
               </div>
-              <ng-select  class="mt-3"
+              <select  class="mt-3"
               bindLabel=" obj"
               placeholder="Select Supplier"
               formControlName="OperatingSystemId"
+              class="form-select"
               >
-              <ng-option *ngFor="let obj of  objOS" [value]=" obj.id">
+              <option *ngFor="let obj of  objOS" [value]=" obj.id">
                   {{ obj.name}}
-              </ng-option>
-          </ng-select>
+              </option>
+          </select>
           <span   *ngIf=" form. get('OperatingSystemId').errors && (form.get('OperatingSystemId').touched || form.get('OperatingSystemId').dirty )"  >
             <small class="text-danger" *ngIf="form.get('OperatingSystemId').errors?.required">Select OperatingSystem</small>
           </span>

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
+
 import { AuthSystemService } from '../Shared/auth/auth.system.service';
 import { UserForLoginDto } from '../Shared/Components/login/login-entity/User';
 import { LoginComponent } from '../Shared/Components/login/login.component';
@@ -46,7 +46,7 @@ export class FirstPageComponent implements OnInit {
   file: any;
   Url:any;
   constructor(
-    private toastr: ToastrService,
+
     private spinner: NgxSpinnerService,
     public userService: UserService
     ,private _NgbActiveModal: NgbActiveModal,
@@ -117,7 +117,7 @@ loginMethod(){
       //   this.spinner.hide();
       // }
 else{
-  this.toastr.error(this.response.message,'Message.');
+
   this.spinner.hide();
 
 }
@@ -150,11 +150,11 @@ ColorGetAll() {
     this.spinner.hide();
   }
   else{
-    this.toastr.error(this.responses.message,'Message.');
+
   }
 },err=>{
   if(err.status == 400){
-    this.toastr.error(err.error.message, 'Message.');
+ 
     this.spinner.hide();
   }
 });
