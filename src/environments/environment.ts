@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  brandUrl: 'https://localhost:44338/api/brand',
-  urlOperatingSystem: 'https://localhost:44338/api/operatingsystem',
-  urlOperatingSystemVersion: 'https://localhost:44338/api/OSVersion',
-  urlMobile: 'https://localhost:44338/api/Mobile',
-  urlUser: 'https://localhost:44338/api/Auths',
-  urlOrder:'https://localhost:44338/api/Order',
+  brandUrl: 'https://localhost:44385/api/brand',
+  urlOperatingSystem: 'https://localhost:44385/api/operatingsystem',
+  urlOperatingSystemVersion: 'https://localhost:44385/api/OSVersion',
+  urlMobile: 'https://localhost:44385/api/Mobile',
+  urlUser: 'https://localhost:44385/api/Auths',
+  urlOrder:'https://localhost:44385/api/Order',
 
 };
 
