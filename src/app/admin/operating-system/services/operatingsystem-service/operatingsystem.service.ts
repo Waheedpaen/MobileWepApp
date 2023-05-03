@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { OperatingsystemRepositoryService } from '../operatingsystem-repository/operatingsystem-repository.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable, catchError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OperatingsystemService {
 
-  constructor(public OperatingSystemRepositoryService: OperatingsystemRepositoryService) { }
+  constructor(private http: HttpClient,public OperatingSystemRepositoryService: OperatingsystemRepositoryService) { }
   GetOperatingList(){
     return this.OperatingSystemRepositoryService.GetAll();
   }
@@ -42,6 +46,17 @@ export class OperatingsystemService {
 
 
 
+
+  getData(pageSize: number, pageNumber: number, searchTerm: string)  {
+    let params = new HttpParams()
+    .set('page', pageNumber.toString())
+      .set('pageSize',  pageSize.toString())
+      .set('searchTerm', searchTerm);
+debugger
+    return this.http.get(`https://localhost:44385/api/OperatingSystem/Get`, { params })
+
+
+  }
 
 
 

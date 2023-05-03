@@ -206,4 +206,5 @@ this.clearData = '';
     this.brandService.PrintData(this.rows,this.col,docName);
    }
 
-}
+
+  }

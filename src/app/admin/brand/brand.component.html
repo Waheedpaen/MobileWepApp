@@ -108,15 +108,18 @@
         ngx-datatable-cell-template
       >
         {{ row.name }}
+        <a href="{{ row.imageUrl }}" target="_blank">{{ row.imageUrl }}</a>
         <img
-        [src]="row.imageUrl"
-        alt="Snow"
-        style="
-          width: 10%;
-          height: 10%;
- 
-        "
-      />
+          [src]="row.fullPath"
+          alt="Snow"
+          style="
+            width: 100%;
+            height: 100%;
+            filter: blur(1px);
+            -webkit-filter: blur(1px) !important;
+          "
+        />
+                 
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Action" [flexGrow]="0.03" [sortable]="false">

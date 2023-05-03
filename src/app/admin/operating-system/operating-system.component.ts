@@ -32,6 +32,7 @@ export class OperatingSystemComponent implements OnInit {
    public operatingSystemService:  OperatingsystemService) { }
   ngOnInit() {
     this.operatingSystem();
+    this.loadData();
   }
   getRowClass(row: any) {
     return 'table-light-grey-row';
@@ -164,4 +165,67 @@ Swal.fire({
     this.operatingSystemService.PrintData(this.rows,this.col,docName);
    }
 
+   pageNumber: number = 1;
+   pageSize: number = 10;
+   totalPages: any = 0;
+   totalRecords: any  ;
+   searchText: string = '';
+   dataList123: any = []  ;
+
+   searchTerm: string = '';
+   loadData() {
+    debugger
+    this.operatingSystemService.getData(this.pageSize, this.pageNumber, this.searchTerm)
+      .subscribe(response => {
+        this.dataList123 = response  ;
+        this.totalPages = response;
+        this.totalRecords = response
+      });
+  }
+
+  onPrev(): void {
+    if (this.pageNumber > 1) {
+      this.pageNumber--;
+      this.loadData();
+    }
+  }
+
+  onNext(): void {
+    if (this.pageNumber < this.totalPages.totalPages) {
+      debugger
+      this.pageNumber++;
+      this.loadData();
+    }
+  }
+
+  goToPage(n: number): void {
+    if (n >= 1 && n <= this.totalRecords.totalRecords ) {
+      this.pageNumber = n;
+      this.loadData();
+    }
+  }
+
+  getPages(): number[] {
+    let pages: number[] = [];
+    let total = Math.ceil(this.totalRecords.totalRecords / this.pageSize);
+    let start = Math.max(1, this.pageNumber - 2);
+    let end = Math.min(total, this.pageNumber + 2);
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+  pageSizes = [5, 10, 20]
+  onChangePageSize(event: any): void {
+    this.pageSize = event.target.value;
+    this.pageNumber = 1;
+    this.loadData();
+  }pageSizeChanged() {
+    this.pageNumber = 1;
+    this.loadData();
+  }
+  search() {
+    this.pageNumber = 1;
+    this.loadData();
+  }
 }

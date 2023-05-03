@@ -35,6 +35,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { UserAddEditComponent } from './user-info/user-add-edit/user-add-edit.component';
 import { InputRestrictionDirective } from '../Shared/CommonPipe/pipe';
 import { AutofocusDirective } from '../Shared/CommonPipe/focus';
+import { ChatUserComponent } from './chat-user/chat-user.component';
 
 
 
@@ -74,7 +75,13 @@ data: {
   title: 'OSVersion',
   canActivate: [AuthGuard],
    data: {
+    role: 'Admin'}},
+    {path:'chat',component:ChatUserComponent,
+  title: 'ChatGPT',
+  canActivate: [AuthGuard],
+   data: {
     role: 'Admin'}}
+
 
 ]}
 ]
