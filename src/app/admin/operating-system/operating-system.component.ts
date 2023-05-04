@@ -200,16 +200,16 @@ Swal.fire({
   }
 
   goToPage(n: number): void {
-    if (n >= 1 && n <= this.totalRecords.totalRecords ) {
+    if (n >= 1 && n <= this.totalRecords?.totalRecords ) {
       this.pageNumber = n;
       this.loadData();
     }
   }
 
   getPages(): number[] {
-    debugger
+  
     let pages: number[] = [];
-    let total = Math.ceil(this.totalRecords?.totalRecords / this.pageSize);
+    let total = Math.ceil(this.totalRecords.totalRecords / this.pageSize);
     let start = Math.max(1, this.pageNumber - 2);
     let end = Math.min(total, this.pageNumber + 2);
     for (let i = start; i <= end; i++) {
