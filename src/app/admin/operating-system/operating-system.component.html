@@ -30,6 +30,8 @@
         </tbody>
       </table>
       <div class="pagination">
+        <button class="page-link"  >{{this. dataList123.totalRecordNumber}}</button>
+                     
         <button class="page-link" [disabled]="pageNumber == 1" (click)="onPrev()">Prev</button>
         <button class="page-link" *ngFor="let n of getPages()" (click)="goToPage(n)">{{ n }}</button>
         <button class="page-link" [disabled]="pageNumber == totalPages" (click)="onNext()">Next</button>

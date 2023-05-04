@@ -164,7 +164,7 @@ Swal.fire({
     let docName = "Operating System";
     this.operatingSystemService.PrintData(this.rows,this.col,docName);
    }
-
+   pageSizes = [5, 10, 20,30]
    pageNumber: number = 1;
    pageSize: number = 10;
    totalPages: any = 0;
@@ -184,6 +184,7 @@ Swal.fire({
   }
 
   onPrev(): void {
+    debugger
     if (this.pageNumber > 1) {
       this.pageNumber--;
       this.loadData();
@@ -206,8 +207,9 @@ Swal.fire({
   }
 
   getPages(): number[] {
+    debugger
     let pages: number[] = [];
-    let total = Math.ceil(this.totalRecords.totalRecords / this.pageSize);
+    let total = Math.ceil(this.totalRecords?.totalRecords / this.pageSize);
     let start = Math.max(1, this.pageNumber - 2);
     let end = Math.min(total, this.pageNumber + 2);
     for (let i = start; i <= end; i++) {
@@ -215,12 +217,8 @@ Swal.fire({
     }
     return pages;
   }
-  pageSizes = [5, 10, 20]
-  onChangePageSize(event: any): void {
-    this.pageSize = event.target.value;
-    this.pageNumber = 1;
-    this.loadData();
-  }pageSizeChanged() {
+
+  pageSizeChanged() {
     this.pageNumber = 1;
     this.loadData();
   }
