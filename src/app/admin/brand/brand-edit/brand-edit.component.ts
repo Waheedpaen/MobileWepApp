@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, NgForm, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from '../brand-entity/brand';
 import { BrandService } from '../services/brand-service/brand.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-brand-edit',
@@ -81,10 +82,10 @@ const obj = new Brand();
 obj.imageUrl = this.file;
 obj.name = this.form.get('Name')?.value;
 const formData = new FormData();
-formData.append('Photo', this.file );
+formData.append('photo', this.file );
 formData.append('name', this.form.get('Name')?.value);
 
-this.brandServices.SaveBrandData(obj).subscribe(
+this.brandServices.SaveBrandData(formData).subscribe(
   res=>{
     this.response = res;
     if(this.response.success == true){
@@ -140,14 +141,11 @@ this.brandServices.SaveBrandData(obj).subscribe(
       this.updateBrand(this.Form);
     }
   }
+
   public uploadFinished(event: any) {
-    this.handleFileInput(event.target.files);
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.file = event.target?.result;
-      }
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.file = file;
     }
   }
   public handleFileInput(files: FileList) {
@@ -156,6 +154,7 @@ this.brandServices.SaveBrandData(obj).subscribe(
     this.FileName = file.name;
     this.fileToUpload = files.item(0);
   }
+
 
 
 }

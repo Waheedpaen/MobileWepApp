@@ -14,6 +14,10 @@ import { OperatingsystemEditComponent } from './operatingsystem-edit/operatingsy
 })
 export class OperatingSystemComponent implements OnInit {
   clearData:any;
+  dataSearch = {
+    name:'',
+    age:''
+   }
   rows: any = [];
   columns: any = [];
   temp: any = [];
@@ -175,7 +179,7 @@ Swal.fire({
    searchTerm: string = '';
    loadData() {
     debugger
-    this.operatingSystemService.getData(this.pageSize, this.pageNumber, this.searchTerm)
+    this.operatingSystemService.getData(this.pageSize, this.pageNumber, this.dataSearch.name,this.dataSearch.age)
       .subscribe(response => {
         this.dataList123 = response  ;
         this.totalPages = response;
@@ -207,7 +211,7 @@ Swal.fire({
   }
 
   getPages(): number[] {
-  
+
     let pages: number[] = [];
     let total = Math.ceil(this.totalRecords.totalRecords / this.pageSize);
     let start = Math.max(1, this.pageNumber - 2);
@@ -222,7 +226,9 @@ Swal.fire({
     this.pageNumber = 1;
     this.loadData();
   }
-  search() {
+  searchAge(){
+    debugger
+    let data = this.dataSearch;
     this.pageNumber = 1;
     this.loadData();
   }

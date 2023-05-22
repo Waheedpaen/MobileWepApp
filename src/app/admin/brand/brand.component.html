@@ -110,7 +110,7 @@
         {{ row.name }}
         <a href="{{ row.imageUrl }}" target="_blank">{{ row.imageUrl }}</a>
         <img
-          [src]="row.fullPath"
+          src="{{row.fullPath  }}"
           alt="Snow"
           style="
             width: 100%;
@@ -119,7 +119,7 @@
             -webkit-filter: blur(1px) !important;
           "
         />
-                 
+
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Action" [flexGrow]="0.03" [sortable]="false">
@@ -128,6 +128,11 @@
         let-expanded="expanded"
         ngx-datatable-cell-template
       >
+      <button
+
+      class="button download"
+      (click)="downloadFile(row.fullPath)"
+       >download</button>
         <!-- <div class="ibox-tools text-center"> -->
         <button
           type="button"
@@ -151,6 +156,7 @@
         >
           <i class="far fa-trash-alt"></i>
         </button>
+
         <!-- </div> -->
       </ng-template>
     </ngx-datatable-column>

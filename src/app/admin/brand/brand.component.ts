@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -6,10 +6,12 @@ import { ToastrService } from 'ngx-toastr';
 import * as XLSX from 'xlsx';
 import { BrandService } from './services/brand-service/brand.service';
 import Swal from 'sweetalert2'
-import { map ,take} from 'rxjs';
+import { Observable, map ,take} from 'rxjs';
 import { GlobalConstants } from 'src/app/Shared/common-classes/GlobalConstants/GlobalConstants';
 import { BrandEditComponent } from './brand-edit/brand-edit.component';
 import { SearchBrand } from './brand-entity/brand';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
@@ -25,6 +27,10 @@ export class BrandComponent implements OnInit {
   data: any = {};
   Filter: any = []
   categoryCount: any;
+  private baseApiUrl: any;
+  public apiDownloadUrl: any;
+  private apiUploadUrl: any;
+  private apiFileUrl: any;
   col = [
     { Name: 'Name', prop: 'name'},
   ];
@@ -35,7 +41,13 @@ export class BrandComponent implements OnInit {
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private modalService: NgbModal,
-   public brandService: BrandService) { }
+   public brandService: BrandService) {
+
+    this.baseApiUrl = environment.brandUrl;
+    this.apiDownloadUrl = this.baseApiUrl + 'https://localhost:44385/api/brand/download';
+    this.apiUploadUrl = this.baseApiUrl + '/upload';
+    this.apiFileUrl = this.baseApiUrl + '/files';
+    }
   ngOnInit() {
     this.bool = false;
     this.brandList();
@@ -206,5 +218,31 @@ this.clearData = '';
     this.brandService.PrintData(this.rows,this.col,docName);
    }
 
+   public downloadFile(file: string)  {
+    debugger
+    let params = new HttpParams()
+    .set('file', file.toString()) ;
+ debugger
+    return this.http.get(`https://localhost:44385/api/brand/download`, { params }).subscribe(
+      (data:any) => {
 
+            const downloadedFile = new Blob([data.body], { type: data.body.type });
+            const a = document.createElement('a');
+            a.setAttribute('style', 'display:none;');
+            document.body.appendChild(a);
+            var splitLink = data.file.split('\\');
+            console.log(splitLink);
+            a.download =  splitLink[6];
+            a.href = URL.createObjectURL(downloadedFile);
+            a.target = '_blank';
+            a.click();
+            document.body.removeChild(a);
+
+        }
+
+
+    );
+
+
+  }
   }

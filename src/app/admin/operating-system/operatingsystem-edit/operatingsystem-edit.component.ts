@@ -15,11 +15,11 @@ import { OperatingsystemService } from '../services/operatingsystem-service/oper
   templateUrl: './operatingsystem-edit.component.html',
   styleUrls: ['./operatingsystem-edit.component.css']
 })
-export class OperatingsystemEditComponent implements OnInit {
+export class                                                                                               OperatingsystemEditComponent implements OnInit {
   form: any;
   @Input() Id!: number;
   @Input() statusCheck: any;
-  data: any = {};
+  data: any = {};          
 
   @ViewChild(NgForm) Form: any;
     response: any;
