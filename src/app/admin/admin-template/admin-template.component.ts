@@ -2,12 +2,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { ColorEvent } from 'ngx-color';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Shared/Components/login/services/user-service/user.service';
 import Swal from 'sweetalert2';
+import * as signalR from '@microsoft/signalr';
 @Component({
   selector: 'app-admin-template',
   templateUrl: './admin-template.component.html',
@@ -32,8 +34,12 @@ Setup: boolean = false;
 userCount:any
 obj:any;
   responses: any;
+  notification: any;
+  errorMessage: any;
+  messages: any;
   constructor(
     private router: Router,
+    private  http: HttpClient,
     private spinner: NgxSpinnerService,
     public  _userServices: UserService,
     private toastr: ToastrService,
@@ -49,7 +55,26 @@ obj:any;
   }
   ngOnInit(): void {
     this.ColorGetAll();
-this.getList();
+    this.getList();
+    this.getNotificationCount();
+    const connection = new signalR.HubConnectionBuilder()
+    .configureLogging(signalR.LogLevel.Information)
+    .withUrl('https://localhost:44385/notify',{
+      skipNegotiation: true,
+      transport: signalR.HttpTransportType.WebSockets
+    }  )
+    .build();
+
+  connection.start().then(function () {
+    console.log('SignalR Connected!');
+  }).catch(function (err) {
+
+    return console.error(err.toString());
+  });
+  connection.on("BroadcastMessage", () => {
+    this.getNotificationCount();
+  });
+
 
   }
 
@@ -176,5 +201,25 @@ signOut(): void {
 
     UpdateColor(obj: any) {
       return 0;
+    }
+    getNotificationCount() {
+ this.http.get('https://localhost:44385/api/Notifications/notificationcount').subscribe(
+  notification => {
+    this.notification = notification;
+  },
+  error => this.errorMessage = <any>error
+);
+}
+
+    getNotificationMessage() {
+    return this.http.get('https://localhost:44385/api/Notifications/notificationresult').subscribe(
+      messages => {
+        this.messages = messages;
+      },
+      error => this.errorMessage = <any>error
+    );
+    }
+    deleteNotifications()   {
+      this.http.delete('https://localhost:44385/api/Notifications/notificationresult');
     }
 }

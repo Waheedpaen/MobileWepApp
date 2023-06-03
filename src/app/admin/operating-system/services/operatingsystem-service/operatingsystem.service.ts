@@ -47,13 +47,13 @@ export class OperatingsystemService {
 
 
 
-  getData(pageSize: number, pageNumber: number, searchTerm: string,age: string)  {
+  getData(UserId:number,pageSize: number, pageNumber: number, searchTerm: string,age: string)  {
     let params = new HttpParams()
     .set('page', pageNumber.toString())
       .set('pageSize',  pageSize.toString())
       .set('searchTerm', searchTerm)
-      .set('age', age);
-
+      .set('age', age) 
+      .set('userId', UserId);
 debugger
     return this.http.get(`https://localhost:44385/api/OperatingSystem/Get`, { params })
 

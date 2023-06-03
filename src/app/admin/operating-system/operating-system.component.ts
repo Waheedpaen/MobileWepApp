@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from 'jwt-decode';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +8,8 @@ import { OperatingsystemService } from './services/operatingsystem-service/opera
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Shared/common-classes/GlobalConstants/GlobalConstants';
 import { OperatingsystemEditComponent } from './operatingsystem-edit/operatingsystem-edit.component';
+import * as signalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-operating-system',
   templateUrl: './operating-system.component.html',
@@ -37,6 +40,24 @@ export class OperatingSystemComponent implements OnInit {
   ngOnInit() {
     this.operatingSystem();
     this.loadData();
+
+    const connection = new signalR.HubConnectionBuilder()
+    .configureLogging(signalR.LogLevel.Information)
+    .withUrl('https://localhost:44385/notify',{
+      skipNegotiation: true,
+      transport: signalR.HttpTransportType.WebSockets
+    }  )
+    .build();
+
+  connection.start().then(function () {
+    console.log('SignalR Connected!');
+  }).catch(function (err) {
+
+    return console.error(err.toString());
+  });
+  connection.on("BroadcastMessage", () => {
+    this.loadData();
+  });
   }
   getRowClass(row: any) {
     return 'table-light-grey-row';
@@ -162,7 +183,14 @@ Swal.fire({
     })
   }
   }
-
+  getDecodedAccessToken(token: any): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
+  }
   PrintData(){
     debugger;
     let docName = "Operating System";
@@ -179,7 +207,10 @@ Swal.fire({
    searchTerm: string = '';
    loadData() {
     debugger
-    this.operatingSystemService.getData(this.pageSize, this.pageNumber, this.dataSearch.name,this.dataSearch.age)
+   
+    var data = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
+
+    this.operatingSystemService.getData(data.UserId,this.pageSize, this.pageNumber, this.dataSearch.name,this.dataSearch.age)
       .subscribe(response => {
         this.dataList123 = response  ;
         this.totalPages = response;

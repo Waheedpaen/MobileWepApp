@@ -25,6 +25,7 @@ data: any = {};
   file: any
   fileToUpload: any
   FileName: any;
+  employee: any;
   constructor(
     public formBulider:UntypedFormBuilder,
     private spinner: NgxSpinnerService,
@@ -81,9 +82,11 @@ this.spinner.show();
 const obj = new Brand();
 obj.imageUrl = this.file;
 obj.name = this.form.get('Name')?.value;
+const p = { ...this.employee, ...this.form.value };
+console.log(p)
 const formData = new FormData();
 formData.append('photo', this.file );
-formData.append('name', this.form.get('Name')?.value);
+formData.append('name', p.Name);
 
 this.brandServices.SaveBrandData(formData).subscribe(
   res=>{

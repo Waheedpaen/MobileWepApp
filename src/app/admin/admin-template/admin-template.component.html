@@ -52,6 +52,14 @@
          <i class="fa fa-sign-out" (click)="signOut()"></i>
        </a>
      </li>
+     <li class="nav-item">
+      <a class="nav-link">
+        <i class="fa fa-bell  has-badge" style="cursor: pointer;"  ></i>
+        <div class="numberCircle" *ngIf="notification && notification?.count>0" style="cursor: pointer;"
+          >
+          {{notification?.count}}</div>
+      </a>
+    </li>
      </ul>
    </nav>
    <!-- /.navbar -->
