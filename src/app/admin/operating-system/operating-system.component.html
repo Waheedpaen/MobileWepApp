@@ -18,6 +18,8 @@
           <input type="text" name="age" [(ngModel)]="dataSearch.age"   placeholder="Age">
         </div>
         <button type="submit" (click)="searchAge()" >Submit</button>
+        <button  (click)=" createpdf()">PDF</button>
+        <button  (click)=" clearBox()">clearBox</button>
       </form>
       <table class="table">
         <thead>
@@ -26,6 +28,7 @@
             <th>Name</th>
             <th>Age</th>
             <th>Email</th>
+            <th>PDF</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +37,11 @@
             <td>{{item.name}}</td>
             <td>{{item.age}}</td>
             <td>{{item.email}}</td>
+            <td>{{item.email}}
+
+              <button  (click)=" createpdfDetails(item)">PDF</button>
+            </td>
+
           </tr>
         </tbody>
       </table>
@@ -47,3 +55,75 @@
     </div>
   </div>
 </div>
+<!-- <form [formGroup]="exampleForm" class="my-form">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" hidden id="name" formControlName="id" class="form-control">
+
+    <input type="text" id="name" formControlName="name" class="form-control">
+    <div *ngIf="exampleForm.get('name').invalid && (exampleForm.get('name').dirty || exampleForm.get('name').touched)" class="error-message">
+      <div *ngIf="exampleForm.get('name').hasError('required')">Name is required.</div>
+      <div *ngIf="exampleForm.get('name').hasError('maxlength')">Name cannot exceed 25 characters.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" formControlName="salary" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="text" id="age" formControlName="age" class="form-control">
+  </div>
+
+  <div formArrayName="units">
+    <div *ngFor="let unit of exampleForm.get('units').controls; let i=index" [formGroupName]="i" class="unit-group">
+      <h3>Unit {{ i + 1 }}</h3>
+      <input hidden type="text" id="id{{ i }}" formControlName="id" class="form-control">
+      <div class="form-group">
+        <label for="unitName{{ i }}">Unit Name:</label>
+        <input type="text" id="unitName{{ i }}" formControlName="unitName" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="qty{{ i }}">Quantity:</label>
+        <input type="text" id="qty{{ i }}" formControlName="qty" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="unitPrice{{ i }}">Unit Price:</label>
+        <input type="text" id="unitPrice{{ i }}" formControlName="unitPrice" class="form-control">
+      </div>
+      <button type="button" mat-mini-fab color="warn" fxFlex="nogrow" *ngIf="exampleForm.controls.units.controls.length > 1" (click)="removeUnit(i)" class="delete-button">
+        <mat-icon>delete forever</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addUnit()" class="btn btn-primary">Add Unit</button>
+
+  <button (click)="SaveData()" type="submit" [disabled]="exampleForm.invalid" class="btn btn-success">Submit</button>
+</form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">age</th>
+      <th scope="col">Unit Names</th>
+      <th scope="col">Id Get</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let obj of studentList">
+      <th scope="row">1</th>
+      <td>{{obj?.name}}</td>
+      <td>{{obj?.age}} </td>
+      <td *ngFor="let item of obj.units">{{item.unitName}}</td>
+      <td (click)=" GetData(obj.id)"> <mat-icon>delete forever</mat-icon> </td>
+    </tr>
+
+
+  </tbody>
+</table> -->

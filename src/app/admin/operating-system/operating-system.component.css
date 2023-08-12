@@ -3,3 +3,29 @@ h2 {
   font-style: oblique;
   font-family: cursive;
 }
+.boxx {
+  margin-top: 10px;
+  display: grid;
+grid-template-columns: 3fr 3fr 3fr    ;
+grid-gap: 30px;
+gap: 10px;
+}
+
+.sar {
+
+  display: grid;
+grid-template-columns: 3fr 3fr 3fr    ;
+grid-gap: 30px;
+gap: 10px;
+}
+.one {
+font-style: italic;
+ }
+
+ .two {
+  font-style: italic;
+ }
+
+ .three {
+  font-style: italic;
+ }

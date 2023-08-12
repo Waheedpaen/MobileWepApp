@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -243,6 +243,42 @@ this.clearData = '';
 
     );
 
-
   }
+
+
+
+
+
+  // downloadPDF(id){
+  //   let  baseUrl = 'https://localhost:44385/api/PDF';
+  //   const headers = new HttpHeaders({ 'Accept': 'application/pdf' });
+  //   this.http.get(`${ baseUrl}/${id}`, { responseType: 'blob', headers: headers }).subscribe(blob => {
+  //     const url = window.URL.createObjectURL(blob);
+  //     debugger
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.download = 'downloaded.pdf';
+  //     link.click();
+  //     window.URL.revokeObjectURL(url);
+  //   });;
+  // }
+
+
+  downloadPDF(id){
+
+
+debugger
+
+    let  baseUrl = 'https://localhost:44385/api/PDF';
+    const headers = new HttpHeaders({ 'Accept': 'application/pdf' });
+    this.http.get(`${baseUrl}/${id}`, { responseType: 'blob' }).subscribe(blob => {
+      debugger
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `pdf_${id}.pdf`; // You can customize the file name
+      link.click();
+      window.URL.revokeObjectURL(link.href);
+    });
+  }
+
   }

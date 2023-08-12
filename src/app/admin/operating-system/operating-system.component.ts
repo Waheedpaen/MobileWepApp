@@ -10,6 +10,10 @@ import { GlobalConstants } from 'src/app/Shared/common-classes/GlobalConstants/G
 import { OperatingsystemEditComponent } from './operatingsystem-edit/operatingsystem-edit.component';
 import * as signalR from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import pdfMake from 'pdfmake/build/pdfMake';
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-operating-system',
   templateUrl: './operating-system.component.html',
@@ -17,6 +21,8 @@ import { environment } from 'src/environments/environment';
 })
 export class OperatingSystemComponent implements OnInit {
   clearData:any;
+  studentList:any=[]
+  employee:any={}
   dataSearch = {
     name:'',
     age:''
@@ -30,8 +36,11 @@ export class OperatingSystemComponent implements OnInit {
   col = [
     { Name: 'Name', prop: 'name'},
   ];
-  categoryCount: any;
+  exampleForm: any;
+  totalSum: number = 0;
+     categoryCount: any;
   constructor(
+    private formBuilder: FormBuilder,
     private http: HttpClient,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -39,8 +48,19 @@ export class OperatingSystemComponent implements OnInit {
    public operatingSystemService:  OperatingsystemService) { }
   ngOnInit() {
     this.operatingSystem();
+    this.studentListData();
     this.loadData();
+    this.exampleForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(25)]],
+      salary: [''],
+      id: [''],
 
+      age: [''],
+      units: this.formBuilder.array([
+        // load first row at start
+        this.getUnit(),
+      ]),
+    });
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
     .withUrl('https://localhost:44385/notify',{
@@ -207,7 +227,7 @@ Swal.fire({
    searchTerm: string = '';
    loadData() {
     debugger
-   
+
     var data = this.getDecodedAccessToken(sessionStorage.getItem('Token'));
 
     this.operatingSystemService.getData(data.UserId,this.pageSize, this.pageNumber, this.dataSearch.name,this.dataSearch.age)
@@ -252,6 +272,28 @@ Swal.fire({
     }
     return pages;
   }
+  private getUnit() {
+    const numberPatern = '^[0-9.,]+$';
+    return this.formBuilder.group({
+      id: ['' ],
+      unitName: ['', Validators.required],
+      qty: [1, [Validators.required, Validators.pattern(numberPatern)]],
+      unitPrice: ['', [Validators.required, Validators.pattern(numberPatern)]],
+      deleted: [false]
+    });
+  }
+  addUnit() {
+    const control = <FormArray>this.exampleForm.controls['units'];
+    control.push(this.getUnit());
+  }
+  removeUnit(i: any) {
+    // const control = <FormArray>this.exampleForm.controls['units'];
+    // control.removeAt(i);
+    const control = this.exampleForm.get('units') as FormArray;
+  let unit :any = control.at(i);
+   unit.get('deleted').setValue(true);
+  control.removeAt(i);
+  }
 
   pageSizeChanged() {
     this.pageNumber = 1;
@@ -263,4 +305,267 @@ Swal.fire({
     this.pageNumber = 1;
     this.loadData();
   }
+  submitMethid(){
+    debugger
+
+    alert(JSON.stringify(this.exampleForm.value))
+  }
+
+
+  SaveData() {
+
+    if(this.exampleForm.get('id').value){
+      debugger
+      this.employee = {...this.employee ,...this.exampleForm.value}
+  this.http.put(environment.urlOperatingSystem + '/UpdateStudents',this.employee).subscribe
+  (res=>{
+    console.log(res)
+  },
+  (error:any)=>{
+    console.log(error)
+  });;
+
+    }
+    else{
+      debugger
+    this.employee = {...this.employee ,...this.exampleForm.value}
+  this.http.post(environment.urlOperatingSystem + '/Student',this.employee).subscribe
+  (res=>{
+    console.log(res)
+  },
+  (error:any)=>{
+    console.log(error)
+  });
+    }
+
+    }
+
+    studentListData(){
+      this.http.get(environment.urlOperatingSystem+ '/StudentList').subscribe
+      (res=>{
+        this.studentList = res;
+      })
+    }
+    GetData(id: number) {debugger
+    this.http.get(environment.urlOperatingSystem + '/studentLIistData/' + id).subscribe
+    ((data:any)=>{
+
+      debugger
+
+      this.exampleForm.patchValue({
+        name: data.name,
+        id:data.id,
+        salary: data.salary,
+        age: data.age,
+
+      });
+      const control = <FormArray>this.exampleForm.controls['units'];
+      for (let i = 1; i < data.units.length; i++) {
+        control.push(this.getUnit());
+      }
+      this.exampleForm.patchValue({units: data.units});
+    });
+    console.log(this.exampleForm.value)
+      }
+
+
+      createpdf(){
+        var dd = {
+          content: [
+              {
+                  table: {
+
+                      widths: [530, '*'],
+                      body: [
+                          [
+
+                                {
+                                  text: 'Operating System',
+                                 margin: [170, 0,0,0],
+                               // Set the background color for the entire row
+                                  style: {
+                                      color: 'red',  // Set the text color
+                                      fontSize: 20   // Set the font size
+                                  }
+                              },
+                               // Empty cell to create the other column
+                          ]
+                      ]
+                  },
+                    // Remove table borders if needed
+              },
+
+              {text:'Customer Details ' ,	margin: [0, 19,0,20],
+                   style: {
+                 bold: true,
+                decoration: 'underline',
+                fontSize: 14, },
+              },
+
+              {
+                table: {
+                  headerRows: 1,
+                  widths: [130, 130, 130, 120],
+                  body: [
+                    ['Name', 'Age', 'Email', 'Fees'],
+                    ...this.dataList123.data.map(p => ([p.name, p.age, 'Waheed@gmail.com', '500'])),
+
+                  ]
+                }
+              },
+              {
+            columns: [
+              {
+               text: 'Waheed Ullah',  	margin: [0, 19,0,20],
+              },
+              {
+
+              },
+
+              {
+                  text: 'Waheed Ullah',
+                  alignment: 'right',
+                  margin: [0, 19,0,20],
+              }
+            ]
+          },
+          ]
+      };
+
+      const pdfDocGenerator = pdfMake.createPdf(dd).download();
+
+      }
+
+
+
+      createpdfDetails(item:any){
+        var dd = {
+          content: [
+              {
+                  table: {
+
+                      widths: [530, '*'],
+                      body: [
+                          [
+
+                                {
+                                  text: 'Operating System',
+                                 margin: [170, 0,0,0],
+                               // Set the background color for the entire row
+                                  style: {
+                                      color: 'red',  // Set the text color
+                                      fontSize: 20   // Set the font size
+                                  }
+                              },
+                               // Empty cell to create the other column
+                          ]
+                      ]
+                  },
+                    // Remove table borders if needed
+              },
+
+              {text:'Customer Details ' ,	margin: [0, 19,0,20],
+                   style: {
+                 bold: true,
+                decoration: 'underline',
+                fontSize: 14, },
+              },
+
+              {
+                table: {
+                  headerRows: 1,
+                  widths: [130, 130, 130, 120],
+                  body: [
+                    ['Name', 'Age', 'Email', 'Fees'],
+                    [item.name, item.age, 'Waheed@gmail.com', '500']
+
+                  ]
+                }
+              },
+              {
+            columns: [
+              { qr:  item.name, foreground: 'red', background: 'yellow' },
+              {
+
+              },
+
+              {
+                  text: 'Waheed Ullah',
+                  alignment: 'right',
+                  margin: [0, 19,0,20],
+              }
+            ]
+          },
+          {
+            text:item.name,style: 'UserDetails',    margin:[0,40,0,0]
+          },
+        {
+          columns:[
+  {text:'Name'},
+  {text:'Email'},
+  {text:'Age'},
+ {text:'Salary'},
+          ]
+        },
+        {
+          columns:[
+  {text:item.name },
+  {text:'waheed@gmail.com'},
+  {text:item.age},
+ {text:'5014',   alignment: 'right',},
+          ]
+        },
+        {
+
+        }
+        ,
+
+		{
+			style: 'tableExample',
+			color: '#444',
+			table: {
+				widths: [200, 'auto', 'auto'],
+				headerRows: 2,
+				// keepWithHeaderRows: 1,
+				body: [
+					[{text: 'Header with Colspan = 2', style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}, {text: 'Header 3', style: 'tableHeader', alignment: 'center'}],
+					[{text: 'Header 1', style: 'tableHeader', alignment: 'center'}, {text: 'Header 2', style: 'tableHeader', alignment: 'center'}, {text: 'Header 3', style: 'tableHeader', alignment: 'center'}],
+					['Sample value 1', 'Sample value 2', 'Sample value 3'],
+					[{rowSpan: 3, text: 'rowSpan set to 3\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor'}, 'Sample value 2', 'Sample value 3'],
+					['', 'Sample value 2', 'Sample value 3'],
+					['Sample value 1', 'Sample value 2', 'Sample value 3'],
+					['Sample value 1', {colSpan: 2, rowSpan: 2, text: 'Both:\nrowSpan and colSpan\ncan be defined at the same time'}, ''],
+					['Sample value 1', '', ''],
+				]
+			}
+		},
+          ],
+          styles: {
+            UserDetails: {
+              fontSize: 22,
+              bold: true,
+              color:'pink',
+              decoration:'underline',
+              alignment: 'center',
+              background:'blue'
+            },
+            anotherStyle: {
+              italics: true,
+              alignment: 'right',
+
+            },
+            tableExample:{
+              margin: [0, 0, 0, 10]
+            },
+          }
+      };
+
+      // const pdfDocGenerator = pdfMake.createPdf(dd).download();
+      pdfMake.createPdf(dd).open();
+      }
+
+      clearBox(){
+        this.dataSearch.name = '',
+        this.dataSearch.age = ''
+      }
 }

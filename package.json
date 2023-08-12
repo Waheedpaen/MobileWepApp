@@ -64,6 +64,7 @@
     "ngx-print": "^1.2.1",
     "ngx-spinner": "^13.1.1",
     "ngx-toastr": "^14.3.0",
+    "pdfmake": "^0.2.7",
     "primeicons": "^5.0.0",
     "primeng": "^13.4.0",
     "rxjs": "~7.4.0",
